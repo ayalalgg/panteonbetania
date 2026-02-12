@@ -1,19 +1,26 @@
-import type { Metadata } from 'next';
-import './globals.css';
+import type { Metadata } from "next";
+import "./globals.css";
+import "@fontsource/playfair-display"; // Defaults to weight 400
+import "@fontsource/playfair-display/700.css"; // Weight 700
+import "@fontsource/lato"; // Defaults to weight 400
+import "@fontsource/lato/700.css"; // Weight 700
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: 'Panteón Bethania | Ixtapaluca',
-  description: 'Panteón privado con opciones a perpetuidad y temporalidad. Un lugar de paz y descanso eterno en San Francisco Acuautla, Ixtapaluca.',
+  title: "Panteón Bethania | Grupo Funerario Ayala",
+  description: "Un espacio de paz y descanso eterno. Panteón Bethania ofrece perpetuidades y servicios funerarios de alta calidad.",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body>{children}</body>
+      <body className={cn("antialiased min-h-screen bg-background text-foreground font-sans")}>
+        {children}
+      </body>
     </html>
   );
 }
