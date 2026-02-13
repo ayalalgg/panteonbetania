@@ -6,55 +6,78 @@ import { AmenitiesSection } from "@/components/AmenitiesSection"
 import { Testimonials } from "@/components/Testimonials"
 import { MembershipsSection } from "@/components/MembershipsSection"
 import { Separator } from "@/components/ui/separator"
+import { Button } from "@/components/ui/button"
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground font-sans pb-24 md:pb-0">
-      {/* Mobile-first Layout Container */}
-      <div className="max-w-screen-md mx-auto bg-white shadow-xl min-h-screen overflow-hidden">
+      {/* Container: Max-width limited on desktop for 'App' feel, but cleaner */}
+      <div className="max-w-7xl mx-auto min-h-screen overflow-hidden bg-white shadow-none md:shadow-2xl">
 
-        {/* 1. Gallery Carousel */}
-        <ListingGallery />
+        <div className="grid grid-cols-1 md:grid-cols-5 h-full">
 
-        {/* 2. Key Info (Price, Title, Specs) */}
-        <PropertyInfo />
+          {/* LEFT COLUMN: Gallery (Sticky on Desktop) */}
+          <div className="md:col-span-3 md:h-screen md:sticky md:top-0 md:overflow-hidden bg-gray-100">
+            <ListingGallery />
+          </div>
 
-        {/* 3. Description (Short) */}
-        <div className="px-6 py-8">
-          <h3 className="font-serif text-lg font-bold text-primary mb-3">Descripción</h3>
-          <p className="text-muted-foreground leading-relaxed text-sm">
-            Un santuario de paz diseñado para el descanso eterno. Panteón Bethania ofrece perpetuidades en un entorno exclusivo con jardines botánicos, seguridad privada y un servicio de concierge familiar que honra su legado con la mayor dignidad.
-          </p>
+          {/* RIGHT COLUMN: Details (Scrollable on Desktop) */}
+          <div className="md:col-span-2 md:h-screen md:overflow-y-auto bg-white">
+            {/* Key Info */}
+            <PropertyInfo />
+
+            {/* Desktop Action Button (Hidden on Mobile) */}
+            <div className="hidden md:block px-6 pt-2 pb-6">
+              <Button
+                className="w-full rounded-full h-12 text-lg font-bold bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg"
+                onClick={() => window.open('https://wa.me/525545065063?text=Me interesa agendar una visita', '_blank')}
+              >
+                Agendar Visita
+              </Button>
+            </div>
+
+            <Separator className="my-0 w-full bg-border/40" />
+
+            {/* Description */}
+            <div className="px-6 py-8">
+              <h3 className="font-serif text-lg font-bold text-primary mb-3">Descripción</h3>
+              <p className="text-muted-foreground leading-relaxed text-sm">
+                Un santuario de paz diseñado para el descanso eterno. Panteón Bethania ofrece perpetuidades en un entorno exclusivo con jardines botánicos, seguridad privada y un servicio de concierge familiar que honra su legado con la mayor dignidad.
+              </p>
+            </div>
+
+            <Separator className="my-0 w-[90%] mx-auto bg-border/40" />
+
+            {/* Amenities */}
+            <div className="py-4">
+              <AmenitiesSection />
+            </div>
+
+            <Separator className="my-0 w-[90%] mx-auto bg-border/40" />
+
+            {/* Memberships */}
+            <div className="px-6 py-8">
+              <h3 className="font-serif text-lg font-bold text-primary mb-6">Planes Disponibles</h3>
+              <MembershipsSection />
+            </div>
+
+            <Separator className="my-0 w-[90%] mx-auto bg-border/40" />
+
+            {/* Broker */}
+            <BrokerProfile />
+
+            {/* Reviews */}
+            <div className="bg-muted/10">
+              <Testimonials />
+            </div>
+
+            {/* Footer Space on Desktop */}
+            <div className="h-12 md:h-24"></div>
+          </div>
         </div>
-
-        <Separator className="my-0 w-[90%] mx-auto bg-border/40" />
-
-        {/* 4. Amenities List */}
-        <div className="py-4">
-          <AmenitiesSection />
-        </div>
-
-        <Separator className="my-0 w-[90%] mx-auto bg-border/40" />
-
-        {/* 5. Plans / Memberships */}
-        <div className="px-6 py-8">
-          <h3 className="font-serif text-lg font-bold text-primary mb-6">Planes Disponibles</h3>
-          <MembershipsSection />
-        </div>
-
-        <Separator className="my-0 w-[90%] mx-auto bg-border/40" />
-
-        {/* 6. Broker / Concierge */}
-        <BrokerProfile />
-
-        {/* 7. Reviews */}
-        <div className="bg-muted/10">
-          <Testimonials />
-        </div>
-
       </div>
 
-      {/* Sticky Bottom Action (Mobile) */}
+      {/* Sticky Bottom Action (Mobile Only) */}
       <StickyAction />
     </main>
   )

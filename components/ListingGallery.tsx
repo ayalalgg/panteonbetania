@@ -23,7 +23,7 @@ export function ListingGallery() {
     }
 
     return (
-        <div className="relative w-full h-[50vh] md:h-[60vh] bg-gray-100 overflow-hidden group">
+        <div className="relative w-full h-[50vh] md:h-full min-h-[500px] bg-gray-100 overflow-hidden group">
             <AnimatePresence mode="wait">
                 <motion.img
                     key={currentIndex}
