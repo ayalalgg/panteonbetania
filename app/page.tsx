@@ -3,7 +3,6 @@ import { PropertyInfo } from "@/components/PropertyInfo";
 import { BrokerProfile } from "@/components/BrokerProfile";
 import { MembershipsSection } from "@/components/MembershipsSection";
 import { AmenitiesSection } from "@/components/AmenitiesSection";
-import { Testimonials } from "@/components/Testimonials";
 import { ContactForm } from "@/components/ContactForm";
 import { StickyAction } from "@/components/StickyAction";
 import { Footer } from "@/components/Footer";
@@ -33,62 +32,75 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-background text-foreground font-sans pb-24 md:pb-0">
-      {/* Container: Max-width limited on desktop for 'App' feel, but cleaner */}
-      <div className="max-w-7xl mx-auto min-h-screen overflow-hidden bg-white shadow-none md:shadow-2xl">
+      <Navbar />
 
-        <div className="grid grid-cols-1 md:grid-cols-5 h-full">
-
-          {/* LEFT COLUMN: Gallery (Sticky on Desktop) */}
-          <div className="md:col-span-3 md:h-screen md:sticky md:top-0 md:overflow-hidden bg-gray-100">
+      {/* HERO SECTION: Gallery */}
+      <div className="w-full bg-gray-100">
+        <div className="max-w-7xl mx-auto md:px-6 md:pt-6">
+          <div className="rounded-none md:rounded-[2rem] overflow-hidden shadow-none md:shadow-2xl border-none md:border border-white/20">
             <ListingGallery images={galleryImages} />
           </div>
+        </div>
+      </div>
 
-          {/* RIGHT COLUMN: Details (Scrollable on Desktop) */}
-          <div className="md:col-span-2 md:h-screen md:overflow-y-auto bg-white">
-            {/* Key Info */}
-            <PropertyInfo title={mtTitle} address={mtAddress} tags={mtTags} />
+      {/* CONTENT SECTION: Single Column Centered */}
+      <div className="max-w-4xl mx-auto bg-white relative z-10 -mt-6 md:mt-8 rounded-t-[2rem] md:rounded-none shadow-[0_-10px_40px_rgba(0,0,0,0.1)] md:shadow-none p-6 md:p-0 mb-16 md:mb-24">
 
-            {/* Desktop Action Button (Hidden on Mobile) */}
-            <div className="hidden md:block px-6 pt-2 pb-6">
-              <DesktopBookingButton />
-            </div>
+        {/* Header Info */}
+        <div className="md:text-center md:py-8">
+          <PropertyInfo title={mtTitle} address={mtAddress} tags={mtTags} />
+        </div>
 
-            <Separator className="my-0 w-full bg-border/40" />
+        {/* Desktop Action */}
+        <div className="hidden md:flex justify-center py-6">
+          <DesktopBookingButton />
+        </div>
 
-            {/* Description */}
-            <div className="px-6 py-8">
-              <h3 className="font-serif text-lg font-bold text-primary mb-3">Descripción</h3>
-              <p className="text-muted-foreground leading-relaxed text-sm">
-                {mtDescription}
-              </p>
-            </div>
+        <Separator className="my-6 w-full bg-border/40" />
 
-            <Separator className="my-0 w-[90%] mx-auto bg-border/40" />
+        {/* Description */}
+        <div className="py-2 md:px-8">
+          <h3 className="font-serif text-2xl font-bold text-primary mb-4 md:text-center">Descripción</h3>
+          <p className="text-muted-foreground leading-loose text-base md:text-lg md:text-center max-w-2xl mx-auto">
+            {mtDescription}
+          </p>
+        </div>
 
-            {/* Memberships */}
-            <div className="px-6 py-8">
-              <h3 className="font-serif text-lg font-bold text-primary mb-6">Planes Disponibles</h3>
-              <MembershipsSection />
-            </div>
+        <Separator className="my-8 w-[80%] mx-auto bg-border/40" />
 
-            <Separator className="my-0 w-[90%] mx-auto bg-border/40" />
+        {/* Amenities */}
+        <div className="py-4">
+          <AmenitiesSection />
+        </div>
 
-            {/* Broker */}
+        <Separator className="my-8 w-[80%] mx-auto bg-border/40" />
+
+        {/* Plans */}
+        <div className="py-4 md:text-center">
+          <h3 className="font-serif text-2xl font-bold text-primary mb-8">Planes Disponibles</h3>
+          <MembershipsSection />
+        </div>
+
+        <Separator className="my-8 w-[80%] mx-auto bg-border/40" />
+
+        {/* Broker */}
+        <div className="flex justify-center">
+          <div className="w-full max-w-xl">
             <BrokerProfile />
+          </div>
+        </div>
 
-            {/* Reviews */}
-            <div className="bg-muted/10">
-              <Testimonials />
-            </div>
+        {/* Contact Form */}
+        <div id="contact" className="scroll-mt-20 mt-12">
+          <ContactForm />
+        </div>
 
-            {/* Footer Space on Desktop */}
-            <div className="h-12 md:h-24"></div>
-          </div >
-        </div >
-      </div >
+      </div>
+
+      <Footer />
 
       {/* Sticky Bottom Action (Mobile Only) */}
-      < StickyAction />
-    </main >
+      <StickyAction />
+    </main>
   )
 }
