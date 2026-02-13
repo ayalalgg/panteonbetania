@@ -101,8 +101,6 @@ const nichoPlans = [
     }
 ]
 
-// ... (MembershipsSection component restored)
-
 export function MembershipsSection() {
     const [activeTab, setActiveTab] = useState<'perpetuidad' | 'temporalidad' | 'nicho'>('perpetuidad')
 
@@ -119,36 +117,46 @@ export function MembershipsSection() {
 
                     {/* Tab Switcher */}
                     <div className="flex justify-center mt-8 mb-8">
-                        <div className="bg-white/10 p-1 rounded-full inline-flex relative">
+                        <div className="bg-white/10 p-1 rounded-full inline-flex relative flex-wrap justify-center gap-1 md:gap-0">
                             <button
                                 onClick={() => setActiveTab('perpetuidad')}
                                 className={cn(
-                                    "px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 relative z-10",
+                                    "px-4 md:px-6 py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-300 relative z-10",
                                     activeTab === 'perpetuidad' ? "text-primary" : "text-white/70 hover:text-white"
                                 )}
                             >
-                                Perpetuidades (Bajo Tierra)
+                                Perpetuidades
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('nicho')}
+                                className={cn(
+                                    "px-4 md:px-6 py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-300 relative z-10",
+                                    activeTab === 'nicho' ? "text-primary" : "text-white/70 hover:text-white"
+                                )}
+                            >
+                                Nichos
                             </button>
                             <button
                                 onClick={() => setActiveTab('temporalidad')}
                                 className={cn(
-                                    "px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 relative z-10",
+                                    "px-4 md:px-6 py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-300 relative z-10",
                                     activeTab === 'temporalidad' ? "text-primary" : "text-white/70 hover:text-white"
                                 )}
                             >
-                                Temporalidades (Murales)
+                                Temporalidades
                             </button>
 
                             {/* Sliding Background */}
                             <motion.div
-                                className="absolute top-1 bottom-1 bg-accent rounded-full"
+                                className="absolute top-1 bottom-1 bg-accent rounded-full hidden md:block"
                                 initial={false}
                                 animate={{
-                                    left: activeTab === 'perpetuidad' ? 4 : '50%',
-                                    width: activeTab === 'perpetuidad' ? 'calc(50% - 4px)' : 'calc(50% - 4px)',
+                                    left: activeTab === 'perpetuidad' ? 4 : activeTab === 'nicho' ? '33%' : '66%',
+                                    width: '32%',
                                     x: activeTab === 'perpetuidad' ? 0 : 0
                                 }}
                                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                style={{ left: activeTab === 'perpetuidad' ? '4px' : activeTab === 'nicho' ? 'calc(33.33% + 4px)' : 'calc(66.66% - 4px)' }}
                             />
                         </div>
                     </div>
