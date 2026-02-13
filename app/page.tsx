@@ -1,49 +1,61 @@
-import { Navbar } from "@/components/Navbar"
-import { Footer } from "@/components/Footer"
-import { Hero } from "@/components/Hero"
+import { ListingGallery } from "@/components/ListingGallery"
+import { PropertyInfo } from "@/components/PropertyInfo"
+import { BrokerProfile } from "@/components/BrokerProfile"
+import { StickyAction } from "@/components/StickyAction"
 import { AmenitiesSection } from "@/components/AmenitiesSection"
-import { MembershipsSection } from "@/components/MembershipsSection"
 import { Testimonials } from "@/components/Testimonials"
-import { ContactForm } from "@/components/ContactForm"
+import { MembershipsSection } from "@/components/MembershipsSection"
+import { Separator } from "@/components/ui/separator"
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-foreground scroll-smooth">
-      <Navbar />
-      <Hero />
+    <main className="min-h-screen bg-background text-foreground font-sans pb-24 md:pb-0">
+      {/* Mobile-first Layout Container */}
+      <div className="max-w-screen-md mx-auto bg-white shadow-xl min-h-screen overflow-hidden">
 
-      {/* Flow: Hero -> Amenities (Lifestyle) -> Memberships (Product) -> Map -> Social Proof -> Contact */}
-      <AmenitiesSection />
-      <MembershipsSection />
+        {/* 1. Gallery Carousel */}
+        <ListingGallery />
 
-      {/* Interactive Master Plan (Embedded Map Placeholder) */}
-      <section id="mapa" className="w-full bg-primary py-24 text-center">
-        <div className="container mx-auto px-6 mb-12">
-          <span className="text-accent font-sans text-sm tracking-[0.2em] uppercase font-semibold">
-            Ubicación Privilegiada
-          </span>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mt-4">
-            Master Plan
-          </h2>
+        {/* 2. Key Info (Price, Title, Specs) */}
+        <PropertyInfo />
+
+        {/* 3. Description (Short) */}
+        <div className="px-6 py-8">
+          <h3 className="font-serif text-lg font-bold text-primary mb-3">Descripción</h3>
+          <p className="text-muted-foreground leading-relaxed text-sm">
+            Un santuario de paz diseñado para el descanso eterno. Panteón Bethania ofrece perpetuidades en un entorno exclusivo con jardines botánicos, seguridad privada y un servicio de concierge familiar que honra su legado con la mayor dignidad.
+          </p>
         </div>
 
-        <div className="w-full h-[500px] relative grayscale hover:grayscale-0 transition-all duration-700">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1883.056093552097!2d-98.9056488612061!3d19.336423986938925!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1e29202029961%3A0xe5493291583ab0c4!2sPante%C3%B3n%20Bethania!5e0!3m2!1ses-419!2smx!4v1707519532655!5m2!1ses-419!2smx"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            className="opacity-80 hover:opacity-100 transition-opacity duration-500"
-          />
-        </div>
-      </section>
+        <Separator className="my-0 w-[90%] mx-auto bg-border/40" />
 
-      <Testimonials />
-      <ContactForm />
-      <Footer />
+        {/* 4. Amenities List */}
+        <div className="py-4">
+          <AmenitiesSection />
+        </div>
+
+        <Separator className="my-0 w-[90%] mx-auto bg-border/40" />
+
+        {/* 5. Plans / Memberships */}
+        <div className="px-6 py-8">
+          <h3 className="font-serif text-lg font-bold text-primary mb-6">Planes Disponibles</h3>
+          <MembershipsSection />
+        </div>
+
+        <Separator className="my-0 w-[90%] mx-auto bg-border/40" />
+
+        {/* 6. Broker / Concierge */}
+        <BrokerProfile />
+
+        {/* 7. Reviews */}
+        <div className="bg-muted/10">
+          <Testimonials />
+        </div>
+
+      </div>
+
+      {/* Sticky Bottom Action (Mobile) */}
+      <StickyAction />
     </main>
   )
 }
