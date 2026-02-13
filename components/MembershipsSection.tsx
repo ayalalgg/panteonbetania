@@ -161,31 +161,36 @@ export function MembershipsSection() {
                                 exit={{ opacity: 0, height: 0 }}
                                 className="flex justify-center mb-8"
                             >
-                                <div className="inline-flex relative gap-6 border-b border-white/20 pb-2 px-8">
+                                <div className="bg-white/5 p-1 rounded-lg inline-flex relative justify-center gap-1">
                                     <button
                                         onClick={() => setPanteonTab('perpetuidad')}
                                         className={cn(
-                                            "text-sm font-semibold transition-colors relative pb-2",
-                                            panteonTab === 'perpetuidad' ? "text-accent" : "text-white/60 hover:text-white"
+                                            "px-4 md:px-6 py-2 rounded-md text-sm font-semibold transition-all duration-300 relative z-10",
+                                            panteonTab === 'perpetuidad' ? "text-primary font-bold" : "text-white/70 hover:text-white"
                                         )}
                                     >
                                         Perpetuidades
-                                        {panteonTab === 'perpetuidad' && (
-                                            <motion.div layoutId="underline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent" />
-                                        )}
                                     </button>
                                     <button
                                         onClick={() => setPanteonTab('temporalidad')}
                                         className={cn(
-                                            "text-sm font-semibold transition-colors relative pb-2",
-                                            panteonTab === 'temporalidad' ? "text-accent" : "text-white/60 hover:text-white"
+                                            "px-4 md:px-6 py-2 rounded-md text-sm font-semibold transition-all duration-300 relative z-10",
+                                            panteonTab === 'temporalidad' ? "text-primary font-bold" : "text-white/70 hover:text-white"
                                         )}
                                     >
                                         Temporalidades
-                                        {panteonTab === 'temporalidad' && (
-                                            <motion.div layoutId="underline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent" />
-                                        )}
                                     </button>
+
+                                    <motion.div
+                                        className="absolute top-1 bottom-1 bg-accent rounded-md"
+                                        initial={false}
+                                        animate={{
+                                            left: panteonTab === 'perpetuidad' ? 4 : '50%',
+                                            width: 'calc(50% - 4px)',
+                                            x: 0
+                                        }}
+                                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                    />
                                 </div>
                             </motion.div>
                         )}
