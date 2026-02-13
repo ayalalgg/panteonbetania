@@ -111,9 +111,14 @@ function PricingCard({ plan }: { plan: any }) {
                                 <span>Enganche:</span>
                                 <span>${plan.enganche.toLocaleString()}</span>
                             </div>
-                            <div className="flex justify-between">
-                                <span>Gastos de Apertura:</span>
-                                <span>$2,600</span>
+                            <div className="space-y-0.5">
+                                <div className="flex justify-between">
+                                    <span>Gastos de Apertura:</span>
+                                    <span>$2,600</span>
+                                </div>
+                                <p className="text-[9px] text-white/40 italic leading-tight pl-2">
+                                    * Incluye: Grabado, toldo, sillas, apertura y cierre.
+                                </p>
                             </div>
                             <div className="flex justify-between">
                                 <span>1ª Anualidad Mantenimiento:</span>
