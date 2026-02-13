@@ -6,7 +6,6 @@ import { AmenitiesSection } from "@/components/AmenitiesSection";
 import { ContactForm } from "@/components/ContactForm";
 import { StickyAction } from "@/components/StickyAction";
 import { Footer } from "@/components/Footer";
-import { Navbar } from "@/components/Navbar";
 import { DesktopBookingButton } from "@/components/DesktopBookingButton";
 import { createClient } from "@/utils/supabase/server";
 import { Separator } from "@/components/ui/separator";
@@ -32,7 +31,6 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-background text-foreground font-sans pb-24 md:pb-0">
-      <Navbar />
 
       {/* HERO SECTION: Gallery */}
       <div className="w-full bg-gray-100">
