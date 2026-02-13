@@ -7,6 +7,8 @@ import { ContactForm } from "@/components/ContactForm";
 import { StickyAction } from "@/components/StickyAction";
 import { Footer } from "@/components/Footer";
 import { DesktopBookingButton } from "@/components/DesktopBookingButton";
+import { VideoSection } from "@/components/VideoSection";
+import { MapSection } from "@/components/MapSection";
 import { createClient } from "@/utils/supabase/server";
 import { Separator } from "@/components/ui/separator";
 
@@ -28,6 +30,8 @@ export default async function Home() {
   const mtAddress = location?.address;
   const mtTags = location?.tags;
   const mtDescription = location?.description || "Un santuario de paz diseñado para el descanso eterno. Panteón Bethania ofrece perpetuidades en un entorno exclusivo con jardines botánicos, seguridad privada y un servicio de concierge familiar que honra su legado con la mayor dignidad.";
+  const mtVideoUrl = location?.video_url;
+  const mtMapUrl = location?.map_url;
 
   return (
     <main className="min-h-screen bg-background text-foreground font-sans pb-24 md:pb-0">
@@ -69,6 +73,13 @@ export default async function Home() {
         {/* Amenities */}
         <div className="py-4">
           <AmenitiesSection />
+        </div>
+
+        <Separator className="my-8 w-[80%] mx-auto bg-border/40" />
+
+        {/* Video Tour */}
+        <div className="px-6 md:px-0">
+          <VideoSection videoUrl={mtVideoUrl} />
         </div>
 
         <Separator className="my-8 w-[80%] mx-auto bg-border/40" />
@@ -117,6 +128,13 @@ export default async function Home() {
           <div className="w-full max-w-xl">
             <BrokerProfile />
           </div>
+        </div>
+
+        <Separator className="my-12 w-[80%] mx-auto bg-border/40" />
+
+        {/* Map */}
+        <div className="px-4 md:px-0">
+          <MapSection mapUrl={mtMapUrl} address={mtAddress} />
         </div>
 
         {/* Contact Form */}
