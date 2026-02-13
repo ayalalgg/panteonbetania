@@ -6,7 +6,7 @@ import { AmenitiesSection } from "@/components/AmenitiesSection"
 import { Testimonials } from "@/components/Testimonials"
 import { MembershipsSection } from "@/components/MembershipsSection"
 import { Separator } from "@/components/ui/separator"
-import { Button } from "@/components/ui/button"
+import { DesktopBookingButton } from "@/components/DesktopBookingButton"
 
 export default function Home() {
   return (
@@ -28,12 +28,7 @@ export default function Home() {
 
             {/* Desktop Action Button (Hidden on Mobile) */}
             <div className="hidden md:block px-6 pt-2 pb-6">
-              <Button
-                className="w-full rounded-full h-12 text-lg font-bold bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg"
-                onClick={() => window.open('https://wa.me/525545065063?text=Me interesa agendar una visita', '_blank')}
-              >
-                Agendar Visita
-              </Button>
+              <DesktopBookingButton />
             </div>
 
             <Separator className="my-0 w-full bg-border/40" />
