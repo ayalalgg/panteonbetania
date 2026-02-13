@@ -27,8 +27,9 @@ export function ListingGallery({ images = defaultImages }: ListingGalleryProps) 
             <div className="relative w-full h-[60vh] md:h-[75vh] min-h-[500px] bg-background md:bg-gray-100 flex flex-col justify-center p-4 md:p-8 overflow-hidden">
 
                 {/* Main Floating Card */}
+                {/* Main Floating Card - Optimized for PC (Cinematic) */}
                 <div
-                    className="relative w-full max-w-2xl mx-auto aspect-[4/5] md:aspect-[3/4] lg:aspect-video rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.2)] border border-white/10 bg-white ring-1 ring-black/5 cursor-zoom-in group z-10 block"
+                    className="relative w-full max-w-6xl mx-auto aspect-[3/4] md:aspect-video rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.2)] border border-white/10 bg-white ring-1 ring-black/5 cursor-zoom-in group z-10 block"
                     onClick={() => setIsZoomed(true)}
                 >
                     <AnimatePresence mode="wait">
