@@ -166,6 +166,20 @@ export function MembershipsSection() {
                                         </li>
                                     </ul>
 
+                                    <div className="bg-white/5 rounded-lg p-4 border border-white/10 mb-8 max-w-sm mx-auto">
+                                        <h4 className="text-sm font-semibold text-white mb-3 tracking-wide uppercase text-xs text-white/50">Facilidad de Pago</h4>
+                                        <div className="space-y-2 text-sm text-white/80">
+                                            <div className="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
+                                                <span>Pago Inicial:</span>
+                                                <span className="text-lg font-bold text-accent">$5,500</span>
+                                            </div>
+                                            <div className="flex justify-between items-center text-xs">
+                                                <span>Restante ($4,000):</span>
+                                                <span className="text-white/60">Diferido en anualidades</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <Button
                                         className="w-full bg-white text-primary hover:bg-white/90 font-semibold"
                                         onClick={() => window.open(`https://wa.me/525545065063?text=Me interesa una Gaveta Temporal`, '_blank')}
