@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Check, ChevronDown, ChevronUp } from "lucide-react"
+import { Check, ChevronDown, ChevronUp, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
@@ -112,6 +112,13 @@ export function MembershipsSection() {
                             : "Espacios individuales Sobre Tierra (Gavetas Murales) ideales para necesidad inmediata. Opción flexible por 7 años."
                         }
                     </p>
+
+                    <div className="flex justify-center mt-4">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-semibold tracking-wide uppercase">
+                            <Star className="w-3 h-3 fill-current" />
+                            Precios exclusivos con Grupo Funerario Ayala
+                        </span>
+                    </div>
                 </div>
 
                 <AnimatePresence mode="wait">
