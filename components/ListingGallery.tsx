@@ -6,7 +6,7 @@ import { Share2, Heart, ArrowLeft, Maximize2, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-const images = [
+const defaultImages = [
     "https://images.pexels.com/photos/3205912/pexels-photo-3205912.jpeg", // 1. Jardín Principal
     "https://images.pexels.com/photos/1166643/pexels-photo-1166643.jpeg", // 2. Detalle Estatua
     "https://images.pexels.com/photos/14534800/pexels-photo-14534800.jpeg", // 3. Atardecer
@@ -14,7 +14,11 @@ const images = [
     "https://images.pexels.com/photos/1034662/pexels-photo-1034662.jpeg", // 5. Camino
 ]
 
-export function ListingGallery() {
+interface ListingGalleryProps {
+    images?: string[]
+}
+
+export function ListingGallery({ images = defaultImages }: ListingGalleryProps) {
     const [currentIndex, setCurrentIndex] = useState(0)
     const [isZoomed, setIsZoomed] = useState(false)
 
