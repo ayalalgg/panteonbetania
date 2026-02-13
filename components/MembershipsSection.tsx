@@ -54,7 +54,33 @@ const pricingPlans = [
     }
 ]
 
-// ... (MembershipsSection component remains unchanged)
+// ... (MembershipsSection component restored)
+
+export function MembershipsSection() {
+    return (
+        <section id="planes" className="py-24 bg-gradient-to-b from-primary to-primary/95 text-primary-foreground">
+            <div className="container mx-auto px-6">
+                <div className="text-center mb-16 space-y-4">
+                    <span className="text-accent font-sans text-sm tracking-[0.2em] uppercase font-semibold">
+                        Inversión Inteligente
+                    </span>
+                    <h2 className="text-3xl md:text-5xl font-serif font-bold text-white">
+                        Planes a Perpetuidad
+                    </h2>
+                    <p className="text-white/70 max-w-2xl mx-auto font-light">
+                        Elija la opción que mejor se adapte a su familia. Todos nuestros precios incluyen IVA y garantizan la propiedad a perpetuidad.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {pricingPlans.map((plan, index) => (
+                        <PricingCard key={index} plan={plan} />
+                    ))}
+                </div>
+            </div>
+        </section>
+    )
+}
 
 function PricingCard({ plan }: { plan: any }) {
     const [showFinancing, setShowFinancing] = useState(false)
