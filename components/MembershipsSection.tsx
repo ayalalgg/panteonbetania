@@ -23,7 +23,7 @@ const pricingPlans = [
         title: "Fosa 3 Gavetas",
         price: 41720,
         enganche: 8885,
-        features: ["Capacidad para 3 personas", "Ubicación Preferencial"],
+        features: ["Capacidad para 3 personas", "Ubicación General"],
         financing: [
             { months: 11, monthly: 3204, total: 44124 },
             { months: 23, monthly: 1643, total: 46656 },
@@ -34,7 +34,7 @@ const pricingPlans = [
         title: "Fosa 4 Gavetas",
         price: 48300,
         enganche: 10000,
-        features: ["Capacidad para 4 personas", "Ubicación Premium"],
+        features: ["Capacidad para 4 personas", "Ubicación General"],
         financing: [
             { months: 11, monthly: 3694, total: 50628 },
             { months: 23, monthly: 1874, total: 53088 },
@@ -45,7 +45,7 @@ const pricingPlans = [
         title: "Fosa 5 Gavetas",
         price: 55800,
         enganche: 10500,
-        features: ["Capacidad para 5 personas", "Ubicación Familiar"],
+        features: ["Capacidad para 5 personas", "Ubicación General"],
         financing: [
             { months: 11, monthly: 4315, total: 57960 },
             { months: 23, monthly: 2162, total: 60216 },
