@@ -57,88 +57,126 @@ const pricingPlans = [
 // ... (MembershipsSection component restored)
 
 export function MembershipsSection() {
+    const [activeTab, setActiveTab] = useState<'perpetuidad' | 'temporalidad'>('perpetuidad')
+
     return (
         <section id="planes" className="py-24 bg-gradient-to-b from-primary to-primary/95 text-primary-foreground">
             <div className="container mx-auto px-6">
-                <div className="text-center mb-16 space-y-4">
+                <div className="text-center mb-12 space-y-4">
                     <span className="text-accent font-sans text-sm tracking-[0.2em] uppercase font-semibold">
                         Inversión Inteligente
                     </span>
                     <h2 className="text-3xl md:text-5xl font-serif font-bold text-white">
-                        Planes a Perpetuidad
+                        Nuestros Planes
                     </h2>
-                    <p className="text-white/70 max-w-2xl mx-auto font-light">
-                        Propiedad <strong>Bajo Tierra</strong> en hermosos jardines con pasto.
-                        <br />
-                        Incluye: Lápida, florero y derecho a perpetuidad.
-                    </p>
-                </div>
 
-                {/* Perpetuity Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
-                    {pricingPlans.map((plan, index) => (
-                        <PricingCard key={index} plan={plan} />
-                    ))}
-                </div>
-
-                {/* Temporalities Section */}
-                <div className="relative">
-                    <div className="absolute inset-0 flex items-center" aria-hidden="true">
-                        <div className="w-full border-t border-white/20"></div>
-                    </div>
-                    <div className="relative flex justify-center">
-                        <span className="bg-primary px-4 text-sm text-white/50 uppercase tracking-widest">Opciones Flexibles</span>
-                    </div>
-                </div>
-
-                <div className="mt-16 text-center mb-12">
-                    <h2 className="text-2xl md:text-4xl font-serif font-bold text-white mb-4">
-                        Temporalidades
-                    </h2>
-                    <p className="text-white/70 max-w-2xl mx-auto font-light">
-                        Espacios individuales <strong>Sobre Tierra</strong> (Gavetas Murales).
-                    </p>
-                </div>
-
-                <div className="max-w-md mx-auto">
-                    <Card className="bg-white/5 backdrop-blur-sm border-white/10 overflow-hidden hover:bg-white/10 transition-colors duration-300">
-                        <CardContent className="p-8 text-center">
-                            <h3 className="text-2xl font-serif font-bold text-white mb-2">Gaveta Temporal</h3>
-                            <div className="flex justify-center items-baseline gap-1 mb-4">
-                                <span className="text-4xl font-bold text-accent">
-                                    $9,500
-                                </span>
-                                <span className="text-sm text-white/60">MXN / Persona</span>
-                            </div>
-
-                            <ul className="space-y-3 mb-8 text-left inline-block">
-                                <li className="flex items-center gap-3 text-sm text-white/80">
-                                    <Check className="w-4 h-4 text-accent" />
-                                    <span>Ubicación: Sobre Tierra (Mural)</span>
-                                </li>
-                                <li className="flex items-center gap-3 text-sm text-white/80">
-                                    <Check className="w-4 h-4 text-accent" />
-                                    <span>Capacidad: 1 Persona</span>
-                                </li>
-                                <li className="flex items-center gap-3 text-sm text-white/80">
-                                    <Check className="w-4 h-4 text-accent" />
-                                    <span>Libre de pago de mantenimiento</span>
-                                </li>
-                                <li className="flex items-center gap-3 text-sm text-white/80">
-                                    <Check className="w-4 h-4 text-accent" />
-                                    <span>Ideal para necesidad inmediata</span>
-                                </li>
-                            </ul>
-
-                            <Button
-                                className="w-full bg-white text-primary hover:bg-white/90 font-semibold"
-                                onClick={() => window.open(`https://wa.me/525545065063?text=Me interesa una Gaveta Temporal`, '_blank')}
+                    {/* Tab Switcher */}
+                    <div className="flex justify-center mt-8 mb-8">
+                        <div className="bg-white/10 p-1 rounded-full inline-flex relative">
+                            <button
+                                onClick={() => setActiveTab('perpetuidad')}
+                                className={cn(
+                                    "px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 relative z-10",
+                                    activeTab === 'perpetuidad' ? "text-primary" : "text-white/70 hover:text-white"
+                                )}
                             >
-                                Solicitar Información
-                            </Button>
-                        </CardContent>
-                    </Card>
+                                Perpetuidades (Bajo Tierra)
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('temporalidad')}
+                                className={cn(
+                                    "px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 relative z-10",
+                                    activeTab === 'temporalidad' ? "text-primary" : "text-white/70 hover:text-white"
+                                )}
+                            >
+                                Temporalidades (Murales)
+                            </button>
+
+                            {/* Sliding Background */}
+                            <motion.div
+                                className="absolute top-1 bottom-1 bg-accent rounded-full"
+                                initial={false}
+                                animate={{
+                                    left: activeTab === 'perpetuidad' ? 4 : '50%',
+                                    width: activeTab === 'perpetuidad' ? 'calc(50% - 4px)' : 'calc(50% - 4px)',
+                                    x: activeTab === 'perpetuidad' ? 0 : 0
+                                }}
+                                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            />
+                        </div>
+                    </div>
+
+                    <p className="text-white/70 max-w-2xl mx-auto font-light min-h-[48px]">
+                        {activeTab === 'perpetuidad'
+                            ? "Propiedad Bajo Tierra en hermosos jardines con pasto. Incluye: Lápida, florero y derecho a perpetuidad."
+                            : "Espacios individuales Sobre Tierra (Gavetas Murales) ideales para necesidad inmediata. Opción flexible por 7 años."
+                        }
+                    </p>
                 </div>
+
+                <AnimatePresence mode="wait">
+                    {activeTab === 'perpetuidad' ? (
+                        <motion.div
+                            key="perpetuidad"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.3 }}
+                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+                        >
+                            {pricingPlans.map((plan, index) => (
+                                <PricingCard key={index} plan={plan} />
+                            ))}
+                        </motion.div>
+                    ) : (
+                        <motion.div
+                            key="temporalidad"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.3 }}
+                            className="max-w-md mx-auto"
+                        >
+                            <Card className="bg-white/5 backdrop-blur-sm border-white/10 overflow-hidden hover:bg-white/10 transition-colors duration-300">
+                                <CardContent className="p-8 text-center">
+                                    <h3 className="text-2xl font-serif font-bold text-white mb-2">Gaveta Temporal</h3>
+                                    <div className="flex justify-center items-baseline gap-1 mb-4">
+                                        <span className="text-4xl font-bold text-accent">
+                                            $9,500
+                                        </span>
+                                        <span className="text-sm text-white/60">MXN / Persona</span>
+                                    </div>
+
+                                    <ul className="space-y-3 mb-8 text-left inline-block">
+                                        <li className="flex items-center gap-3 text-sm text-white/80">
+                                            <Check className="w-4 h-4 text-accent" />
+                                            <span>Ubicación: Sobre Tierra (Mural)</span>
+                                        </li>
+                                        <li className="flex items-center gap-3 text-sm text-white/80">
+                                            <Check className="w-4 h-4 text-accent" />
+                                            <span>Capacidad: 1 Persona</span>
+                                        </li>
+                                        <li className="flex items-center gap-3 text-sm text-white/80">
+                                            <Check className="w-4 h-4 text-accent" />
+                                            <span>Libre de pago de mantenimiento</span>
+                                        </li>
+                                        <li className="flex items-center gap-3 text-sm text-white/80">
+                                            <Check className="w-4 h-4 text-accent" />
+                                            <span>Ideal para necesidad inmediata</span>
+                                        </li>
+                                    </ul>
+
+                                    <Button
+                                        className="w-full bg-white text-primary hover:bg-white/90 font-semibold"
+                                        onClick={() => window.open(`https://wa.me/525545065063?text=Me interesa una Gaveta Temporal`, '_blank')}
+                                    >
+                                        Solicitar Información
+                                    </Button>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         </section>
     )
