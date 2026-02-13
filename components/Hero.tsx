@@ -7,13 +7,14 @@ export function Hero() {
     return (
         <section id="inicio" className="relative h-screen flex items-center justify-center overflow-hidden">
             {/* Background Video */}
-            <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 z-0 bg-primary">
                 <video
                     autoPlay
                     loop
                     muted
                     playsInline
                     className="w-full h-full object-cover opacity-60"
+                    poster="https://images.pexels.com/photos/3205912/pexels-photo-3205912.jpeg" // Fallback image if video fails
                 >
                     {/* Placeholder video of peaceful nature/luxury garden */}
                     <source src="https://videos.pexels.com/video-files/3205912/3205912-hd_1920_1080_25fps.mp4" type="video/mp4" />
