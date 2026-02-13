@@ -84,7 +84,7 @@ export function Footer() {
                 <Separator className="bg-white/10 my-12" />
 
                 <div className="flex flex-col md:flex-row justify-between items-center text-sm text-white/40 gap-6 font-light">
-                    <p>© {new Date().getFullYear()} Grupo Funerario Ayala. Club del Eterno Descanso.</p>
+                    <p>© {new Date().getFullYear()} Grupo Funerario Ayala. El Panteón Privado de Ixtapaluca.</p>
                     <div className="flex gap-8">
                         <Link href="/privacidad" className="hover:text-accent transition-colors">Aviso de Privacidad</Link>
                         <Link href="/terminos" className="hover:text-accent transition-colors">Términos del Club</Link>

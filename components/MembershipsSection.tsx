@@ -12,7 +12,7 @@ const pricingPlans = [
         title: "Fosa 2 Gavetas",
         price: 29720,
         enganche: 7000,
-        openingCost: 2600,
+        openingCost: 1800,
         features: ["Capacidad para 2 personas", "Ubicación General"],
         financing: [
             { months: 11, monthly: 2219, total: 31404 },
@@ -24,7 +24,7 @@ const pricingPlans = [
         title: "Fosa 3 Gavetas",
         price: 41720,
         enganche: 8885,
-        openingCost: 2600,
+        openingCost: 1800,
         features: ["Capacidad para 3 personas", "Ubicación General"],
         financing: [
             { months: 11, monthly: 3204, total: 44124 },
@@ -36,7 +36,7 @@ const pricingPlans = [
         title: "Fosa 4 Gavetas",
         price: 48300,
         enganche: 10000,
-        openingCost: 2600,
+        openingCost: 1800,
         features: ["Capacidad para 4 personas", "Ubicación General"],
         financing: [
             { months: 11, monthly: 3694, total: 50628 },
@@ -48,7 +48,7 @@ const pricingPlans = [
         title: "Fosa 5 Gavetas",
         price: 55800,
         enganche: 10500,
-        openingCost: 2600,
+        openingCost: 1800,
         features: ["Capacidad para 5 personas", "Ubicación General"],
         financing: [
             { months: 11, monthly: 4315, total: 57960 },
@@ -234,7 +234,7 @@ export function MembershipsSection() {
                             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
                         >
                             {nichoPlans.map((plan, index) => (
-                                <PricingCard key={index} plan={plan} />
+                                <PricingCard key={index} plan={plan} section="Nichos" />
                             ))}
                         </motion.div>
                     ) : (
@@ -249,7 +249,7 @@ export function MembershipsSection() {
                                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
                             >
                                 {pricingPlans.map((plan, index) => (
-                                    <PricingCard key={index} plan={plan} />
+                                    <PricingCard key={index} plan={plan} section="Panteón" />
                                 ))}
                             </motion.div>
                         ) : (
@@ -306,9 +306,9 @@ export function MembershipsSection() {
 
                                         <Button
                                             className="w-full bg-white text-primary hover:bg-white/90 font-semibold"
-                                            onClick={() => window.open(`https://wa.me/525623355155?text=Me interesa una Gaveta Temporal`, '_blank')}
+                                            onClick={() => window.open(`https://wa.me/525623355155?text=Me interesa información sobre la Gaveta Temporal (7 años) en Panteón Bethania.`, '_blank')}
                                         >
-                                            Solicitar Información
+                                            Contacta a un asesor
                                         </Button>
                                     </CardContent>
                                 </Card>
@@ -321,7 +321,7 @@ export function MembershipsSection() {
     )
 }
 
-function PricingCard({ plan }: { plan: any }) {
+function PricingCard({ plan, section }: { plan: any, section: string }) {
     const [showFinancing, setShowFinancing] = useState(false)
     const openingCost = plan.openingCost ?? 0
     const maintenanceCost = 1408
@@ -332,17 +332,25 @@ function PricingCard({ plan }: { plan: any }) {
             <CardContent className="p-6">
                 <div className="mb-6">
                     <h3 className="text-xl font-serif font-bold text-white mb-2">{plan.title}</h3>
-                    <div className="flex items-baseline gap-1 mb-4">
-                        <span className="text-3xl font-bold text-accent">
-                            ${plan.price.toLocaleString()}
-                        </span>
-                        <span className="text-xs text-white/60">MXN Contado</span>
+                    <div className="mb-4">
+                        <div className="flex items-baseline gap-1">
+                            <span className="text-3xl font-bold text-accent">
+                                ${plan.price.toLocaleString()}
+                            </span>
+                            <span className="text-xs text-white/60">MXN Contado</span>
+                        </div>
+                        <p className="text-[10px] text-white/40 italic leading-tight mt-1">
+                            + Gastos de Uso Inmediato (Apertura y Mantenimiento)
+                        </p>
                     </div>
 
                     {/* TOTAL INITIAL PAYMENT CALCULATION */}
                     <div className="bg-white/5 rounded-lg p-3 border border-white/10 space-y-2">
-                        <div className="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                            <span className="text-sm font-semibold text-white">Pago Inicial Total</span>
+                        <div className="flex justify-between items-start border-b border-white/10 pb-2 mb-2">
+                            <div>
+                                <span className="text-sm font-semibold text-white block">Pago total de Uso Inmediato</span>
+                                <span className="text-[10px] text-white/40 italic">En plan financiado</span>
+                            </div>
                             <span className="text-lg font-bold text-accent">
                                 ${totalInitial.toLocaleString()}
                             </span>
@@ -355,13 +363,17 @@ function PricingCard({ plan }: { plan: any }) {
                             </div>
 
                             {openingCost > 0 && (
-                                <div className="space-y-0.5">
+                                <div className="space-y-1">
                                     <div className="flex justify-between">
-                                        <span>Gastos de Apertura:</span>
+                                        <span>Apertura (1er Evento):</span>
                                         <span>${openingCost.toLocaleString()}</span>
                                     </div>
-                                    <p className="text-[9px] text-white/40 italic leading-tight pl-2">
-                                        * Incluye: Grabado, toldo, sillas, apertura y cierre.
+                                    <div className="flex justify-between text-white/70 text-[10px] mt-1">
+                                        <span>Apertura (Eventos Futuros):</span>
+                                        <span>$2,600</span>
+                                    </div>
+                                    <p className="text-[9px] text-white/40 italic leading-tight pl-2 mt-1">
+                                        * Ambos incluyen: Grabado, toldo, sillas, apertura y cierre.
                                     </p>
                                 </div>
                             )}
@@ -384,12 +396,21 @@ function PricingCard({ plan }: { plan: any }) {
                 </ul>
 
                 <Button
-                    variant="ghost"
-                    className="w-full justify-between text-white/90 hover:text-white hover:bg-white/10 mb-4 group"
                     onClick={() => setShowFinancing(!showFinancing)}
+                    className={cn(
+                        "w-full justify-between mb-4 h-12 px-6 rounded-xl transition-all duration-300",
+                        "bg-white/10 border border-white/20 hover:bg-white/20 hover:border-accent/40",
+                        "text-white font-medium shadow-sm hover:shadow-md hover:shadow-accent/10 active:scale-[0.98]",
+                        showFinancing && "bg-white/20 border-accent/40 shadow-inner"
+                    )}
                 >
-                    <span className="text-sm font-medium">Ver Financiamiento</span>
-                    {showFinancing ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                    <span className="text-sm">Ver Financiamiento</span>
+                    <motion.div
+                        animate={{ rotate: showFinancing ? 180 : 0 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    >
+                        <ChevronDown className="w-5 h-5 text-accent" />
+                    </motion.div>
                 </Button>
 
                 <AnimatePresence>
@@ -417,9 +438,9 @@ function PricingCard({ plan }: { plan: any }) {
 
                 <Button
                     className="w-full bg-accent text-primary hover:bg-white font-semibold"
-                    onClick={() => window.open(`https://wa.me/525623355155?text=Me interesa información sobre ${plan.title}`, '_blank')}
+                    onClick={() => window.open(`https://wa.me/525623355155?text=Me interesa información sobre el plan "${plan.title}" en la sección de ${section} de Panteón Bethania.`, '_blank')}
                 >
-                    Solicitar
+                    Contacta a un asesor
                 </Button>
             </CardContent>
         </Card>

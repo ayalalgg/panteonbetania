@@ -1,14 +1,13 @@
 import { ListingGallery } from "@/components/ListingGallery";
-import { PropertyInfo } from "@/components/PropertyInfo";
 import { BrokerProfile } from "@/components/BrokerProfile";
+import { PropertyInfo } from "@/components/PropertyInfo";
 import { MembershipsSection } from "@/components/MembershipsSection";
 import { AmenitiesSection } from "@/components/AmenitiesSection";
 import { ContactForm } from "@/components/ContactForm";
 import { StickyAction } from "@/components/StickyAction";
-import { Footer } from "@/components/Footer";
 import { DesktopBookingButton } from "@/components/DesktopBookingButton";
-import { VideoSection } from "@/components/VideoSection";
 import { MapSection } from "@/components/MapSection";
+import { ConceptGlossary } from "@/components/ConceptGlossary";
 import { createClient } from "@/utils/supabase/server";
 import { Separator } from "@/components/ui/separator";
 
@@ -34,117 +33,97 @@ export default async function Home() {
   const mtMapUrl = location?.map_url;
 
   return (
-    <main className="min-h-screen bg-background text-foreground font-sans pb-24 md:pb-0">
+    <main className="min-h-screen bg-background text-foreground font-sans">
 
-      {/* HERO SECTION: Gallery */}
-      <div className="w-full bg-gray-100">
-        <div className="max-w-7xl mx-auto md:px-6 md:pt-6">
-          <div className="rounded-none md:rounded-[2rem] overflow-hidden shadow-none md:shadow-2xl border-none md:border border-white/20">
+      {/* HERO SECTION: Gallery (Edge-to-Edge) */}
+      <section className="w-full bg-gray-100">
+        <div className="max-w-[1600px] mx-auto md:px-6 md:pt-6">
+          <div className="md:rounded-[2rem] overflow-hidden shadow-none md:shadow-2xl border-none md:border border-white/20">
             <ListingGallery images={galleryImages} />
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* CONTENT SECTION: Single Column Centered */}
-      <div className="max-w-4xl mx-auto bg-white relative z-10 -mt-6 md:mt-8 rounded-t-[2rem] md:rounded-none shadow-[0_-10px_40px_rgba(0,0,0,0.1)] md:shadow-none p-6 md:p-0 mb-16 md:mb-24">
-
-        {/* Header Info */}
-        <div className="md:text-center md:py-8">
+      {/* CORE INFO: Header & Description (Centered) */}
+      <section className="bg-white relative z-10 -mt-8 md:mt-0 rounded-t-[2.5rem] md:rounded-none px-6 md:px-0">
+        <div className="max-w-4xl mx-auto py-10 md:py-16">
           <PropertyInfo title={mtTitle} address={mtAddress} tags={mtTags} />
+
+          <div className="hidden md:flex justify-center mt-12 mb-8">
+            <DesktopBookingButton />
+          </div>
+
+          <Separator className="my-12 opacity-40" />
+
+          <div className="space-y-6 md:text-center">
+            <h3 className="font-serif text-3xl font-bold text-primary">Descripción</h3>
+            <p className="text-muted-foreground leading-loose text-lg max-w-2xl mx-auto">
+              {mtDescription}
+            </p>
+          </div>
         </div>
+      </section>
 
-        {/* Desktop Action */}
-        <div className="hidden md:flex justify-center py-6">
-          <DesktopBookingButton />
-        </div>
+      {/* AMENITIES & VIDEO TOUR SECTION (Fused Layout) */}
+      <AmenitiesSection videoUrl={mtVideoUrl} />
 
-        <Separator className="my-6 w-full bg-border/40" />
+      {/* CONCEPT GLOSSARY SECTION (Unified Definitions) */}
+      <ConceptGlossary />
 
-        {/* Description */}
-        <div className="py-2 md:px-8">
-          <h3 className="font-serif text-2xl font-bold text-primary mb-4 md:text-center">Descripción</h3>
-          <p className="text-muted-foreground leading-loose text-base md:text-lg md:text-center max-w-2xl mx-auto">
-            {mtDescription}
-          </p>
-        </div>
+      {/* MEMBERSHIPS (Already Full-Bleed Background) */}
+      <section id="planes" className="scroll-mt-20">
+        <MembershipsSection />
 
-        <Separator className="my-8 w-[80%] mx-auto bg-border/40" />
-
-        {/* Amenities */}
-        <div className="py-4">
-          <AmenitiesSection />
-        </div>
-
-        <Separator className="my-8 w-[80%] mx-auto bg-border/40" />
-
-        {/* Video Tour */}
-        <div className="px-6 md:px-0">
-          <VideoSection videoUrl={mtVideoUrl} />
-        </div>
-
-        <Separator className="my-8 w-[80%] mx-auto bg-border/40" />
-
-        {/* DEFINITION: What is a Gaveta? */}
-        <div className="py-8 px-6 text-center max-w-2xl mx-auto">
-          <span className="inline-block px-3 py-1 mb-3 text-xs font-semibold tracking-wider text-accent uppercase bg-accent/10 rounded-full">
-            Concepto
-          </span>
-          <h3 className="font-serif text-2xl font-bold text-primary mb-3">
-            ¿Qué es una Gaveta?
-          </h3>
-          <p className="text-muted-foreground leading-relaxed">
-            Una gaveta es un espacio individual de concreto diseñado para resguardar dignamente a un ser querido.
-            Nuestras fosas se componen de múltiples gavetas, permitiendo mantener a la familia unida en un mismo lugar.
-          </p>
-        </div>
-
-        <Separator className="my-8 w-[80%] mx-auto bg-border/40" />
-
-        {/* Plans */}
-        <div className="py-4 md:text-center">
-          <h3 className="font-serif text-2xl font-bold text-primary mb-8">Planes Disponibles</h3>
-          <MembershipsSection />
-
-          {/* Maintenance Cost Info */}
-          <div className="mt-8 mx-auto max-w-3xl px-6">
-            <div className="bg-primary/5 border border-primary/10 rounded-xl p-4 flex flex-col md:flex-row items-center justify-center gap-3 text-center md:text-left">
-              <div className="p-2 bg-primary/10 rounded-full text-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-info"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>
+        {/* Maintenance Info - Integrated below section */}
+        <div className="bg-primary py-12 px-6">
+          <div className="max-w-3xl mx-auto">
+            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-white flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+              <div className="p-4 bg-white/20 rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-info"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>
               </div>
-              <div>
-                <p className="text-sm font-semibold text-primary">Cuota de Mantenimiento Anual</p>
-                <p className="text-sm text-muted-foreground">
-                  12 UMAS vigentes (Aproximadamente <span className="font-bold text-primary">$1,408.00 MXN</span>).
+              <div className="space-y-1">
+                <p className="text-lg font-bold">Cuota de Mantenimiento Anual</p>
+                <p className="text-white/80 leading-relaxed font-light">
+                  12 UMAS vigentes (Aproximadamente <span className="font-bold text-accent">$1,408.00 MXN</span>), garantizando la impecabilidad de los jardines a perpetuidad.
                 </p>
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        <Separator className="my-8 w-[80%] mx-auto bg-border/40" />
+      {/* LOCATION & MAP (Expansive) */}
+      <section className="w-full bg-muted/20 py-24 px-4 md:px-0">
+        <div className="max-w-6xl mx-auto">
+          <MapSection mapUrl={mtMapUrl} address={mtAddress} />
+        </div>
+      </section>
 
-        {/* Broker */}
-        <div className="flex justify-center">
-          <div className="w-full max-w-xl">
+      {/* GESTIÓN Y RESPALDO: Grupo Funerario Ayala */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="max-w-4xl mx-auto text-center mb-16 space-y-4">
+            <span className="text-accent font-sans text-xs tracking-[0.3em] uppercase font-bold">
+              Respaldo Institucional
+            </span>
+            <h2 className="text-3xl md:text-5xl font-serif font-bold text-primary">
+              Gestión Profesional
+            </h2>
+            <p className="text-muted-foreground text-lg font-light max-w-2xl mx-auto leading-relaxed">
+              Panteón Bethania es gestionado por <span className="font-bold text-primary">Grupo Funerario Ayala</span>, garantizando excelencia, respeto y el respaldo de una institución líder en cada servicio.
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto">
             <BrokerProfile />
           </div>
         </div>
+      </section>
 
-        <Separator className="my-12 w-[80%] mx-auto bg-border/40" />
-
-        {/* Map */}
-        <div className="px-4 md:px-0">
-          <MapSection mapUrl={mtMapUrl} address={mtAddress} />
-        </div>
-
-        {/* Contact Form */}
-        <div id="contact" className="scroll-mt-20 mt-12">
-          <ContactForm />
-        </div>
-
-      </div>
-
-      <Footer />
+      {/* CONTACT (Clean & Direct) */}
+      <section id="contacto" className="scroll-mt-20">
+        <ContactForm />
+      </section>
 
       {/* Sticky Bottom Action (Mobile Only) */}
       <StickyAction />

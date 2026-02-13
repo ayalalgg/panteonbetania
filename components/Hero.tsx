@@ -31,7 +31,7 @@ export function Hero() {
                     transition={{ duration: 1, ease: "easeOut" }}
                 >
                     <h2 className="text-accent font-sans text-sm md:text-base tracking-[0.3em] uppercase mb-4">
-                        Bienvenido al Club del Eterno Descanso
+                        Bienvenido al Panteón Privado de Ixtapaluca
                     </h2>
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold tracking-tight text-white drop-shadow-2xl mb-6">
                         La Exclusividad <br /> es <span className="text-accent italic">Eterna</span>

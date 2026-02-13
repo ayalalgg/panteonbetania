@@ -15,9 +15,7 @@ export function MapSection({ mapUrl, address }: MapSectionProps) {
 
     return (
         <div className="w-full">
-            <h3 className="font-serif text-2xl font-bold text-primary mb-6 text-center">Ubicación</h3>
-
-            <div className="relative w-full aspect-video md:aspect-[21/9] rounded-[2rem] overflow-hidden shadow-2xl border border-primary/10 bg-gray-100">
+            <div className="relative w-full aspect-video md:aspect-[21/9] rounded-[2.5rem] overflow-hidden shadow-2xl border border-primary/10 bg-gray-100 ring-1 ring-black/5">
                 {hasMapEmbed ? (
                     <iframe
                         src={mapUrl}

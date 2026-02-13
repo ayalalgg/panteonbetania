@@ -14,33 +14,34 @@ export function PropertyInfo({
     tags
 }: PropertyInfoProps) {
     return (
-        <div className="px-6 py-6 border-b border-border/40">
+        <div className="py-2">
             {/* Header */}
-            <div className="flex justify-between items-start mb-2">
-                <div>
-                    <h2 className="text-sm font-sans font-semibold text-accent uppercase tracking-wider mb-1">
-                        Club del Eterno Descanso
+            <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-8">
+                <div className="space-y-2">
+                    <h2 className="text-xs font-sans font-bold text-accent uppercase tracking-[0.2em]">
+                        El Panteón Privado de Ixtapaluca
                     </h2>
-                    <h1 className="text-3xl font-serif font-bold text-primary">
+                    <h1 className="text-4xl md:text-5xl font-serif font-bold text-primary tracking-tight leading-tight">
                         {title}
                     </h1>
+                    {/* Location */}
+                    <div className="flex items-center gap-2 text-muted-foreground pt-1">
+                        <MapPin className="w-4 h-4 text-accent/70" />
+                        <span className="text-sm font-medium">{address}</span>
+                    </div>
                 </div>
-                <div className="text-right">
-                    <div className="text-right">
-                        <p className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">Pago inicial desde</p>
-                        <p className="text-2xl font-bold text-primary">$7,000</p>
+
+                <div className="bg-primary/5 border border-primary/10 rounded-2xl p-5 min-w-[200px] w-full md:w-auto">
+                    <p className="text-[10px] text-muted-foreground uppercase tracking-[0.15em] mb-1 font-bold">Inversión Inicial desde</p>
+                    <div className="flex items-baseline gap-1">
+                        <span className="text-3xl font-bold text-primary">$7,000</span>
+                        <span className="text-sm font-medium text-primary/60">MXN</span>
                     </div>
                 </div>
             </div>
 
-            {/* Location */}
-            <div className="flex items-center gap-2 text-muted-foreground mb-6">
-                <MapPin className="w-4 h-4 text-accent" />
-                <span className="text-sm font-sans">{address}</span>
-            </div>
-
             {/* Specs Pills (Horizontal Scroll) */}
-            <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+            <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide -mx-2 px-2">
                 {tags && tags.length > 0 ? (
                     tags.map((tag, idx) => (
                         <div key={idx} className="flex flex-col items-center justify-center min-w-[6rem] h-20 bg-muted/30 rounded-2xl border border-border/50 px-2 text-center">

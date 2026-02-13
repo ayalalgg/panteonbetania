@@ -27,8 +27,8 @@ export function VideoSection({ videoUrl }: VideoSectionProps) {
     const isShort = videoUrl.includes('shorts/');
 
     return (
-        <div className="w-full flex justify-center py-6">
-            <div className={`w-full ${isShort ? 'aspect-[9/16] max-w-sm' : 'aspect-video max-w-4xl'} rounded-[2rem] overflow-hidden bg-black/5 border border-primary/10 shadow-2xl relative group`}>
+        <div className="w-full h-full">
+            <div className={`w-full mx-auto ${isShort ? 'aspect-[9/16] max-w-sm' : 'aspect-video w-full'} rounded-3xl overflow-hidden bg-black relative group ring-1 ring-white/10`}>
                 {videoUrl.includes('youtube') || videoUrl.includes('youtu.be') ? (
                     <iframe
                         width="100%"
