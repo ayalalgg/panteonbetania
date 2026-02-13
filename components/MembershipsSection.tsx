@@ -54,10 +54,57 @@ const pricingPlans = [
     }
 ]
 
+const nichoPlans = [
+    {
+        title: "Nicho 1 Urna (Fila 1, 2, 5, 6)",
+        price: 13600,
+        enganche: 4080,
+        features: ["Capacidad: 1 Urna", "Ubicación: Filas 1, 2, 5, 6", "Nicho en Muro"],
+        financing: [
+            { months: 11, monthly: 935, total: 14365 },
+            { months: 23, monthly: 483, total: 15189 },
+            { months: 35, monthly: 342, total: 16050 },
+        ]
+    },
+    {
+        title: "Nicho 1 Urna (Fila 3 y 4)",
+        price: 12600,
+        enganche: 3780,
+        features: ["Capacidad: 1 Urna", "Ubicación: Filas 3 y 4 (Altura Media)", "Nicho en Muro"],
+        financing: [
+            { months: 11, monthly: 867, total: 13317 },
+            { months: 23, monthly: 447, total: 14061 },
+            { months: 35, monthly: 317, total: 14875 },
+        ]
+    },
+    {
+        title: "Nicho 4 Urnas (Fila 1, 2, 5, 6)",
+        price: 21000,
+        enganche: 6300,
+        features: ["Capacidad: 4 Urnas", "Ubicación: Filas 1, 2, 5, 6", "Nicho Familiar"],
+        financing: [
+            { months: 11, monthly: 1444, total: 22184 },
+            { months: 23, monthly: 746, total: 23458 },
+            { months: 35, monthly: 528, total: 24780 },
+        ]
+    },
+    {
+        title: "Nicho 4 Urnas (Fila 3 y 4)",
+        price: 21900,
+        enganche: 6570,
+        features: ["Capacidad: 4 Urnas", "Ubicación: Filas 3 y 4 (Altura Media)", "Nicho Familiar"],
+        financing: [
+            { months: 11, monthly: 1506, total: 23136 },
+            { months: 23, monthly: 778, total: 24464 },
+            { months: 35, monthly: 551, total: 25855 },
+        ]
+    }
+]
+
 // ... (MembershipsSection component restored)
 
 export function MembershipsSection() {
-    const [activeTab, setActiveTab] = useState<'perpetuidad' | 'temporalidad'>('perpetuidad')
+    const [activeTab, setActiveTab] = useState<'perpetuidad' | 'temporalidad' | 'nicho'>('perpetuidad')
 
     return (
         <section id="planes" className="py-24 bg-gradient-to-b from-primary to-primary/95 text-primary-foreground">
