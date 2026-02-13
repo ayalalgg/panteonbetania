@@ -14,9 +14,9 @@ const pricingPlans = [
         enganche: 7000,
         features: ["Capacidad para 2 personas", "Ubicación General", "Mantenimiento 1er año incluido"],
         financing: [
-            { months: 12, monthly: 2219, total: 31404 },
-            { months: 24, monthly: 1139, total: 33192 },
-            { months: 36, monthly: 802, total: 35064 },
+            { months: 11, monthly: 2219, total: 31404 },
+            { months: 23, monthly: 1139, total: 33192 },
+            { months: 35, monthly: 802, total: 35064 },
         ]
     },
     {
@@ -25,9 +25,9 @@ const pricingPlans = [
         enganche: 8885,
         features: ["Capacidad para 3 personas", "Ubicación Preferencial", "Mantenimiento 1er año incluido"],
         financing: [
-            { months: 12, monthly: 3204, total: 44124 },
-            { months: 24, monthly: 1643, total: 46656 },
-            { months: 36, monthly: 1157, total: 49356 },
+            { months: 11, monthly: 3204, total: 44124 },
+            { months: 23, monthly: 1643, total: 46656 },
+            { months: 35, monthly: 1157, total: 49356 },
         ]
     },
     {
@@ -36,9 +36,9 @@ const pricingPlans = [
         enganche: 10000,
         features: ["Capacidad para 4 personas", "Ubicación Premium", "Mantenimiento 1er año incluido"],
         financing: [
-            { months: 12, monthly: 3694, total: 50628 },
-            { months: 24, monthly: 1874, total: 53088 },
-            { months: 36, monthly: 1305, total: 55656 },
+            { months: 11, monthly: 3694, total: 50628 },
+            { months: 23, monthly: 1874, total: 53088 },
+            { months: 35, monthly: 1305, total: 55656 },
         ]
     },
     {
@@ -47,9 +47,9 @@ const pricingPlans = [
         enganche: 10500,
         features: ["Capacidad para 5 personas", "Ubicación Familiar", "Mantenimiento 1er año incluido"],
         financing: [
-            { months: 12, monthly: 4315, total: 57960 },
-            { months: 24, monthly: 2162, total: 60216 },
-            { months: 36, monthly: 1488, total: 62568 },
+            { months: 11, monthly: 4315, total: 57960 },
+            { months: 23, monthly: 2162, total: 60216 },
+            { months: 35, monthly: 1488, total: 62568 },
         ]
     }
 ]
