@@ -154,10 +154,9 @@ export function MembershipsSection() {
                     </div>
 
                     <p className="text-white/70 max-w-2xl mx-auto font-light min-h-[48px]">
-                        {activeTab === 'perpetuidad'
-                            ? "Propiedad Bajo Tierra en hermosos jardines con pasto. Incluye: Lápida, florero y derecho a perpetuidad."
-                            : "Espacios individuales Sobre Tierra (Gavetas Murales) ideales para necesidad inmediata. Opción flexible por 7 años."
-                        }
+                        {activeTab === 'perpetuidad' && "Propiedad Bajo Tierra en hermosos jardines con pasto. Incluye: Lápida, florero y derecho a perpetuidad."}
+                        {activeTab === 'nicho' && "Espacios elegantes en muro para resguardo de urnas. Disponibles para 1 o 4 urnas en diferentes ubicaciones."}
+                        {activeTab === 'temporalidad' && "Espacios individuales Sobre Tierra (Gavetas Murales) ideales para necesidad inmediata. Opción flexible por 7 años."}
                     </p>
 
                     <div className="flex justify-center mt-4">
