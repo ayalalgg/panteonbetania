@@ -56,10 +56,10 @@ const pricingPlans = [
 
 const nichoPlans = [
     {
-        title: "Nicho 1 Urna (Fila 3 y 4)",
+        title: "Nicho 1 Urna (Fila 1, 2, 5, 6)",
         price: 12600,
         enganche: 3780,
-        features: ["Capacidad: 1 Urna", "Ubicación: Filas 3 y 4 (Altura Media)", "Nicho en Muro"],
+        features: ["Capacidad: 1 Urna", "Ubicación: Filas 1, 2, 5, 6", "Nicho en Muro"],
         financing: [
             { months: 11, monthly: 867, total: 13317 },
             { months: 23, monthly: 447, total: 14061 },
@@ -67,10 +67,10 @@ const nichoPlans = [
         ]
     },
     {
-        title: "Nicho 1 Urna (Fila 1, 2, 5, 6)",
+        title: "Nicho 1 Urna (Fila 3 y 4)",
         price: 13600,
         enganche: 4080,
-        features: ["Capacidad: 1 Urna", "Ubicación: Filas 1, 2, 5, 6", "Nicho en Muro"],
+        features: ["Capacidad: 1 Urna", "Ubicación: Filas 3 y 4 (Altura Media)", "Nicho en Muro"],
         financing: [
             { months: 11, monthly: 935, total: 14365 },
             { months: 23, monthly: 483, total: 15189 },
