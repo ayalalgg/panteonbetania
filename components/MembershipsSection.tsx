@@ -12,6 +12,7 @@ const pricingPlans = [
         title: "Fosa 2 Gavetas",
         price: 29720,
         enganche: 7000,
+        openingCost: 2600,
         features: ["Capacidad para 2 personas", "Ubicación General"],
         financing: [
             { months: 11, monthly: 2219, total: 31404 },
@@ -23,6 +24,7 @@ const pricingPlans = [
         title: "Fosa 3 Gavetas",
         price: 41720,
         enganche: 8885,
+        openingCost: 2600,
         features: ["Capacidad para 3 personas", "Ubicación General"],
         financing: [
             { months: 11, monthly: 3204, total: 44124 },
@@ -34,6 +36,7 @@ const pricingPlans = [
         title: "Fosa 4 Gavetas",
         price: 48300,
         enganche: 10000,
+        openingCost: 2600,
         features: ["Capacidad para 4 personas", "Ubicación General"],
         financing: [
             { months: 11, monthly: 3694, total: 50628 },
@@ -45,6 +48,7 @@ const pricingPlans = [
         title: "Fosa 5 Gavetas",
         price: 55800,
         enganche: 10500,
+        openingCost: 2600,
         features: ["Capacidad para 5 personas", "Ubicación General"],
         financing: [
             { months: 11, monthly: 4315, total: 57960 },
@@ -59,6 +63,7 @@ const nichoPlans = [
         title: "Nicho 1 Urna (Fila 1, 2, 5, 6)",
         price: 12600,
         enganche: 3780,
+        openingCost: 0,
         features: ["Capacidad: 1 Urna", "Ubicación: Filas 1, 2, 5, 6", "Nicho en Muro"],
         financing: [
             { months: 11, monthly: 867, total: 13317 },
@@ -70,6 +75,7 @@ const nichoPlans = [
         title: "Nicho 1 Urna (Fila 3 y 4)",
         price: 13600,
         enganche: 4080,
+        openingCost: 0,
         features: ["Capacidad: 1 Urna", "Ubicación: Filas 3 y 4 (Altura Media)", "Nicho en Muro"],
         financing: [
             { months: 11, monthly: 935, total: 14365 },
@@ -81,6 +87,7 @@ const nichoPlans = [
         title: "Nicho 4 Urnas (Fila 1, 2, 5, 6)",
         price: 21000,
         enganche: 6300,
+        openingCost: 0,
         features: ["Capacidad: 4 Urnas", "Ubicación: Filas 1, 2, 5, 6", "Nicho Familiar"],
         financing: [
             { months: 11, monthly: 1444, total: 22184 },
@@ -92,6 +99,7 @@ const nichoPlans = [
         title: "Nicho 4 Urnas (Fila 3 y 4)",
         price: 21900,
         enganche: 6570,
+        openingCost: 0,
         features: ["Capacidad: 4 Urnas", "Ubicación: Filas 3 y 4 (Altura Media)", "Nicho Familiar"],
         financing: [
             { months: 11, monthly: 1506, total: 23136 },
@@ -315,6 +323,9 @@ export function MembershipsSection() {
 
 function PricingCard({ plan }: { plan: any }) {
     const [showFinancing, setShowFinancing] = useState(false)
+    const openingCost = plan.openingCost ?? 0
+    const maintenanceCost = 1408
+    const totalInitial = plan.enganche + openingCost + maintenanceCost
 
     return (
         <Card className="bg-white/5 backdrop-blur-sm border-white/10 overflow-hidden hover:bg-white/10 transition-colors duration-300">
@@ -333,7 +344,7 @@ function PricingCard({ plan }: { plan: any }) {
                         <div className="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
                             <span className="text-sm font-semibold text-white">Pago Inicial Total</span>
                             <span className="text-lg font-bold text-accent">
-                                ${(plan.enganche + 2600 + 1408).toLocaleString()}
+                                ${totalInitial.toLocaleString()}
                             </span>
                         </div>
 
@@ -342,18 +353,22 @@ function PricingCard({ plan }: { plan: any }) {
                                 <span>Enganche:</span>
                                 <span>${plan.enganche.toLocaleString()}</span>
                             </div>
-                            <div className="space-y-0.5">
-                                <div className="flex justify-between">
-                                    <span>Gastos de Apertura:</span>
-                                    <span>$2,600</span>
+
+                            {openingCost > 0 && (
+                                <div className="space-y-0.5">
+                                    <div className="flex justify-between">
+                                        <span>Gastos de Apertura:</span>
+                                        <span>${openingCost.toLocaleString()}</span>
+                                    </div>
+                                    <p className="text-[9px] text-white/40 italic leading-tight pl-2">
+                                        * Incluye: Grabado, toldo, sillas, apertura y cierre.
+                                    </p>
                                 </div>
-                                <p className="text-[9px] text-white/40 italic leading-tight pl-2">
-                                    * Incluye: Grabado, toldo, sillas, apertura y cierre.
-                                </p>
-                            </div>
+                            )}
+
                             <div className="flex justify-between">
                                 <span>1ª Anualidad Mantenimiento:</span>
-                                <span>$1,408</span>
+                                <span>${maintenanceCost.toLocaleString()}</span>
                             </div>
                         </div>
                     </div>
