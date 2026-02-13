@@ -4,73 +4,74 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    /* Soft White */
-    --foreground: 215 28% 17%;
-    /* Deep Slate */
-
-    --card: 0 0% 100%;
-    --card-foreground: 215 28% 17%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 215 28% 17%;
-
-    --primary: 215 28% 17%;
-    /* Deep Slate */
+    /* Deep Forest Green - Primary */
+    --primary: 166 40% 17%;
+    /* #1a3c34 */
     --primary-foreground: 46 65% 52%;
     /* Gold text on primary */
 
-    --secondary: 46 65% 52%;
-    /* Gold */
-    --secondary-foreground: 215 28% 17%;
-    /* Slate text on gold */
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
+    /* Soft Gold - Accent */
     --accent: 46 65% 52%;
-    /* Gold */
-    --accent-foreground: 215 28% 17%;
+    /* #d4af37 */
+    --accent-foreground: 166 40% 17%;
+
+    /* Ivory Cream - Background */
+    --background: 60 10% 98%;
+    /* #fbfcf8 */
+    --foreground: 166 40% 17%;
+    /* Dark Green text */
+
+    --card: 0 0% 100%;
+    --card-foreground: 166 40% 17%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 166 40% 17%;
+
+    --secondary: 46 65% 52%;
+    --secondary-foreground: 166 40% 17%;
+
+    --muted: 166 20% 90%;
+    --muted-foreground: 166 20% 40%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 60 10% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 215 28% 17%;
+    --border: 166 20% 85%;
+    --input: 166 20% 85%;
+    --ring: 166 40% 17%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    /* Deep Dark */
-    --foreground: 210 40% 98%;
+    /* Deep Forest Green Dark Mode */
+    --background: 166 45% 10%;
+    --foreground: 60 10% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 166 45% 12%;
+    --card-foreground: 60 10% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 166 45% 12%;
+    --popover-foreground: 60 10% 95%;
 
     --primary: 46 65% 52%;
-    /* Gold in dark mode */
-    --primary-foreground: 222.2 47.4% 11.2%;
+    /* Gold */
+    --primary-foreground: 166 45% 10%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 166 40% 20%;
+    --secondary-foreground: 60 10% 95%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 166 30% 20%;
+    --muted-foreground: 166 20% 70%;
 
     --accent: 46 65% 52%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent-foreground: 166 45% 10%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 60 10% 95%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
+    --border: 166 30% 20%;
+    --input: 166 30% 20%;
     --ring: 46 65% 52%;
   }
 }

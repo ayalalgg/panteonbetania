@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "@fontsource/playfair-display"; // Defaults to weight 400
 import "@fontsource/playfair-display/700.css"; // Weight 700
-import "@fontsource/lato"; // Defaults to weight 400
-import "@fontsource/lato/700.css"; // Weight 700
+import "@fontsource/montserrat"; // Defaults to weight 400
+import "@fontsource/montserrat/700.css"; // Weight 700
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {

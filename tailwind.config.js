@@ -53,7 +53,7 @@ module.exports = {
                 },
             },
             fontFamily: {
-                sans: ["Lato", "sans-serif"],
+                sans: ["Montserrat", "sans-serif"],
                 serif: ["Playfair Display", "serif"],
             },
             borderRadius: {

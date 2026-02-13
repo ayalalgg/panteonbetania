@@ -6,24 +6,27 @@ import { Separator } from "@/components/ui/separator"
 
 export function Footer() {
     return (
-        <footer className="bg-primary text-primary-foreground pt-16 pb-8 font-sans">
-            <div className="container mx-auto px-4">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+        <footer className="bg-primary text-primary-foreground pt-24 pb-12 font-sans relative overflow-hidden">
+            {/* Decorative Elements */}
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-50" />
+
+            <div className="container mx-auto px-6 relative z-10">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-16 mb-16">
                     {/* Brand Section */}
-                    <div className="space-y-4">
-                        <Link href="/" className="inline-block">
-                            <span className="font-serif text-3xl font-bold text-accent">
+                    <div className="space-y-6">
+                        <Link href="/" className="inline-block group">
+                            <span className="font-serif text-3xl font-bold text-white group-hover:text-accent transition-colors duration-300">
                                 Panteón Bethania
                             </span>
                         </Link>
-                        <p className="text-primary-foreground/80 leading-relaxed max-w-sm">
-                            Honramos la memoria de quienes partieron, ofreciendo un espacio de paz, dignidad y respeto eterno en Ixtapaluca.
+                        <p className="text-white/70 leading-relaxed max-w-sm font-light">
+                            Un legado de paz y distinción. Preservando historias familiares con la dignidad que merecen, en un entorno de belleza perpetua.
                         </p>
-                        <div className="flex gap-4 pt-2">
-                            <a href="#" className="hover:text-accent transition-colors">
+                        <div className="flex gap-6 pt-4">
+                            <a href="#" className="text-white/60 hover:text-accent transition-colors transform hover:scale-110 duration-300">
                                 <Facebook className="w-5 h-5" />
                             </a>
-                            <a href="#" className="hover:text-accent transition-colors">
+                            <a href="#" className="text-white/60 hover:text-accent transition-colors transform hover:scale-110 duration-300">
                                 <Instagram className="w-5 h-5" />
                             </a>
                         </div>
@@ -31,15 +34,21 @@ export function Footer() {
 
                     {/* Quick Links */}
                     <div>
-                        <h3 className="font-serif text-xl font-bold mb-6 text-accent">Enlaces Rápidos</h3>
-                        <ul className="space-y-3">
-                            {['Inicio', 'Perpetuidad', 'Temporalidad', 'Servicios', 'Contacto'].map((item) => (
-                                <li key={item}>
+                        <h3 className="font-serif text-xl font-bold mb-8 text-accent">Explorar Club</h3>
+                        <ul className="space-y-4">
+                            {[
+                                { name: 'Membresías', href: '#membresias' },
+                                { name: 'Amenidades', href: '#amenidades' },
+                                { name: 'Master Plan', href: '#mapa' },
+                                { name: 'Concierge', href: '#contacto' }
+                            ].map((item) => (
+                                <li key={item.name}>
                                     <Link
-                                        href={`#${item.toLowerCase()}`}
-                                        className="text-primary-foreground/80 hover:text-accent transition-colors"
+                                        href={item.href}
+                                        className="text-white/70 hover:text-accent transition-colors flex items-center gap-2 group"
                                     >
-                                        {item}
+                                        <span className="w-1 h-1 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity" />
+                                        {item.name}
                                     </Link>
                                 </li>
                             ))}
@@ -48,37 +57,37 @@ export function Footer() {
 
                     {/* Contact Info */}
                     <div>
-                        <h3 className="font-serif text-xl font-bold mb-6 text-accent">Contacto</h3>
-                        <ul className="space-y-4">
-                            <li className="flex items-start gap-3">
-                                <MapPin className="w-5 h-5 text-accent shrink-0 mt-1" />
-                                <span className="text-primary-foreground/80">
+                        <h3 className="font-serif text-xl font-bold mb-8 text-accent">Concierge</h3>
+                        <ul className="space-y-6">
+                            <li className="flex items-start gap-4 group">
+                                <MapPin className="w-5 h-5 text-accent shrink-0 mt-1Group-hover:scale-110 transition-transform" />
+                                <span className="text-white/70 group-hover:text-white transition-colors">
                                     Camino a las Minas S/N, Ixtapaluca, Estado de México
                                 </span>
                             </li>
-                            <li className="flex items-center gap-3">
-                                <Phone className="w-5 h-5 text-accent shrink-0" />
-                                <a href="tel:+525545065063" className="text-primary-foreground/80 hover:text-accent transition-colors">
+                            <li className="flex items-center gap-4 group">
+                                <Phone className="w-5 h-5 text-accent shrink-0 group-hover:scale-110 transition-transform" />
+                                <a href="tel:+525545065063" className="text-white/70 group-hover:text-white transition-colors">
                                     +52 55 4506 5063
                                 </a>
                             </li>
-                            <li className="flex items-center gap-3">
-                                <Mail className="w-5 h-5 text-accent shrink-0" />
-                                <a href="mailto:info@panteonbethania.com" className="text-primary-foreground/80 hover:text-accent transition-colors">
-                                    info@panteonbethania.com
+                            <li className="flex items-center gap-4 group">
+                                <Mail className="w-5 h-5 text-accent shrink-0 group-hover:scale-110 transition-transform" />
+                                <a href="mailto:concierge@panteonbethania.com" className="text-white/70 group-hover:text-white transition-colors">
+                                    concierge@panteonbethania.com
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                <Separator className="bg-primary-foreground/20 my-8" />
+                <Separator className="bg-white/10 my-12" />
 
-                <div className="flex flex-col md:flex-row justify-between items-center text-sm text-primary-foreground/60 gap-4">
-                    <p>© {new Date().getFullYear()} Grupo Funerario Ayala. Todos los derechos reservados.</p>
-                    <div className="flex gap-6">
+                <div className="flex flex-col md:flex-row justify-between items-center text-sm text-white/40 gap-6 font-light">
+                    <p>© {new Date().getFullYear()} Grupo Funerario Ayala. Club del Eterno Descanso.</p>
+                    <div className="flex gap-8">
                         <Link href="/privacidad" className="hover:text-accent transition-colors">Aviso de Privacidad</Link>
-                        <Link href="/terminos" className="hover:text-accent transition-colors">Términos y Condiciones</Link>
+                        <Link href="/terminos" className="hover:text-accent transition-colors">Términos del Club</Link>
                     </div>
                 </div>
             </div>
