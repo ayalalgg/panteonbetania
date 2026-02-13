@@ -24,7 +24,7 @@ export function ListingGallery({ images = defaultImages }: ListingGalleryProps) 
 
     return (
         <>
-            <div className="relative w-full h-[60vh] md:h-full min-h-[500px] bg-background md:bg-gray-100 flex flex-col justify-center p-4 md:p-8 overflow-hidden">
+            <div className="relative w-full h-[60vh] md:h-[75vh] min-h-[500px] bg-background md:bg-gray-100 flex flex-col justify-center p-4 md:p-8 overflow-hidden">
 
                 {/* Main Floating Card */}
                 <div
