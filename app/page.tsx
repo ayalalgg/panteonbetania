@@ -10,6 +10,7 @@ import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { DesktopBookingButton } from "@/components/DesktopBookingButton";
 import { createClient } from "@/utils/supabase/server";
+import { Separator } from "@/components/ui/separator";
 
 export const dynamic = 'force-dynamic';
 
