@@ -67,7 +67,7 @@ export function Navbar() {
                             "bg-accent text-accent-foreground hover:bg-accent/90 font-serif tracking-wide",
                             "border border-accent/50 shadow-lg hover:shadow-accent/20 transition-all duration-300"
                         )}
-                        onClick={() => window.open('https://wa.me/525545065063', '_blank')}
+                        onClick={() => window.open('https://wa.me/525623355155', '_blank')}
                     >
                         <Phone className="w-4 h-4 mr-2" />
                         Agendar Visita
@@ -108,10 +108,10 @@ export function Navbar() {
                             ))}
                             <Button
                                 className="w-full mt-4 bg-accent text-accent-foreground hover:bg-accent/90"
-                                onClick={() => window.open('https://wa.me/525545065063', '_blank')}
+                                onClick={() => window.open('https://wa.me/525623355155', '_blank')}
                             >
                                 <Phone className="w-4 h-4 mr-2" />
-                                Contactar Concierge
+                                Contactar Asesor
                             </Button>
                         </div>
                     </motion.div>

@@ -29,7 +29,7 @@ export function ContactForm() {
     function onSubmit(values: z.infer<typeof formSchema>) {
         // Construct WhatsApp message
         const text = `Hola, mi nombre es ${values.name}. Teléfono: ${values.phone}. Mensaje: ${values.message || "Me interesa información."}`
-        const url = `https://wa.me/525545065063?text=${encodeURIComponent(text)}`
+        const url = `https://wa.me/525623355155?text=${encodeURIComponent(text)}`
         window.open(url, '_blank')
     }
 
@@ -51,7 +51,7 @@ export function ContactForm() {
                                 </div>
                                 <div>
                                     <p className="font-semibold text-foreground">Llámanos</p>
-                                    <a href="tel:+525545065063" className="text-muted-foreground hover:text-accent transition-colors">+52 55 4506 5063</a>
+                                    <a href="tel:+525623355155" className="text-muted-foreground hover:text-accent transition-colors">+52 56 2335 5155</a>
                                 </div>
                             </div>
 

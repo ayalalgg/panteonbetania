@@ -104,7 +104,7 @@ export function PricingGrid() {
                                 <Button
                                     className={cn("w-full font-sans", product.popular ? "bg-accent text-accent-foreground hover:bg-accent/90" : "bg-primary text-primary-foreground hover:bg-primary/90")}
                                     size="lg"
-                                    onClick={() => window.open(`https://wa.me/525545065063?text=Hola, me interesa información sobre ${product.title}`, '_blank')}
+                                    onClick={() => window.open(`https://wa.me/525623355155?text=Hola, me interesa información sobre ${product.title}`, '_blank')}
                                 >
                                     Solicitar Cotización
                                 </Button>

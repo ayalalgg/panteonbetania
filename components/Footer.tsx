@@ -40,7 +40,7 @@ export function Footer() {
                                 { name: 'Membresías', href: '#membresias' },
                                 { name: 'Amenidades', href: '#amenidades' },
                                 { name: 'Master Plan', href: '#mapa' },
-                                { name: 'Concierge', href: '#contacto' }
+                                { name: 'Contacto', href: '#contacto' }
                             ].map((item) => (
                                 <li key={item.name}>
                                     <Link
@@ -57,7 +57,7 @@ export function Footer() {
 
                     {/* Contact Info */}
                     <div>
-                        <h3 className="font-serif text-xl font-bold mb-8 text-accent">Concierge</h3>
+                        <h3 className="font-serif text-xl font-bold mb-8 text-accent">Contacto</h3>
                         <ul className="space-y-6">
                             <li className="flex items-start gap-4 group">
                                 <MapPin className="w-5 h-5 text-accent shrink-0 mt-1Group-hover:scale-110 transition-transform" />
@@ -67,14 +67,14 @@ export function Footer() {
                             </li>
                             <li className="flex items-center gap-4 group">
                                 <Phone className="w-5 h-5 text-accent shrink-0 group-hover:scale-110 transition-transform" />
-                                <a href="tel:+525545065063" className="text-white/70 group-hover:text-white transition-colors">
-                                    +52 55 4506 5063
+                                <a href="tel:+525623355155" className="text-white/70 group-hover:text-white transition-colors">
+                                    +52 56 2335 5155
                                 </a>
                             </li>
                             <li className="flex items-center gap-4 group">
                                 <Mail className="w-5 h-5 text-accent shrink-0 group-hover:scale-110 transition-transform" />
-                                <a href="mailto:concierge@panteonbethania.com" className="text-white/70 group-hover:text-white transition-colors">
-                                    concierge@panteonbethania.com
+                                <a href="mailto:contacto@panteonbethania.com" className="text-white/70 group-hover:text-white transition-colors">
+                                    contacto@panteonbethania.com
                                 </a>
                             </li>
                         </ul>

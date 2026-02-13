@@ -306,7 +306,7 @@ export function MembershipsSection() {
 
                                         <Button
                                             className="w-full bg-white text-primary hover:bg-white/90 font-semibold"
-                                            onClick={() => window.open(`https://wa.me/525545065063?text=Me interesa una Gaveta Temporal`, '_blank')}
+                                            onClick={() => window.open(`https://wa.me/525623355155?text=Me interesa una Gaveta Temporal`, '_blank')}
                                         >
                                             Solicitar Información
                                         </Button>
@@ -417,7 +417,7 @@ function PricingCard({ plan }: { plan: any }) {
 
                 <Button
                     className="w-full bg-accent text-primary hover:bg-white font-semibold"
-                    onClick={() => window.open(`https://wa.me/525545065063?text=Me interesa información sobre ${plan.title}`, '_blank')}
+                    onClick={() => window.open(`https://wa.me/525623355155?text=Me interesa información sobre ${plan.title}`, '_blank')}
                 >
                     Solicitar
                 </Button>
