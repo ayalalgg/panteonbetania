@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Share2, Heart, ArrowLeft, Maximize2, X } from "lucide-react"
+import { Share2, Maximize2, X, Home } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
@@ -46,18 +46,20 @@ export function ListingGallery({ images = defaultImages }: ListingGalleryProps) 
 
                     {/* Top Overlay Actions */}
                     <div className="absolute top-0 left-0 w-full p-6 flex justify-between items-start z-20">
-                        <div className="md:hidden">
-                            {/* Mobile Back Button (only visual here as browsers handle history) */}
-                            <Button variant="ghost" size="icon" className="bg-black/20 backdrop-blur-md text-white hover:bg-black/40 rounded-xl">
-                                <ArrowLeft className="w-5 h-5" />
+                        <div>
+                            {/* Home Button linking to main site */}
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                className="bg-black/20 backdrop-blur-md text-white hover:bg-black/40 rounded-xl"
+                                onClick={() => window.location.href = 'https://ayalafuneral.com'}
+                            >
+                                <Home className="w-5 h-5" />
                             </Button>
                         </div>
                         <div className="flex gap-3 ml-auto">
                             <Button variant="ghost" size="icon" className="bg-black/20 backdrop-blur-md text-white hover:bg-black/40 rounded-xl transition-all hover:scale-105">
                                 <Share2 className="w-5 h-5" />
-                            </Button>
-                            <Button variant="ghost" size="icon" className="bg-black/20 backdrop-blur-md text-white hover:bg-black/40 rounded-xl transition-all hover:scale-105">
-                                <Heart className="w-5 h-5" />
                             </Button>
                         </div>
                     </div>
