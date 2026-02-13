@@ -182,6 +182,19 @@ export function MembershipsSection() {
                                 <PricingCard key={index} plan={plan} />
                             ))}
                         </motion.div>
+                    ) : activeTab === 'nicho' ? (
+                        <motion.div
+                            key="nicho"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.3 }}
+                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+                        >
+                            {nichoPlans.map((plan, index) => (
+                                <PricingCard key={index} plan={plan} />
+                            ))}
+                        </motion.div>
                     ) : (
                         <motion.div
                             key="temporalidad"
