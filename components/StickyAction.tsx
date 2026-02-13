@@ -1,8 +1,32 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { useEffect, useState } from "react"
+import { cn } from "@/lib/utils"
 
 export function StickyAction() {
+    const [isVisible, setIsVisible] = useState(true)
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const plansSection = document.getElementById('planes')
+            if (!plansSection) return
+
+            const rect = plansSection.getBoundingClientRect()
+            // Hide if the top of the plans section is nearing the viewport or we are inside/past it
+            // We'll hide it when the plans section enters the viewport
+            const isPlansVisible = rect.top < window.innerHeight && rect.bottom >= 0
+
+            setIsVisible(!isPlansVisible)
+        }
+
+        window.addEventListener('scroll', handleScroll)
+        // Initial check
+        handleScroll()
+
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+
     const scrollToPlans = () => {
         const plansSection = document.getElementById('planes')
         if (plansSection) {
@@ -11,7 +35,10 @@ export function StickyAction() {
     }
 
     return (
-        <div className="fixed bottom-0 left-0 w-full z-50 bg-white border-t border-border/50 p-4 pb-6 shadow-[0_-5px_20px_rgba(0,0,0,0.05)] md:hidden">
+        <div className={cn(
+            "fixed bottom-0 left-0 w-full z-50 bg-white border-t border-border/50 p-4 pb-6 shadow-[0_-5px_20px_rgba(0,0,0,0.05)] md:hidden transition-transform duration-300",
+            isVisible ? "translate-y-0" : "translate-y-full"
+        )}>
             <div className="flex gap-4 items-center">
                 <div className="flex-1">
                     <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Pago inicial desde</p>
