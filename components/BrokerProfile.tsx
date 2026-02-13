@@ -6,11 +6,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export function BrokerProfile() {
     return (
-        <div className="p-6 border-b border-border/40 bg-gradient-to-br from-[#1a3c34] to-[#142f29] text-white">
+        <div className="p-6 border-b border-border/40 bg-gradient-to-br from-[#1a3c34] to-[#142f29] text-white rounded-[2rem] mx-4 md:mx-0 overflow-hidden shadow-2xl">
             <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-4">
                     <div className="relative">
-                        <Avatar className="h-16 w-16 border-2 border-white/20 shadow-xl bg-white p-1">
+                        <Avatar className="h-16 w-16 border border-white/20 shadow-xl bg-white p-0.5">
                             <AvatarImage src="https://res.cloudinary.com/dbnocozci/image/upload/v1766397648/ayala/assets/dntmt8shzyt1aqm9ge3h.png" alt="Grupo Funerario Ayala" className="object-contain" />
                             <AvatarFallback className="text-primary font-bold">GA</AvatarFallback>
                         </Avatar>
