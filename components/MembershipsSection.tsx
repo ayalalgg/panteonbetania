@@ -68,14 +68,72 @@ export function MembershipsSection() {
                         Planes a Perpetuidad
                     </h2>
                     <p className="text-white/70 max-w-2xl mx-auto font-light">
-                        Elija la opción que mejor se adapte a su familia. Todos nuestros precios incluyen IVA y garantizan la propiedad a perpetuidad.
+                        Propiedad <strong>Bajo Tierra</strong> en hermosos jardines con pasto.
+                        <br />
+                        Incluye: Lápida, florero y derecho a perpetuidad.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {/* Perpetuity Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
                     {pricingPlans.map((plan, index) => (
                         <PricingCard key={index} plan={plan} />
                     ))}
+                </div>
+
+                {/* Temporalities Section */}
+                <div className="relative">
+                    <div className="absolute inset-0 flex items-center" aria-hidden="true">
+                        <div className="w-full border-t border-white/20"></div>
+                    </div>
+                    <div className="relative flex justify-center">
+                        <span className="bg-primary px-4 text-sm text-white/50 uppercase tracking-widest">Opciones Flexibles</span>
+                    </div>
+                </div>
+
+                <div className="mt-16 text-center mb-12">
+                    <h2 className="text-2xl md:text-4xl font-serif font-bold text-white mb-4">
+                        Temporalidades
+                    </h2>
+                    <p className="text-white/70 max-w-2xl mx-auto font-light">
+                        Espacios individuales <strong>Sobre Tierra</strong> (Gavetas Murales).
+                    </p>
+                </div>
+
+                <div className="max-w-md mx-auto">
+                    <Card className="bg-white/5 backdrop-blur-sm border-white/10 overflow-hidden hover:bg-white/10 transition-colors duration-300">
+                        <CardContent className="p-8 text-center">
+                            <h3 className="text-2xl font-serif font-bold text-white mb-2">Gaveta Temporal</h3>
+                            <div className="flex justify-center items-baseline gap-1 mb-4">
+                                <span className="text-4xl font-bold text-accent">
+                                    $9,500
+                                </span>
+                                <span className="text-sm text-white/60">MXN / Persona</span>
+                            </div>
+
+                            <ul className="space-y-3 mb-8 text-left inline-block">
+                                <li className="flex items-center gap-3 text-sm text-white/80">
+                                    <Check className="w-4 h-4 text-accent" />
+                                    <span>Ubicación: Sobre Tierra (Mural)</span>
+                                </li>
+                                <li className="flex items-center gap-3 text-sm text-white/80">
+                                    <Check className="w-4 h-4 text-accent" />
+                                    <span>Capacidad: 1 Persona</span>
+                                </li>
+                                <li className="flex items-center gap-3 text-sm text-white/80">
+                                    <Check className="w-4 h-4 text-accent" />
+                                    <span>Ideal para necesidad inmediata</span>
+                                </li>
+                            </ul>
+
+                            <Button
+                                className="w-full bg-white text-primary hover:bg-white/90 font-semibold"
+                                onClick={() => window.open(`https://wa.me/525545065063?text=Me interesa una Gaveta Temporal`, '_blank')}
+                            >
+                                Solicitar Información
+                            </Button>
+                        </CardContent>
+                    </Card>
                 </div>
             </div>
         </section>
