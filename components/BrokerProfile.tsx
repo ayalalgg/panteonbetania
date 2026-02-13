@@ -42,6 +42,5 @@ export function BrokerProfile() {
                 </Button>
             </div>
         </div>
-        </div >
     )
 }
