@@ -64,7 +64,7 @@ const nichoPlans = [
         price: 12600,
         enganche: 3780,
         openingCost: 0,
-        features: ["Capacidad: 1 Urna", "Ubicación: Filas 1, 2, 5, 6", "Nicho en Muro"],
+        features: ["Capacidad: 1 Urna", "Ubicación: Filas 1, 2, 5, 6", "Nicho de Galería"],
         financing: [
             { months: 11, monthly: 867, total: 13317 },
             { months: 23, monthly: 447, total: 14061 },
@@ -76,7 +76,7 @@ const nichoPlans = [
         price: 13600,
         enganche: 4080,
         openingCost: 0,
-        features: ["Capacidad: 1 Urna", "Ubicación: Filas 3 y 4 (Altura Media)", "Nicho en Muro"],
+        features: ["Capacidad: 1 Urna", "Ubicación: Filas 3 y 4 (Altura Media)", "Nicho de Galería"],
         financing: [
             { months: 11, monthly: 935, total: 14365 },
             { months: 23, monthly: 483, total: 15189 },
@@ -88,7 +88,7 @@ const nichoPlans = [
         price: 21000,
         enganche: 6300,
         openingCost: 0,
-        features: ["Capacidad: 4 Urnas", "Ubicación: Filas 1, 2, 5, 6", "Nicho Familiar"],
+        features: ["Capacidad: 4 Urnas", "Ubicación: Filas 1, 2, 5, 6", "Nicho de Galería"],
         financing: [
             { months: 11, monthly: 1444, total: 22184 },
             { months: 23, monthly: 746, total: 23458 },
@@ -100,7 +100,7 @@ const nichoPlans = [
         price: 21900,
         enganche: 6570,
         openingCost: 0,
-        features: ["Capacidad: 4 Urnas", "Ubicación: Filas 3 y 4 (Altura Media)", "Nicho Familiar"],
+        features: ["Capacidad: 4 Urnas", "Ubicación: Filas 3 y 4 (Altura Media)", "Nicho de Galería"],
         financing: [
             { months: 11, monthly: 1506, total: 23136 },
             { months: 23, monthly: 778, total: 24464 },
