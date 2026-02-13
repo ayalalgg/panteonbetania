@@ -26,8 +26,10 @@ export function PropertyInfo({
                     </h1>
                 </div>
                 <div className="text-right">
-                    <p className="text-2xl font-bold text-primary">$25,000</p>
-                    <p className="text-xs text-muted-foreground">Desde / Plan</p>
+                    <div className="text-right">
+                        <p className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">Pago inicial desde</p>
+                        <p className="text-2xl font-bold text-primary">$7,000</p>
+                    </div>
                 </div>
             </div>
 
