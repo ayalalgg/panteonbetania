@@ -122,6 +122,10 @@ export function MembershipsSection() {
                                 </li>
                                 <li className="flex items-center gap-3 text-sm text-white/80">
                                     <Check className="w-4 h-4 text-accent" />
+                                    <span>Libre de pago de mantenimiento</span>
+                                </li>
+                                <li className="flex items-center gap-3 text-sm text-white/80">
+                                    <Check className="w-4 h-4 text-accent" />
                                     <span>Ideal para necesidad inmediata</span>
                                 </li>
                             </ul>
