@@ -90,22 +90,35 @@ function PricingCard({ plan }: { plan: any }) {
             <CardContent className="p-6">
                 <div className="mb-6">
                     <h3 className="text-xl font-serif font-bold text-white mb-2">{plan.title}</h3>
-                    <div className="flex items-baseline gap-1">
+                    <div className="flex items-baseline gap-1 mb-4">
                         <span className="text-3xl font-bold text-accent">
                             ${plan.price.toLocaleString()}
                         </span>
                         <span className="text-xs text-white/60">MXN Contado</span>
                     </div>
 
-                    <div className="mt-2 space-y-1">
-                        <p className="text-sm font-semibold text-white/80">
-                            Enganche: ${plan.enganche.toLocaleString()}
-                        </p>
-                        <div className="text-xs text-white/60">
-                            <span className="text-accent">+ $2,600</span> por Gastos de Apertura
-                            <p className="text-[10px] text-white/40 mt-0.5 leading-tight">
-                                (Incluye: Grabado de cripta, toldo, sillas, apertura y cierre)
-                            </p>
+                    {/* TOTAL INITIAL PAYMENT CALCULATION */}
+                    <div className="bg-white/5 rounded-lg p-3 border border-white/10 space-y-2">
+                        <div className="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
+                            <span className="text-sm font-semibold text-white">Pago Inicial Total</span>
+                            <span className="text-lg font-bold text-accent">
+                                ${(plan.enganche + 2600 + 1408).toLocaleString()}
+                            </span>
+                        </div>
+
+                        <div className="text-[10px] space-y-1 text-white/60">
+                            <div className="flex justify-between">
+                                <span>Enganche:</span>
+                                <span>${plan.enganche.toLocaleString()}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span>Gastos de Apertura:</span>
+                                <span>$2,600</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span>1ª Anualidad Mantenimiento:</span>
+                                <span>$1,408</span>
+                            </div>
                         </div>
                     </div>
                 </div>
