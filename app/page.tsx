@@ -73,10 +73,41 @@ export default async function Home() {
 
         <Separator className="my-8 w-[80%] mx-auto bg-border/40" />
 
+        {/* DEFINITION: What is a Gaveta? */}
+        <div className="py-8 px-6 text-center max-w-2xl mx-auto">
+          <span className="inline-block px-3 py-1 mb-3 text-xs font-semibold tracking-wider text-accent uppercase bg-accent/10 rounded-full">
+            Concepto
+          </span>
+          <h3 className="font-serif text-2xl font-bold text-primary mb-3">
+            ¿Qué es una Gaveta?
+          </h3>
+          <p className="text-muted-foreground leading-relaxed">
+            Una gaveta es un espacio individual de concreto diseñado para resguardar dignamente a un ser querido.
+            Nuestras fosas se componen de múltiples gavetas, permitiendo mantener a la familia unida en un mismo lugar.
+          </p>
+        </div>
+
+        <Separator className="my-8 w-[80%] mx-auto bg-border/40" />
+
         {/* Plans */}
         <div className="py-4 md:text-center">
           <h3 className="font-serif text-2xl font-bold text-primary mb-8">Planes Disponibles</h3>
           <MembershipsSection />
+
+          {/* Maintenance Cost Info */}
+          <div className="mt-8 mx-auto max-w-3xl px-6">
+            <div className="bg-primary/5 border border-primary/10 rounded-xl p-4 flex flex-col md:flex-row items-center justify-center gap-3 text-center md:text-left">
+              <div className="p-2 bg-primary/10 rounded-full text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-info"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-primary">Cuota de Mantenimiento Anual</p>
+                <p className="text-sm text-muted-foreground">
+                  12 UMAS vigentes (Aproximadamente <span className="font-bold text-primary">$1,408.00 MXN</span>).
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <Separator className="my-8 w-[80%] mx-auto bg-border/40" />
