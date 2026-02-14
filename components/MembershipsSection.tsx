@@ -117,7 +117,8 @@ interface FuneralService {
     id: string
     name: string
     description: string
-    price: number   // precio desde domicilio
+    priceHome: number
+    priceHospital: number
     includes: string[]
     type: 'sepultura' | 'cremacion'
 }
@@ -128,7 +129,8 @@ const funeralServices: FuneralService[] = [
         id: 'sep-tradicional',
         name: 'Tradicional',
         description: 'Velación en domicilio',
-        price: 12300,
+        priceHome: 12300,
+        priceHospital: 10400,
         includes: [
             "Ataúd clásico",
             "Liberación de hospital o domicilio",
@@ -143,7 +145,8 @@ const funeralServices: FuneralService[] = [
         id: 'sep-velatorio',
         name: 'Velatorio',
         description: 'Velación en sala',
-        price: 14600,
+        priceHome: 14600,
+        priceHospital: 12700,
         includes: [
             "Ataúd clásico",
             "Liberación de hospital o domicilio",
@@ -159,7 +162,8 @@ const funeralServices: FuneralService[] = [
         id: 'crem-directa',
         name: 'Directa',
         description: 'Sin velación',
-        price: 8800,
+        priceHome: 8800,
+        priceHospital: 6900,
         includes: [
             "Liberación de hospital o domicilio",
             "Carroza a horno crematorio",
@@ -173,7 +177,8 @@ const funeralServices: FuneralService[] = [
         id: 'crem-tradicional',
         name: 'Tradicional',
         description: 'Velación en domicilio',
-        price: 13900,
+        priceHome: 13900,
+        priceHospital: 12000,
         includes: [
             "Ataúd para velación D/U",
             "Liberación de hospital o domicilio",
@@ -190,7 +195,8 @@ const funeralServices: FuneralService[] = [
         id: 'crem-velatorio',
         name: 'Velatorio',
         description: 'Velación en sala',
-        price: 16200,
+        priceHome: 16200,
+        priceHospital: 14300,
         includes: [
             "Ataúd para velación D/U",
             "Liberación de hospital o domicilio",
@@ -214,13 +220,19 @@ export function MembershipsSection() {
     // Estado del combo funerario
     const [comboEnabled, setComboEnabled] = useState(false)
     const [selectedServiceId, setSelectedServiceId] = useState<string | null>(null)
+    const [pickupLocation, setPickupLocation] = useState<'hospital' | 'domicilio'>('hospital')
 
     // Servicios relevantes según el tab activo
     const relevantServices = mainTab === 'nichos'
         ? funeralServices.filter(s => s.type === 'cremacion')
         : funeralServices.filter(s => s.type === 'sepultura')
 
-    const selectedService = funeralServices.find(s => s.id === selectedServiceId) || null
+    const rawService = funeralServices.find(s => s.id === selectedServiceId) || null
+    // Crear servicio con price activo según ubicación
+    const selectedService = rawService ? {
+        ...rawService,
+        price: pickupLocation === 'hospital' ? rawService.priceHospital : rawService.priceHome
+    } : null
 
     // Cuando cambia el tab principal, resetear selección
     const handleMainTabChange = (tab: 'panteon' | 'nichos') => {
@@ -405,47 +417,89 @@ export function MembershipsSection() {
                                         className="overflow-hidden"
                                     >
                                         <div className="mt-5 pt-5 border-t border-white/10">
+                                            {/* LOCATION TOGGLE: Hospital / Domicilio */}
+                                            <div className="mb-5">
+                                                <p className="text-[11px] text-white/60 mb-2 flex items-center gap-1.5">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>
+                                                    ¿Dónde se realizará la liberación del cuerpo?
+                                                </p>
+                                                <div className="flex bg-white/5 rounded-xl p-1 border border-white/10">
+                                                    <button
+                                                        onClick={() => setPickupLocation('hospital')}
+                                                        className={cn(
+                                                            "flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs font-semibold transition-all duration-300",
+                                                            pickupLocation === 'hospital'
+                                                                ? "bg-emerald-500 text-white shadow-md shadow-emerald-500/20"
+                                                                : "text-white/50 hover:text-white/70"
+                                                        )}
+                                                    >
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 6v4" /><path d="M14 14h-4" /><path d="M14 18h-4" /><path d="M14 8h-4" /><path d="M18 12h2a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2h2" /><path d="M18 22V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v18" /></svg>
+                                                        Hospital
+                                                    </button>
+                                                    <button
+                                                        onClick={() => setPickupLocation('domicilio')}
+                                                        className={cn(
+                                                            "flex-1 flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs font-semibold transition-all duration-300",
+                                                            pickupLocation === 'domicilio'
+                                                                ? "bg-emerald-500 text-white shadow-md shadow-emerald-500/20"
+                                                                : "text-white/50 hover:text-white/70"
+                                                        )}
+                                                    >
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
+                                                        Domicilio
+                                                    </button>
+                                                </div>
+                                            </div>
+
                                             <p className="text-xs text-white/50 uppercase tracking-wider font-semibold mb-3">
                                                 Selecciona el tipo de servicio {mainTab === 'nichos' ? '(Cremación)' : '(Sepultura)'}
                                             </p>
                                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                                                {relevantServices.map(service => (
-                                                    <button
-                                                        key={service.id}
-                                                        onClick={() => setSelectedServiceId(service.id)}
-                                                        className={cn(
-                                                            "text-left p-4 rounded-xl border transition-all duration-300",
-                                                            selectedServiceId === service.id
-                                                                ? "bg-emerald-500/20 border-emerald-500/50 shadow-lg shadow-emerald-500/10"
-                                                                : "bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20"
-                                                        )}
-                                                    >
-                                                        <div className="flex items-center justify-between mb-1">
-                                                            <span className="font-bold text-sm text-white">{service.name}</span>
-                                                            <span className="text-emerald-400 font-bold text-sm">
-                                                                +${service.price.toLocaleString()}
-                                                            </span>
-                                                        </div>
-                                                        <p className="text-[10px] text-white/50">{service.description}</p>
+                                                {relevantServices.map(service => {
+                                                    const activePrice = pickupLocation === 'hospital' ? service.priceHospital : service.priceHome
+                                                    return (
+                                                        <button
+                                                            key={service.id}
+                                                            onClick={() => setSelectedServiceId(service.id)}
+                                                            className={cn(
+                                                                "text-left p-4 rounded-xl border transition-all duration-300",
+                                                                selectedServiceId === service.id
+                                                                    ? "bg-emerald-500/20 border-emerald-500/50 shadow-lg shadow-emerald-500/10"
+                                                                    : "bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20"
+                                                            )}
+                                                        >
+                                                            <div className="flex items-center justify-between mb-1">
+                                                                <span className="font-bold text-sm text-white">{service.name}</span>
+                                                                <motion.span
+                                                                    key={activePrice}
+                                                                    initial={{ opacity: 0, y: -5 }}
+                                                                    animate={{ opacity: 1, y: 0 }}
+                                                                    className="text-emerald-400 font-bold text-sm"
+                                                                >
+                                                                    +${activePrice.toLocaleString()}
+                                                                </motion.span>
+                                                            </div>
+                                                            <p className="text-[10px] text-white/50">{service.description}</p>
 
-                                                        {selectedServiceId === service.id && (
-                                                            <motion.div
-                                                                initial={{ height: 0, opacity: 0 }}
-                                                                animate={{ height: 'auto', opacity: 1 }}
-                                                                className="mt-3 pt-3 border-t border-white/10"
-                                                            >
-                                                                <ul className="space-y-1.5">
-                                                                    {service.includes.map((item, i) => (
-                                                                        <li key={i} className="flex items-start gap-2 text-[10px] text-white/60">
-                                                                            <Check className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />
-                                                                            <span>{item}</span>
-                                                                        </li>
-                                                                    ))}
-                                                                </ul>
-                                                            </motion.div>
-                                                        )}
-                                                    </button>
-                                                ))}
+                                                            {selectedServiceId === service.id && (
+                                                                <motion.div
+                                                                    initial={{ height: 0, opacity: 0 }}
+                                                                    animate={{ height: 'auto', opacity: 1 }}
+                                                                    className="mt-3 pt-3 border-t border-white/10"
+                                                                >
+                                                                    <ul className="space-y-1.5">
+                                                                        {service.includes.map((item, i) => (
+                                                                            <li key={i} className="flex items-start gap-2 text-[10px] text-white/60">
+                                                                                <Check className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />
+                                                                                <span>{item}</span>
+                                                                            </li>
+                                                                        ))}
+                                                                    </ul>
+                                                                </motion.div>
+                                                            )}
+                                                        </button>
+                                                    )
+                                                })}
                                             </div>
                                         </div>
                                     </motion.div>
