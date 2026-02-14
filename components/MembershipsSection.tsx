@@ -1,11 +1,13 @@
 "use client"
 
 import { useState } from "react"
-import { Check, ChevronDown, ChevronUp, Star } from "lucide-react"
+import { Check, ChevronDown, ChevronUp, Star, Plus, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
+
+/* ─── DATOS: Planes del Panteón ─── */
 
 const pricingPlans = [
     {
@@ -109,9 +111,123 @@ const nichoPlans = [
     }
 ]
 
+/* ─── DATOS: Servicios Funerarios de Ayala Funeral ─── */
+
+interface FuneralService {
+    id: string
+    name: string
+    description: string
+    price: number   // precio desde domicilio
+    includes: string[]
+    type: 'sepultura' | 'cremacion'
+}
+
+const funeralServices: FuneralService[] = [
+    // Sepultura: para combinar con Fosas
+    {
+        id: 'sep-tradicional',
+        name: 'Tradicional',
+        description: 'Velación en domicilio',
+        price: 12300,
+        includes: [
+            "Ataúd clásico",
+            "Liberación de hospital o domicilio",
+            "Preservación y arreglo estético",
+            "Gestoría de trámites gubernamentales",
+            "Equipo de velación para novenario",
+            "Carroza local a panteón",
+        ],
+        type: 'sepultura',
+    },
+    {
+        id: 'sep-velatorio',
+        name: 'Velatorio',
+        description: 'Velación en sala',
+        price: 14600,
+        includes: [
+            "Ataúd clásico",
+            "Liberación de hospital o domicilio",
+            "Preservación y arreglo estético",
+            "Gestoría de trámites gubernamentales",
+            "Sala de velación (25 personas / 24 hrs)",
+            "Carroza local a panteón",
+        ],
+        type: 'sepultura',
+    },
+    // Cremación: para combinar con Nichos
+    {
+        id: 'crem-directa',
+        name: 'Directa',
+        description: 'Sin velación',
+        price: 8800,
+        includes: [
+            "Liberación de hospital o domicilio",
+            "Carroza a horno crematorio",
+            "Cremación",
+            "Gestoría de trámites gubernamentales",
+            "Urna de cenizas universal",
+        ],
+        type: 'cremacion',
+    },
+    {
+        id: 'crem-tradicional',
+        name: 'Tradicional',
+        description: 'Velación en domicilio',
+        price: 13900,
+        includes: [
+            "Ataúd para velación D/U",
+            "Liberación de hospital o domicilio",
+            "Preservación y arreglo estético",
+            "Gestoría de trámites gubernamentales",
+            "Equipo de velación para novenario",
+            "Carroza a horno crematorio",
+            "Cremación",
+            "Urna de cenizas universal",
+        ],
+        type: 'cremacion',
+    },
+    {
+        id: 'crem-velatorio',
+        name: 'Velatorio',
+        description: 'Velación en sala',
+        price: 16200,
+        includes: [
+            "Ataúd para velación D/U",
+            "Liberación de hospital o domicilio",
+            "Preservación y arreglo estético",
+            "Gestoría de trámites gubernamentales",
+            "Sala de velación (25 personas / 24 hrs)",
+            "Carroza a horno crematorio",
+            "Cremación",
+            "Urna de cenizas universal",
+        ],
+        type: 'cremacion',
+    },
+]
+
+/* ─── COMPONENTE PRINCIPAL ─── */
+
 export function MembershipsSection() {
     const [mainTab, setMainTab] = useState<'panteon' | 'nichos'>('panteon')
     const [panteonTab, setPanteonTab] = useState<'perpetuidad' | 'temporalidad'>('perpetuidad')
+
+    // Estado del combo funerario
+    const [comboEnabled, setComboEnabled] = useState(false)
+    const [selectedServiceId, setSelectedServiceId] = useState<string | null>(null)
+
+    // Servicios relevantes según el tab activo
+    const relevantServices = mainTab === 'nichos'
+        ? funeralServices.filter(s => s.type === 'cremacion')
+        : funeralServices.filter(s => s.type === 'sepultura')
+
+    const selectedService = funeralServices.find(s => s.id === selectedServiceId) || null
+
+    // Cuando cambia el tab principal, resetear selección
+    const handleMainTabChange = (tab: 'panteon' | 'nichos') => {
+        setMainTab(tab)
+        setComboEnabled(false)
+        setSelectedServiceId(null)
+    }
 
     return (
         <section id="planes" className="py-24 bg-gradient-to-b from-primary to-primary/95 text-primary-foreground">
@@ -128,7 +244,7 @@ export function MembershipsSection() {
                     <div className="flex justify-center mt-8 mb-6">
                         <div className="bg-white/10 p-1 rounded-full inline-flex relative w-full max-w-xs md:max-w-sm">
                             <button
-                                onClick={() => setMainTab('panteon')}
+                                onClick={() => handleMainTabChange('panteon')}
                                 className={cn(
                                     "flex-1 py-3 rounded-full text-sm md:text-base font-bold transition-all duration-300 relative z-10",
                                     mainTab === 'panteon' ? "text-primary" : "text-white/70 hover:text-white"
@@ -137,7 +253,7 @@ export function MembershipsSection() {
                                 Panteón
                             </button>
                             <button
-                                onClick={() => setMainTab('nichos')}
+                                onClick={() => handleMainTabChange('nichos')}
                                 className={cn(
                                     "flex-1 py-3 rounded-full text-sm md:text-base font-bold transition-all duration-300 relative z-10",
                                     mainTab === 'nichos' ? "text-primary" : "text-white/70 hover:text-white"
@@ -222,6 +338,123 @@ export function MembershipsSection() {
                     </div>
                 </div>
 
+                {/* ─── COMBO BANNER: Incluir Servicio Funerario ─── */}
+                {(mainTab === 'panteon' ? panteonTab === 'perpetuidad' : true) && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="max-w-3xl mx-auto mb-10"
+                    >
+                        <div className={cn(
+                            "rounded-2xl border p-5 transition-all duration-500",
+                            comboEnabled
+                                ? "bg-gradient-to-r from-emerald-900/40 to-teal-900/40 border-emerald-500/40 shadow-lg shadow-emerald-500/10"
+                                : "bg-white/5 border-white/10 hover:border-white/20"
+                        )}>
+                            {/* Toggle Row */}
+                            <div className="flex items-center justify-between gap-4">
+                                <div className="flex items-center gap-3 flex-1 min-w-0">
+                                    <div className={cn(
+                                        "w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300",
+                                        comboEnabled ? "bg-emerald-500 shadow-lg shadow-emerald-500/30" : "bg-white/10"
+                                    )}>
+                                        <Plus className={cn("w-5 h-5 transition-transform duration-300", comboEnabled ? "text-white rotate-45" : "text-white/60")} />
+                                    </div>
+                                    <div className="min-w-0">
+                                        <h4 className="text-sm md:text-base font-bold text-white flex items-center gap-2">
+                                            Incluir Servicio Funerario de Uso Inmediato
+                                            <Sparkles className="w-4 h-4 text-emerald-400 shrink-0" />
+                                        </h4>
+                                        <p className="text-[11px] md:text-xs text-white/50 leading-tight mt-0.5">
+                                            Combina tu plan de {mainTab === 'nichos' ? 'nicho' : 'panteón'} con un servicio funerario completo de Grupo Funerario Ayala
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Toggle Switch */}
+                                <button
+                                    onClick={() => {
+                                        const newVal = !comboEnabled
+                                        setComboEnabled(newVal)
+                                        if (newVal && !selectedServiceId) {
+                                            setSelectedServiceId(relevantServices[0]?.id || null)
+                                        }
+                                        if (!newVal) setSelectedServiceId(null)
+                                    }}
+                                    className={cn(
+                                        "relative w-14 h-7 rounded-full transition-all duration-300 shrink-0",
+                                        comboEnabled ? "bg-emerald-500" : "bg-white/20"
+                                    )}
+                                >
+                                    <motion.div
+                                        className="absolute top-1 w-5 h-5 bg-white rounded-full shadow-md"
+                                        animate={{ left: comboEnabled ? 32 : 4 }}
+                                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                                    />
+                                </button>
+                            </div>
+
+                            {/* Service Options (Expanded) */}
+                            <AnimatePresence>
+                                {comboEnabled && (
+                                    <motion.div
+                                        initial={{ height: 0, opacity: 0 }}
+                                        animate={{ height: "auto", opacity: 1 }}
+                                        exit={{ height: 0, opacity: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                        className="overflow-hidden"
+                                    >
+                                        <div className="mt-5 pt-5 border-t border-white/10">
+                                            <p className="text-xs text-white/50 uppercase tracking-wider font-semibold mb-3">
+                                                Selecciona el tipo de servicio {mainTab === 'nichos' ? '(Cremación)' : '(Sepultura)'}
+                                            </p>
+                                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                                {relevantServices.map(service => (
+                                                    <button
+                                                        key={service.id}
+                                                        onClick={() => setSelectedServiceId(service.id)}
+                                                        className={cn(
+                                                            "text-left p-4 rounded-xl border transition-all duration-300",
+                                                            selectedServiceId === service.id
+                                                                ? "bg-emerald-500/20 border-emerald-500/50 shadow-lg shadow-emerald-500/10"
+                                                                : "bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20"
+                                                        )}
+                                                    >
+                                                        <div className="flex items-center justify-between mb-1">
+                                                            <span className="font-bold text-sm text-white">{service.name}</span>
+                                                            <span className="text-emerald-400 font-bold text-sm">
+                                                                +${service.price.toLocaleString()}
+                                                            </span>
+                                                        </div>
+                                                        <p className="text-[10px] text-white/50">{service.description}</p>
+
+                                                        {selectedServiceId === service.id && (
+                                                            <motion.div
+                                                                initial={{ height: 0, opacity: 0 }}
+                                                                animate={{ height: 'auto', opacity: 1 }}
+                                                                className="mt-3 pt-3 border-t border-white/10"
+                                                            >
+                                                                <ul className="space-y-1.5">
+                                                                    {service.includes.map((item, i) => (
+                                                                        <li key={i} className="flex items-start gap-2 text-[10px] text-white/60">
+                                                                            <Check className="w-3 h-3 text-emerald-400 mt-0.5 shrink-0" />
+                                                                            <span>{item}</span>
+                                                                        </li>
+                                                                    ))}
+                                                                </ul>
+                                                            </motion.div>
+                                                        )}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                    </motion.div>
+                )}
+
                 <AnimatePresence mode="wait">
                     {mainTab === 'nichos' ? (
                         // NICHOS GRID
@@ -234,7 +467,7 @@ export function MembershipsSection() {
                             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
                         >
                             {nichoPlans.map((plan, index) => (
-                                <PricingCard key={index} plan={plan} section="Nichos" />
+                                <PricingCard key={index} plan={plan} section="Nichos" comboService={selectedService} />
                             ))}
                         </motion.div>
                     ) : (
@@ -249,7 +482,7 @@ export function MembershipsSection() {
                                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
                             >
                                 {pricingPlans.map((plan, index) => (
-                                    <PricingCard key={index} plan={plan} section="Panteón" />
+                                    <PricingCard key={index} plan={plan} section="Panteón" comboService={selectedService} />
                                 ))}
                             </motion.div>
                         ) : (
@@ -321,24 +554,66 @@ export function MembershipsSection() {
     )
 }
 
-function PricingCard({ plan, section }: { plan: any, section: string }) {
+/* ─── TARJETA DE PLAN (con combo dinámico) ─── */
+
+function PricingCard({ plan, section, comboService }: { plan: any, section: string, comboService: FuneralService | null }) {
     const [showFinancing, setShowFinancing] = useState(false)
     const openingCost = plan.openingCost ?? 0
     const maintenanceCost = 1408
-    const totalInitial = plan.enganche + openingCost + maintenanceCost
+
+    // Precios dinámicos según combo
+    const comboPrice = comboService?.price || 0
+    const totalPrice = plan.price + comboPrice
+    const totalInitial = plan.enganche + openingCost + maintenanceCost + comboPrice
+
+    // Recalcular mensualidades si hay combo
+    const getAdjustedFinancing = () => {
+        if (!comboService) return plan.financing
+        return plan.financing.map((opt: any) => {
+            const newTotal = opt.total + comboPrice
+            const newMonthly = Math.ceil((newTotal - plan.enganche) / opt.months)
+            return { ...opt, monthly: newMonthly, total: newTotal }
+        })
+    }
+
+    const financing = getAdjustedFinancing()
+    const isComboActive = comboService !== null
 
     return (
-        <Card className="bg-white/5 backdrop-blur-sm border-white/10 overflow-hidden hover:bg-white/10 transition-colors duration-300">
+        <Card className={cn(
+            "backdrop-blur-sm border-white/10 overflow-hidden transition-all duration-500",
+            isComboActive
+                ? "bg-gradient-to-b from-emerald-900/20 to-white/5 border-emerald-500/20 shadow-lg shadow-emerald-500/5"
+                : "bg-white/5 hover:bg-white/10"
+        )}>
             <CardContent className="p-6">
                 <div className="mb-6">
                     <h3 className="text-xl font-serif font-bold text-white mb-2">{plan.title}</h3>
                     <div className="mb-4">
                         <div className="flex items-baseline gap-1">
-                            <span className="text-3xl font-bold text-accent">
-                                ${plan.price.toLocaleString()}
-                            </span>
+                            <motion.span
+                                key={totalPrice}
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="text-3xl font-bold text-accent"
+                            >
+                                ${totalPrice.toLocaleString()}
+                            </motion.span>
                             <span className="text-xs text-white/60">MXN Contado</span>
                         </div>
+
+                        {isComboActive && (
+                            <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                className="mt-1"
+                            >
+                                <span className="text-[10px] text-emerald-400 font-semibold">
+                                    Panteón ${plan.price.toLocaleString()} + Servicio Funerario ${comboPrice.toLocaleString()}
+                                </span>
+                            </motion.div>
+                        )}
+
                         <p className="text-[10px] text-white/40 italic leading-tight mt-1">
                             + Gastos de Uso Inmediato (Apertura y Mantenimiento)
                         </p>
@@ -351,9 +626,14 @@ function PricingCard({ plan, section }: { plan: any, section: string }) {
                                 <span className="text-sm font-semibold text-white block">Pago total de Uso Inmediato</span>
                                 <span className="text-[10px] text-white/40 italic">En plan financiado</span>
                             </div>
-                            <span className="text-lg font-bold text-accent">
+                            <motion.span
+                                key={totalInitial}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                className="text-lg font-bold text-accent"
+                            >
                                 ${totalInitial.toLocaleString()}
-                            </span>
+                            </motion.span>
                         </div>
 
                         <div className="text-[10px] space-y-1 text-white/60">
@@ -382,11 +662,22 @@ function PricingCard({ plan, section }: { plan: any, section: string }) {
                                 <span>1ª Anualidad Mantenimiento:</span>
                                 <span>${maintenanceCost.toLocaleString()}</span>
                             </div>
+
+                            {isComboActive && (
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    className="flex justify-between text-emerald-400 font-semibold pt-1 border-t border-white/10"
+                                >
+                                    <span>Servicio Funerario ({comboService.name}):</span>
+                                    <span>${comboPrice.toLocaleString()}</span>
+                                </motion.div>
+                            )}
                         </div>
                     </div>
                 </div>
 
-                <ul className="space-y-3 mb-8">
+                <ul className="space-y-3 mb-4">
                     {plan.features.map((feature: string, i: number) => (
                         <li key={i} className="flex items-center gap-3 text-sm text-white/80">
                             <Check className="w-4 h-4 text-accent" />
@@ -394,6 +685,33 @@ function PricingCard({ plan, section }: { plan: any, section: string }) {
                         </li>
                     ))}
                 </ul>
+
+                {/* Combo Service Features */}
+                <AnimatePresence>
+                    {isComboActive && comboService && (
+                        <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden"
+                        >
+                            <div className="mb-4 pt-3 border-t border-emerald-500/20">
+                                <p className="text-[10px] text-emerald-400 font-bold uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                    <Sparkles className="w-3 h-3" />
+                                    Servicio Funerario Incluido ({comboService.name})
+                                </p>
+                                <ul className="space-y-2">
+                                    {comboService.includes.map((item, i) => (
+                                        <li key={i} className="flex items-center gap-2 text-[11px] text-emerald-300/70">
+                                            <Check className="w-3 h-3 text-emerald-400 shrink-0" />
+                                            <span>{item}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
 
                 <Button
                     onClick={() => setShowFinancing(!showFinancing)}
@@ -422,7 +740,7 @@ function PricingCard({ plan, section }: { plan: any, section: string }) {
                             className="overflow-hidden"
                         >
                             <div className="space-y-3 bg-black/20 rounded-lg p-3 mb-6">
-                                {plan.financing.map((opt: any, i: number) => (
+                                {financing.map((opt: any, i: number) => (
                                     <div key={i} className="flex justify-between items-center text-sm border-b border-white/10 last:border-0 pb-2 last:pb-0">
                                         <span className="text-white/70">{opt.months} Meses</span>
                                         <div className="text-right">
@@ -437,10 +755,23 @@ function PricingCard({ plan, section }: { plan: any, section: string }) {
                 </AnimatePresence>
 
                 <Button
-                    className="w-full bg-accent text-primary hover:bg-white font-semibold"
-                    onClick={() => window.open(`https://wa.me/525623355155?text=Me interesa información sobre el plan "${plan.title}" en la sección de ${section} de Panteón Bethania.`, '_blank')}
+                    className={cn(
+                        "w-full font-semibold",
+                        isComboActive
+                            ? "bg-emerald-500 text-white hover:bg-emerald-600"
+                            : "bg-accent text-primary hover:bg-white"
+                    )}
+                    onClick={() => {
+                        const comboText = isComboActive && comboService
+                            ? ` con Servicio Funerario "${comboService.name}" (Paquete Integral)`
+                            : ''
+                        window.open(
+                            `https://wa.me/525623355155?text=Me interesa información sobre el plan "${plan.title}"${comboText} en la sección de ${section} de Panteón Bethania.`,
+                            '_blank'
+                        )
+                    }}
                 >
-                    Contacta a un asesor
+                    {isComboActive ? '✨ Cotizar Paquete Integral' : 'Contacta a un asesor'}
                 </Button>
             </CardContent>
         </Card>
