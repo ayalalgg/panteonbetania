@@ -612,26 +612,6 @@ function PricingCard({ plan, section, comboService }: { plan: any, section: stri
                             )}
                         </div>
                     </div>
-
-                    {/* PAGOS FUTUROS */}
-                    {openingCost > 0 && (
-                        <div className="bg-white/5 rounded-lg p-3 border border-white/10 space-y-2 mt-3">
-                            <span className="text-[10px] font-semibold text-white/50 uppercase tracking-wider block">Pagos Futuros</span>
-                            <div className="text-[10px] space-y-1 text-white/60">
-                                <div className="flex justify-between">
-                                    <span>Mantenimiento Anual:</span>
-                                    <span>${maintenanceCost.toLocaleString()}/año</span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span>Apertura (Eventos Futuros):</span>
-                                    <span>$2,600</span>
-                                </div>
-                                <p className="text-[9px] text-white/40 italic leading-tight pl-2 mt-1">
-                                    * Incluye: Grabado, toldo, sillas, apertura y cierre.
-                                </p>
-                            </div>
-                        </div>
-                    )}
                 </div>
 
                 <ul className="space-y-3 mb-4">

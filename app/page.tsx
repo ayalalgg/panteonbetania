@@ -74,17 +74,29 @@ export default async function Home() {
       <section id="planes" className="scroll-mt-20">
         <MembershipsSection />
 
-        {/* Maintenance Info - Integrated below section */}
+        {/* Maintenance & Future Costs Info - Integrated below section */}
         <div className="bg-primary py-12 px-6">
-          <div className="max-w-3xl mx-auto">
+          <div className="max-w-3xl mx-auto space-y-4">
             <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-white flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
-              <div className="p-4 bg-white/20 rounded-full">
+              <div className="p-4 bg-white/20 rounded-full shrink-0">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-info"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg>
               </div>
               <div className="space-y-1">
                 <p className="text-lg font-bold">Cuota de Mantenimiento Anual</p>
                 <p className="text-white/80 leading-relaxed font-light">
                   12 UMAS vigentes (Aproximadamente <span className="font-bold text-accent">$1,408.00 MXN</span>), garantizando la impecabilidad de los jardines a perpetuidad.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-white flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+              <div className="p-4 bg-white/20 rounded-full shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" /><path d="M3 5v14a2 2 0 0 0 2 2h16v-5" /><path d="M18 12a2 2 0 0 0 0 4h4v-4Z" /></svg>
+              </div>
+              <div className="space-y-1">
+                <p className="text-lg font-bold">Apertura de Eventos Futuros</p>
+                <p className="text-white/80 leading-relaxed font-light">
+                  Costo por apertura: <span className="font-bold text-accent">$2,600.00 MXN</span>. Incluye: grabado, toldo, sillas, apertura y cierre.
                 </p>
               </div>
             </div>
