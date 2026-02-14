@@ -339,7 +339,7 @@ export function MembershipsSection() {
                 </div>
 
                 {/* ─── COMBO BANNER: Incluir Servicio Funerario ─── */}
-                {(mainTab === 'panteon' ? panteonTab === 'perpetuidad' : true) && (
+                {(
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -494,57 +494,7 @@ export function MembershipsSection() {
                                 transition={{ duration: 0.3 }}
                                 className="max-w-md mx-auto"
                             >
-                                <Card className="bg-white/5 backdrop-blur-sm border-white/10 overflow-hidden hover:bg-white/10 transition-colors duration-300">
-                                    <CardContent className="p-8 text-center">
-                                        <h3 className="text-2xl font-serif font-bold text-white mb-2">Gaveta Temporal</h3>
-                                        <div className="flex justify-center items-baseline gap-1 mb-4">
-                                            <span className="text-4xl font-bold text-accent">
-                                                $9,500
-                                            </span>
-                                            <span className="text-sm text-white/60">MXN / Persona</span>
-                                        </div>
-
-                                        <ul className="space-y-3 mb-8 text-left inline-block">
-                                            <li className="flex items-center gap-3 text-sm text-white/80">
-                                                <Check className="w-4 h-4 text-accent" />
-                                                <span>Ubicación: Sobre Tierra (Mural)</span>
-                                            </li>
-                                            <li className="flex items-center gap-3 text-sm text-white/80">
-                                                <Check className="w-4 h-4 text-accent" />
-                                                <span>Capacidad: 1 Persona</span>
-                                            </li>
-                                            <li className="flex items-center gap-3 text-sm text-white/80">
-                                                <Check className="w-4 h-4 text-accent" />
-                                                <span>Libre de pago de mantenimiento</span>
-                                            </li>
-                                            <li className="flex items-center gap-3 text-sm text-white/80">
-                                                <Check className="w-4 h-4 text-accent" />
-                                                <span>Ideal para necesidad inmediata</span>
-                                            </li>
-                                        </ul>
-
-                                        <div className="bg-white/5 rounded-lg p-4 border border-white/10 mb-8 max-w-sm mx-auto">
-                                            <h4 className="text-sm font-semibold text-white mb-3 tracking-wide uppercase text-xs text-white/50">Facilidad de Pago</h4>
-                                            <div className="space-y-2 text-sm text-white/80">
-                                                <div className="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
-                                                    <span>Pago Inicial:</span>
-                                                    <span className="text-lg font-bold text-accent">$5,500</span>
-                                                </div>
-                                                <div className="flex justify-between items-center text-xs">
-                                                    <span>Restante ($4,000):</span>
-                                                    <span className="text-white/60">Diferido en anualidades</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <Button
-                                            className="w-full bg-white text-primary hover:bg-white/90 font-semibold"
-                                            onClick={() => window.open(`https://wa.me/525623355155?text=Me interesa información sobre la Gaveta Temporal (7 años) en Panteón Bethania.`, '_blank')}
-                                        >
-                                            Contacta a un asesor
-                                        </Button>
-                                    </CardContent>
-                                </Card>
+                                <TemporalidadCard comboService={selectedService} />
                             </motion.div>
                         )
                     )}
@@ -767,6 +717,151 @@ function PricingCard({ plan, section, comboService }: { plan: any, section: stri
                             : ''
                         window.open(
                             `https://wa.me/525623355155?text=Me interesa información sobre el plan "${plan.title}"${comboText} en la sección de ${section} de Panteón Bethania.`,
+                            '_blank'
+                        )
+                    }}
+                >
+                    {isComboActive ? '✨ Cotizar Paquete Integral' : 'Contacta a un asesor'}
+                </Button>
+            </CardContent>
+        </Card>
+    )
+}
+
+/* ─── TARJETA DE TEMPORALIDAD (con combo dinámico) ─── */
+
+function TemporalidadCard({ comboService }: { comboService: FuneralService | null }) {
+    const basePrice = 9500
+    const baseEnganche = 5500
+    const baseRestante = 4000
+    const comboPrice = comboService?.price || 0
+    const totalPrice = basePrice + comboPrice
+    const totalEnganche = baseEnganche + comboPrice
+    const isComboActive = comboService !== null
+
+    return (
+        <Card className={cn(
+            "backdrop-blur-sm border-white/10 overflow-hidden transition-all duration-500",
+            isComboActive
+                ? "bg-gradient-to-b from-emerald-900/20 to-white/5 border-emerald-500/20 shadow-lg shadow-emerald-500/5"
+                : "bg-white/5 hover:bg-white/10"
+        )}>
+            <CardContent className="p-8 text-center">
+                <h3 className="text-2xl font-serif font-bold text-white mb-2">Gaveta Temporal</h3>
+                <div className="flex justify-center items-baseline gap-1 mb-2">
+                    <motion.span
+                        key={totalPrice}
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-4xl font-bold text-accent"
+                    >
+                        ${totalPrice.toLocaleString()}
+                    </motion.span>
+                    <span className="text-sm text-white/60">MXN / Persona</span>
+                </div>
+
+                {isComboActive && (
+                    <motion.p
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        className="text-[10px] text-emerald-400 font-semibold mb-4"
+                    >
+                        Gaveta ${basePrice.toLocaleString()} + Servicio Funerario ${comboPrice.toLocaleString()}
+                    </motion.p>
+                )}
+
+                <ul className="space-y-3 mb-6 text-left inline-block">
+                    <li className="flex items-center gap-3 text-sm text-white/80">
+                        <Check className="w-4 h-4 text-accent" />
+                        <span>Ubicación: Sobre Tierra (Mural)</span>
+                    </li>
+                    <li className="flex items-center gap-3 text-sm text-white/80">
+                        <Check className="w-4 h-4 text-accent" />
+                        <span>Capacidad: 1 Persona</span>
+                    </li>
+                    <li className="flex items-center gap-3 text-sm text-white/80">
+                        <Check className="w-4 h-4 text-accent" />
+                        <span>Libre de pago de mantenimiento</span>
+                    </li>
+                    <li className="flex items-center gap-3 text-sm text-white/80">
+                        <Check className="w-4 h-4 text-accent" />
+                        <span>Ideal para necesidad inmediata</span>
+                    </li>
+                </ul>
+
+                {/* Combo Service Features */}
+                <AnimatePresence>
+                    {isComboActive && comboService && (
+                        <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            className="overflow-hidden mb-6"
+                        >
+                            <div className="pt-3 border-t border-emerald-500/20 text-left">
+                                <p className="text-[10px] text-emerald-400 font-bold uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                                    <Sparkles className="w-3 h-3" />
+                                    Servicio Funerario Incluido ({comboService.name})
+                                </p>
+                                <ul className="space-y-2">
+                                    {comboService.includes.map((item, i) => (
+                                        <li key={i} className="flex items-center gap-2 text-[11px] text-emerald-300/70">
+                                            <Check className="w-3 h-3 text-emerald-400 shrink-0" />
+                                            <span>{item}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
+                <div className="bg-white/5 rounded-lg p-4 border border-white/10 mb-8 max-w-sm mx-auto">
+                    <h4 className="text-xs font-semibold tracking-wide uppercase text-white/50 mb-3">Facilidad de Pago</h4>
+                    <div className="space-y-2 text-sm text-white/80">
+                        <div className="flex justify-between items-center border-b border-white/10 pb-2 mb-2">
+                            <span>Pago Inicial:</span>
+                            <motion.span
+                                key={totalEnganche}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                className="text-lg font-bold text-accent"
+                            >
+                                ${totalEnganche.toLocaleString()}
+                            </motion.span>
+                        </div>
+
+                        {isComboActive && (
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="flex justify-between items-center text-[10px] text-emerald-400 border-b border-white/10 pb-2 mb-2"
+                            >
+                                <span>Incluye Servicio Funerario ({comboService?.name}):</span>
+                                <span className="font-semibold">${comboPrice.toLocaleString()}</span>
+                            </motion.div>
+                        )}
+
+                        <div className="flex justify-between items-center text-xs">
+                            <span>Restante (${baseRestante.toLocaleString()}):</span>
+                            <span className="text-white/60">Diferido en anualidades</span>
+                        </div>
+                    </div>
+                </div>
+
+                <Button
+                    className={cn(
+                        "w-full font-semibold",
+                        isComboActive
+                            ? "bg-emerald-500 text-white hover:bg-emerald-600"
+                            : "bg-white text-primary hover:bg-white/90"
+                    )}
+                    onClick={() => {
+                        const comboText = isComboActive && comboService
+                            ? ` con Servicio Funerario "${comboService.name}" (Paquete Integral)`
+                            : ''
+                        window.open(
+                            `https://wa.me/525623355155?text=Me interesa información sobre la Gaveta Temporal (7 años)${comboText} en Panteón Bethania.`,
                             '_blank'
                         )
                     }}
