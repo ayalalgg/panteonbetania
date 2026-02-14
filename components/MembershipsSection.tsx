@@ -516,17 +516,8 @@ function PricingCard({ plan, section, comboService }: { plan: any, section: stri
     const totalPrice = plan.price + comboPrice
     const totalInitial = plan.enganche + openingCost + maintenanceCost + comboPrice
 
-    // Recalcular mensualidades si hay combo
-    const getAdjustedFinancing = () => {
-        if (!comboService) return plan.financing
-        return plan.financing.map((opt: any) => {
-            const newTotal = opt.total + comboPrice
-            const newMonthly = Math.ceil((newTotal - plan.enganche) / opt.months)
-            return { ...opt, monthly: newMonthly, total: newTotal }
-        })
-    }
-
-    const financing = getAdjustedFinancing()
+    // Financiamiento: solo cubre el costo del panteón (el servicio funerario se paga de contado en el Uso Inmediato)
+    const financing = plan.financing
     const isComboActive = comboService !== null
 
     return (
