@@ -64,6 +64,27 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* ASESORÍA: Grupo Funerario Ayala */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="max-w-4xl mx-auto text-center mb-16 space-y-4">
+            <span className="text-accent font-sans text-xs tracking-[0.3em] uppercase font-bold">
+              Contáctanos con confianza
+            </span>
+            <h2 className="text-3xl md:text-5xl font-serif font-bold text-primary">
+              Asesoría Profesional
+            </h2>
+            <p className="text-muted-foreground text-lg font-light max-w-2xl mx-auto leading-relaxed">
+              Panteón Bethania está disponible a través de <span className="font-bold text-primary">Grupo Funerario Ayala</span>. Como parte de nuestros servicios funerarios integrales, te asesoramos y acompañamos en la adquisición de tu espacio, brindándote la confianza y profesionalismo que nos caracterizan.
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto">
+            <BrokerProfile />
+          </div>
+        </div>
+      </section>
+
       {/* AMENITIES & VIDEO TOUR SECTION (Fused Layout) */}
       <AmenitiesSection videoUrl={mtVideoUrl} />
 
@@ -108,27 +129,6 @@ export default async function Home() {
       <section className="w-full bg-muted/20 py-24 px-4 md:px-0">
         <div className="max-w-6xl mx-auto">
           <MapSection mapUrl={mtMapUrl} address={mtAddress} />
-        </div>
-      </section>
-
-      {/* ASESORÍA: Grupo Funerario Ayala */}
-      <section className="py-24 bg-white relative overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center mb-16 space-y-4">
-            <span className="text-accent font-sans text-xs tracking-[0.3em] uppercase font-bold">
-              Contáctanos con confianza
-            </span>
-            <h2 className="text-3xl md:text-5xl font-serif font-bold text-primary">
-              Asesoría Profesional
-            </h2>
-            <p className="text-muted-foreground text-lg font-light max-w-2xl mx-auto leading-relaxed">
-              Panteón Bethania está disponible a través de <span className="font-bold text-primary">Grupo Funerario Ayala</span>. Como parte de nuestros servicios funerarios integrales, te asesoramos y acompañamos en la adquisición de tu espacio, brindándote la confianza y profesionalismo que nos caracterizan.
-            </p>
-          </div>
-
-          <div className="max-w-3xl mx-auto">
-            <BrokerProfile />
-          </div>
         </div>
       </section>
 
