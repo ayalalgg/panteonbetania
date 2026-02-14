@@ -111,18 +111,18 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* GESTIÓN Y RESPALDO: Grupo Funerario Ayala */}
+      {/* ASESORÍA: Grupo Funerario Ayala */}
       <section className="py-24 bg-white relative overflow-hidden">
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center mb-16 space-y-4">
             <span className="text-accent font-sans text-xs tracking-[0.3em] uppercase font-bold">
-              Respaldo Institucional
+              Contáctanos con confianza
             </span>
             <h2 className="text-3xl md:text-5xl font-serif font-bold text-primary">
-              Gestión Profesional
+              Asesoría Profesional
             </h2>
             <p className="text-muted-foreground text-lg font-light max-w-2xl mx-auto leading-relaxed">
-              Panteón Bethania es gestionado por <span className="font-bold text-primary">Grupo Funerario Ayala</span>, garantizando excelencia, respeto y el respaldo de una institución líder en cada servicio.
+              Panteón Bethania está disponible a través de <span className="font-bold text-primary">Grupo Funerario Ayala</span>. Como parte de nuestros servicios funerarios integrales, te asesoramos y acompañamos en la adquisición de tu espacio, brindándote la confianza y profesionalismo que nos caracterizan.
             </p>
           </div>
 
