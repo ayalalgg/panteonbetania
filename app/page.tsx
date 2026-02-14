@@ -31,6 +31,8 @@ export default async function Home() {
   const mtDescription = location?.description || "Un santuario de paz diseñado para el descanso eterno. Panteón Bethania ofrece perpetuidades en un entorno exclusivo con jardines botánicos, seguridad privada y un servicio de concierge familiar que honra su legado con la mayor dignidad.";
   const mtVideoUrl = location?.video_url;
   const mtMapUrl = location?.map_url;
+  const panteonPlans = location?.panteon_plans || null;
+  const panteonConfig = location?.panteon_config || null;
 
   return (
     <main className="min-h-screen bg-background text-foreground font-sans">
@@ -93,7 +95,7 @@ export default async function Home() {
 
       {/* MEMBERSHIPS (Already Full-Bleed Background) */}
       <section id="planes" className="scroll-mt-20">
-        <MembershipsSection />
+        <MembershipsSection plansData={panteonPlans} />
 
         {/* Maintenance & Future Costs Info - Integrated below section */}
         <div className="bg-primary py-12 px-6">
@@ -105,7 +107,7 @@ export default async function Home() {
               <div className="space-y-1">
                 <p className="text-lg font-bold">Cuota de Mantenimiento Anual</p>
                 <p className="text-white/80 leading-relaxed font-light">
-                  12 UMAS vigentes (Aproximadamente <span className="font-bold text-accent">$1,408.00 MXN</span>), garantizando la impecabilidad de los jardines a perpetuidad.
+                  {panteonConfig?.maintenance_description || '12 UMAS vigentes'} (Aproximadamente <span className="font-bold text-accent">${(panteonConfig?.maintenance_cost || 1408).toLocaleString('es-MX', { minimumFractionDigits: 2 })} MXN</span>), garantizando la impecabilidad de los jardines a perpetuidad.
                 </p>
               </div>
             </div>
@@ -117,7 +119,7 @@ export default async function Home() {
               <div className="space-y-1">
                 <p className="text-lg font-bold">Apertura de Eventos Futuros</p>
                 <p className="text-white/80 leading-relaxed font-light">
-                  Costo por apertura: <span className="font-bold text-accent">$2,600.00 MXN</span>. Incluye: grabado, toldo, sillas, apertura y cierre.
+                  Costo por apertura: <span className="font-bold text-accent">${(panteonConfig?.opening_cost || 2600).toLocaleString('es-MX', { minimumFractionDigits: 2 })} MXN</span>. {panteonConfig?.opening_description || 'Incluye: grabado, toldo, sillas, apertura y cierre'}.
                 </p>
               </div>
             </div>

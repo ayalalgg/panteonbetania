@@ -213,7 +213,23 @@ const funeralServices: FuneralService[] = [
 
 /* ─── COMPONENTE PRINCIPAL ─── */
 
-export function MembershipsSection() {
+interface MembershipsSectionProps {
+    plansData?: {
+        perpetuidades?: any[];
+        nichos?: any[];
+        temporalidad?: { price: number; enganche: number; features: string[] };
+    };
+}
+
+export function MembershipsSection({ plansData }: MembershipsSectionProps) {
+    // Use dynamic data from Supabase if available, fallback to hardcoded defaults
+    const activePerpetuidadPlans = plansData?.perpetuidades?.map(p => ({
+        ...p, openingCost: p.opening_cost ?? p.openingCost ?? 1800
+    })) || pricingPlans;
+    const activeNichoPlans = plansData?.nichos?.map(p => ({
+        ...p, openingCost: p.opening_cost ?? p.openingCost ?? 0
+    })) || nichoPlans;
+    const activeTemporalidad = plansData?.temporalidad || { price: 9500, enganche: 5500, features: ['Ubicación: Sobre Tierra (Mural)', 'Capacidad: 1 Persona', 'Libre de pago de mantenimiento', 'Ideal para necesidad inmediata'] };
     const [mainTab, setMainTab] = useState<'panteon' | 'nichos'>('panteon')
     const [panteonTab, setPanteonTab] = useState<'perpetuidad' | 'temporalidad'>('perpetuidad')
 
@@ -520,7 +536,7 @@ export function MembershipsSection() {
                             transition={{ duration: 0.3 }}
                             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
                         >
-                            {nichoPlans.map((plan, index) => (
+                            {activeNichoPlans.map((plan, index) => (
                                 <PricingCard key={index} plan={plan} section="Nichos" comboService={selectedService} />
                             ))}
                         </motion.div>
@@ -535,7 +551,7 @@ export function MembershipsSection() {
                                 transition={{ duration: 0.3 }}
                                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
                             >
-                                {pricingPlans.map((plan, index) => (
+                                {activePerpetuidadPlans.map((plan, index) => (
                                     <PricingCard key={index} plan={plan} section="Panteón" comboService={selectedService} />
                                 ))}
                             </motion.div>
@@ -548,7 +564,7 @@ export function MembershipsSection() {
                                 transition={{ duration: 0.3 }}
                                 className="max-w-md mx-auto"
                             >
-                                <TemporalidadCard comboService={selectedService} />
+                                <TemporalidadCard comboService={selectedService} temporalidadData={activeTemporalidad} />
                             </motion.div>
                         )
                     )}
@@ -771,10 +787,10 @@ function PricingCard({ plan, section, comboService }: { plan: any, section: stri
 
 /* ─── TARJETA DE TEMPORALIDAD (con combo dinámico) ─── */
 
-function TemporalidadCard({ comboService }: { comboService: FuneralService | null }) {
-    const basePrice = 9500
-    const baseEnganche = 5500
-    const baseRestante = 4000
+function TemporalidadCard({ comboService, temporalidadData }: { comboService: FuneralService | null, temporalidadData?: { price: number; enganche: number; features: string[] } }) {
+    const basePrice = temporalidadData?.price || 9500
+    const baseEnganche = temporalidadData?.enganche || 5500
+    const baseRestante = basePrice - baseEnganche
     const comboPrice = comboService?.price || 0
     const totalPrice = basePrice + comboPrice
     const totalEnganche = baseEnganche + comboPrice
@@ -812,22 +828,12 @@ function TemporalidadCard({ comboService }: { comboService: FuneralService | nul
                 )}
 
                 <ul className="space-y-3 mb-6 text-left inline-block">
-                    <li className="flex items-center gap-3 text-sm text-white/80">
-                        <Check className="w-4 h-4 text-accent" />
-                        <span>Ubicación: Sobre Tierra (Mural)</span>
-                    </li>
-                    <li className="flex items-center gap-3 text-sm text-white/80">
-                        <Check className="w-4 h-4 text-accent" />
-                        <span>Capacidad: 1 Persona</span>
-                    </li>
-                    <li className="flex items-center gap-3 text-sm text-white/80">
-                        <Check className="w-4 h-4 text-accent" />
-                        <span>Libre de pago de mantenimiento</span>
-                    </li>
-                    <li className="flex items-center gap-3 text-sm text-white/80">
-                        <Check className="w-4 h-4 text-accent" />
-                        <span>Ideal para necesidad inmediata</span>
-                    </li>
+                    {(temporalidadData?.features || ['Ubicación: Sobre Tierra (Mural)', 'Capacidad: 1 Persona', 'Libre de pago de mantenimiento', 'Ideal para necesidad inmediata']).map((feature, i) => (
+                        <li key={i} className="flex items-center gap-3 text-sm text-white/80">
+                            <Check className="w-4 h-4 text-accent" />
+                            <span>{feature}</span>
+                        </li>
+                    ))}
                 </ul>
 
                 {/* Combo Service Features */}
