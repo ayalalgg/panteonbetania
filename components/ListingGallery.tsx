@@ -47,17 +47,7 @@ export function ListingGallery({ images = defaultImages }: ListingGalleryProps) 
 
                     {/* Top Overlay Actions */}
                     <div className="absolute top-0 left-0 w-full p-6 flex justify-between items-start z-20">
-                        <div>
-                            {/* Home Button linking to main site */}
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                className="bg-black/20 backdrop-blur-md text-white hover:bg-black/40 rounded-xl"
-                                onClick={() => window.location.href = 'https://ayalafuneral.com'}
-                            >
-                                <Home className="w-5 h-5" />
-                            </Button>
-                        </div>
+                        <div /> {/* Spacer since home button moved to fixed layout */}
                         <div className="flex gap-3 ml-auto">
                             <Button variant="ghost" size="icon" className="bg-black/20 backdrop-blur-md text-white hover:bg-black/40 rounded-xl transition-all hover:scale-105">
                                 <Share2 className="w-5 h-5" />
