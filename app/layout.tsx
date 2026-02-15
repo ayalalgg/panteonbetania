@@ -31,7 +31,7 @@ export default function RootLayout({
             title="Ir a Ayala Funeral"
           >
             <img
-              src="https://res.cloudinary.com/dbnocozci/image/upload/v1766397605/ayala/assets/jdqwx7i2tgdinlgjmyet.png"
+              src="https://res.cloudinary.com/dbnocozci/image/upload/v1766397648/ayala/assets/dntmt8shzyt1aqm9ge3h.png"
               alt="Logo Ayala Funeral"
               className="w-8 h-8 md:w-10 md:h-10 object-contain drop-shadow-sm"
             />
