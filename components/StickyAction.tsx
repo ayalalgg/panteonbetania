@@ -36,16 +36,16 @@ export function StickyAction() {
 
     return (
         <div className={cn(
-            "fixed bottom-0 left-0 w-full z-50 bg-white border-t border-border/50 p-4 pb-6 shadow-[0_-5px_20px_rgba(0,0,0,0.05)] md:hidden transition-transform duration-300",
+            "fixed bottom-0 left-0 w-full z-50 bg-white border-t border-border/50 p-4 pb-8 md:pb-6 shadow-[0_-5px_25px_rgba(0,0,0,0.08)] md:hidden transition-transform duration-300",
             isVisible ? "translate-y-0" : "translate-y-full"
         )}>
             <div className="flex gap-4 items-center">
                 <div className="flex-1">
-                    <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Pago inicial desde</p>
-                    <p className="text-xl font-bold text-primary">$7,000 MXN</p>
+                    <p className="text-[9px] text-muted-foreground uppercase tracking-wider font-bold">Pago inicial desde</p>
+                    <p className="text-lg font-bold text-primary">$7,000 MXN</p>
                 </div>
                 <Button
-                    className="flex-[2] rounded-full h-12 text-base font-bold bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg"
+                    className="flex-[2] rounded-xl h-12 text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/10"
                     onClick={scrollToPlans}
                 >
                     Ver Costos

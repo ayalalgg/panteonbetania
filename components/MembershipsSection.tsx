@@ -248,7 +248,7 @@ export function MembershipsSection({ plansData }: MembershipsSectionProps) {
     const selectedService = rawService ? {
         ...rawService,
         price: pickupLocation === 'hospital' ? rawService.priceHospital : rawService.priceHome
-    } : null
+    } as FuneralService & { price: number } : null
 
     // Cuando cambia el tab principal, resetear selección
     const handleMainTabChange = (tab: 'panteon' | 'nichos') => {
@@ -264,7 +264,7 @@ export function MembershipsSection({ plansData }: MembershipsSectionProps) {
                     <span className="text-accent font-sans text-sm tracking-[0.2em] uppercase font-semibold">
                         Inversión Inteligente
                     </span>
-                    <h2 className="text-3xl md:text-5xl font-serif font-bold text-white">
+                    <h2 className="text-2xl md:text-5xl font-serif font-bold text-white">
                         Nuestros Planes
                     </h2>
 
@@ -274,7 +274,7 @@ export function MembershipsSection({ plansData }: MembershipsSectionProps) {
                             <button
                                 onClick={() => handleMainTabChange('panteon')}
                                 className={cn(
-                                    "flex-1 py-3 rounded-full text-sm md:text-base font-bold transition-all duration-300 relative z-10",
+                                    "flex-1 py-2.5 md:py-3 rounded-full text-xs md:text-base font-bold transition-all duration-300 relative z-10",
                                     mainTab === 'panteon' ? "text-primary" : "text-white/70 hover:text-white"
                                 )}
                             >
@@ -283,7 +283,7 @@ export function MembershipsSection({ plansData }: MembershipsSectionProps) {
                             <button
                                 onClick={() => handleMainTabChange('nichos')}
                                 className={cn(
-                                    "flex-1 py-3 rounded-full text-sm md:text-base font-bold transition-all duration-300 relative z-10",
+                                    "flex-1 py-2.5 md:py-3 rounded-full text-xs md:text-base font-bold transition-all duration-300 relative z-10",
                                     mainTab === 'nichos' ? "text-primary" : "text-white/70 hover:text-white"
                                 )}
                             >
@@ -576,7 +576,7 @@ export function MembershipsSection({ plansData }: MembershipsSectionProps) {
 
 /* ─── TARJETA DE PLAN (con combo dinámico) ─── */
 
-function PricingCard({ plan, section, comboService }: { plan: any, section: string, comboService: FuneralService | null }) {
+function PricingCard({ plan, section, comboService }: { plan: any, section: string, comboService: (FuneralService & { price: number }) | null }) {
     const [showFinancing, setShowFinancing] = useState(false)
     const openingCost = plan.openingCost ?? 0
     const maintenanceCost = 1408
@@ -597,7 +597,7 @@ function PricingCard({ plan, section, comboService }: { plan: any, section: stri
                 ? "bg-gradient-to-b from-emerald-900/20 to-white/5 border-emerald-500/20 shadow-lg shadow-emerald-500/5"
                 : "bg-white/5 hover:bg-white/10"
         )}>
-            <CardContent className="p-6">
+            <CardContent className="p-5 md:p-6">
                 <div className="mb-6">
                     <h3 className="text-xl font-serif font-bold text-white mb-2">{plan.title}</h3>
                     <div className="mb-4">
@@ -606,7 +606,7 @@ function PricingCard({ plan, section, comboService }: { plan: any, section: stri
                                 key={totalPrice}
                                 initial={{ opacity: 0, y: -10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="text-3xl font-bold text-accent"
+                                className="text-2xl md:text-3xl font-bold text-accent"
                             >
                                 ${totalPrice.toLocaleString()}
                             </motion.span>
@@ -787,7 +787,7 @@ function PricingCard({ plan, section, comboService }: { plan: any, section: stri
 
 /* ─── TARJETA DE TEMPORALIDAD (con combo dinámico) ─── */
 
-function TemporalidadCard({ comboService, temporalidadData }: { comboService: FuneralService | null, temporalidadData?: { price: number; enganche: number; features: string[] } }) {
+function TemporalidadCard({ comboService, temporalidadData }: { comboService: (FuneralService & { price: number }) | null, temporalidadData?: { price: number; enganche: number; features: string[] } }) {
     const basePrice = temporalidadData?.price || 9500
     const baseEnganche = temporalidadData?.enganche || 5500
     const baseRestante = basePrice - baseEnganche
@@ -803,7 +803,7 @@ function TemporalidadCard({ comboService, temporalidadData }: { comboService: Fu
                 ? "bg-gradient-to-b from-emerald-900/20 to-white/5 border-emerald-500/20 shadow-lg shadow-emerald-500/5"
                 : "bg-white/5 hover:bg-white/10"
         )}>
-            <CardContent className="p-8 text-center">
+            <CardContent className="p-6 md:p-8 text-center">
                 <h3 className="text-2xl font-serif font-bold text-white mb-2">Gaveta Temporal</h3>
                 <div className="flex justify-center items-baseline gap-1 mb-2">
                     <motion.span

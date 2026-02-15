@@ -47,19 +47,19 @@ export default async function Home() {
       </section>
 
       {/* CORE INFO: Header & Description (Centered) */}
-      <section className="bg-white relative z-10 -mt-8 md:mt-0 rounded-t-[2.5rem] md:rounded-none px-6 md:px-0">
-        <div className="max-w-4xl mx-auto py-10 md:py-16">
+      <section className="bg-white relative z-10 -mt-8 md:mt-0 rounded-t-[2.5rem] md:rounded-none px-4 md:px-0">
+        <div className="max-w-4xl mx-auto py-8 md:py-16">
           <PropertyInfo title={mtTitle} address={mtAddress} tags={mtTags} />
 
           <div className="hidden md:flex justify-center mt-12 mb-8">
             <DesktopBookingButton />
           </div>
 
-          <Separator className="my-12 opacity-40" />
+          <Separator className="my-10 opacity-40" />
 
-          <div className="space-y-6 md:text-center">
-            <h3 className="font-serif text-3xl font-bold text-primary">Descripción</h3>
-            <p className="text-muted-foreground leading-loose text-lg max-w-2xl mx-auto">
+          <div className="space-y-6 md:text-center px-2">
+            <h3 className="font-serif text-2xl md:text-3xl font-bold text-primary">Descripción</h3>
+            <p className="text-muted-foreground leading-loose text-base md:text-lg max-w-2xl mx-auto">
               {mtDescription}
             </p>
           </div>
@@ -67,16 +67,16 @@ export default async function Home() {
       </section>
 
       {/* ASESORÍA: Grupo Funerario Ayala */}
-      <section className="py-24 bg-white relative overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center mb-16 space-y-4">
-            <span className="text-accent font-sans text-xs tracking-[0.3em] uppercase font-bold">
+      <section className="py-16 md:py-24 bg-white relative overflow-hidden">
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="max-w-4xl mx-auto text-center mb-12 md:mb-16 space-y-4">
+            <span className="text-accent font-sans text-[10px] md:text-xs tracking-[0.3em] uppercase font-bold">
               Contáctanos con confianza
             </span>
-            <h2 className="text-3xl md:text-5xl font-serif font-bold text-primary">
+            <h2 className="text-2xl md:text-5xl font-serif font-bold text-primary">
               Asesoría Profesional
             </h2>
-            <p className="text-muted-foreground text-lg font-light max-w-2xl mx-auto leading-relaxed">
+            <p className="text-muted-foreground text-base md:text-lg font-light max-w-2xl mx-auto leading-relaxed">
               Panteón Bethania está disponible a través de <span className="font-bold text-primary">Grupo Funerario Ayala</span>. Como parte de nuestros servicios funerarios integrales, te asesoramos y acompañamos en la adquisición de tu espacio, brindándote la confianza y profesionalismo que nos caracterizan.
             </p>
           </div>
