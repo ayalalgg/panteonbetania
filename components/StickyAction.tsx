@@ -44,12 +44,14 @@ export function StickyAction() {
                 <Button
                     variant="outline"
                     className="w-12 h-11 rounded-xl border-primary/20 text-primary hover:bg-primary/5 hover:border-primary/40 shrink-0 p-0"
-                    onClick={() => window.location.href = 'tel:+525623355155'}
-                    title="Llamar ahora"
+                    asChild
                 >
-                    <Phone className="w-5 h-5" />
+                    <a href="tel:+525623355155" id="tracking-btn-call" title="Llamar ahora">
+                        <Phone className="w-5 h-5" />
+                    </a>
                 </Button>
                 <Button
+                    id="tracking-btn-plans"
                     className="flex-1 rounded-xl h-11 text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/10 active:scale-[0.98] transition-all"
                     onClick={scrollToPlans}
                 >
