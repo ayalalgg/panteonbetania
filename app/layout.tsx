@@ -15,6 +15,9 @@ export const metadata: Metadata = {
   },
 };
 
+import { GoogleTagManager } from '@next/third-parties/google';
+const gtmId = process.env.NEXT_PUBLIC_GTM_ID || "GTM-K753W8TP";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -22,7 +25,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="scroll-smooth" suppressHydrationWarning>
+      <GoogleTagManager gtmId={gtmId} />
       <body className={cn("antialiased min-h-screen bg-background text-foreground font-sans")}>
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
         {/* Fixed Home Button Link to Ayala Funeral */}
         <div className="fixed top-4 left-4 md:top-8 md:left-8 z-[100] print:hidden">
           <a
