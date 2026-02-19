@@ -18,7 +18,7 @@ export default async function Home() {
 
   // Fetch Panteon Bethania data
   const { data: location } = await supabase
-    .from('locations')
+    .from('ayalafuneral_locations')
     .select('*')
     .in('slug', ['panteonbethania', 'panteon-bethania']) // Try both potential slugs
     .single();

@@ -25,7 +25,7 @@ export async function createClient() {
                 },
             },
             db: {
-                schema: 'ayalafuneral'
+                schema: 'public'
             }
         }
     )
