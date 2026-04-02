@@ -87,11 +87,7 @@ export function ContactForm() {
                         {/* RIGHT SIDE: Elegant Form */}
                         <div className="lg:col-span-7">
                             <Card className="border-none shadow-[0_20px_50px_rgba(0,0,0,0.04)] bg-white rounded-[2.5rem] p-4 md:p-8">
-                                <CardHeader className="pb-8 space-y-2">
-                                    <CardTitle className="font-serif text-3xl text-primary text-center lg:text-left">Inicie una charla</CardTitle>
-                                    <CardDescription className="font-sans text-muted-foreground text-center lg:text-left">
-                                        Complete sus datos y un asesor se pondrá en contacto con usted.
-                                    </CardDescription>
+                                <CardHeader className="pb-8">
                                 </CardHeader>
                                 <CardContent>
                                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 font-sans">
