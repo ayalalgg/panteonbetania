@@ -8,6 +8,7 @@ import { StickyAction } from "@/components/StickyAction";
 import { DesktopBookingButton } from "@/components/DesktopBookingButton";
 import { MapSection } from "@/components/MapSection";
 import { ConceptGlossary } from "@/components/ConceptGlossary";
+import { ProcessTimeline } from "@/components/ProcessTimeline";
 import { createClient } from "@/utils/supabase/server";
 import { Separator } from "@/components/ui/separator";
 
@@ -92,6 +93,9 @@ export default async function Home() {
 
       {/* CONCEPT GLOSSARY SECTION (Unified Definitions) */}
       <ConceptGlossary />
+
+      {/* PROCESS TIMELINE SECTION (How to Acquire) */}
+      <ProcessTimeline />
 
       {/* MEMBERSHIPS (Already Full-Bleed Background) */}
       <section id="planes" className="scroll-mt-20">
