@@ -15,6 +15,7 @@ import {
     LayoutGrid,
     Inbox
 } from "lucide-react"
+import { WhatsAppCapture } from "./WhatsAppCapture"
 import { cn } from "@/lib/utils"
 import { PROTECTION_PLANS, NICHO_PLANS, ProtectionPlan, FinancingOption } from "@/data/protection-plans"
 
@@ -432,19 +433,23 @@ export function ProtectionCalculator() {
                                         </div>
                                     </div>
 
-                                    <button 
-                                        onClick={() => {
-                                            const msg = `Hola! Me interesa generar mi Folio de Seguridad Ayala para el plan: ${currentPlan.title} (${currentPlan.location || ''}) a ${selectedMonths} meses en modalidad de ${mode === 'prevision' ? 'Previsión' : 'Uso Inmediato'}.`
-                                            window.open(`https://wa.me/525623355155?text=${encodeURIComponent(msg)}`, '_blank')
-                                        }}
-                                        className="w-full h-20 bg-accent text-primary rounded-3xl font-black text-sm flex items-center justify-center gap-4 transition-all hover:bg-white hover:scale-[1.02] active:scale-95 shadow-2xl relative group overflow-hidden"
-                                    >
-                                        <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                                        <span className="relative z-10 flex items-center gap-3">
-                                            Solicitar Cotización PDF
-                                            <ArrowRight className="w-6 h-6" />
-                                        </span>
-                                    </button>
+                                    <WhatsAppCapture>
+                                        {(handleWhatsAppClick) => (
+                                            <button 
+                                                onClick={() => {
+                                                    const msg = `Hola! Me interesa generar mi Folio de Seguridad Ayala para el plan: ${currentPlan.title} (${currentPlan.location || ''}) a ${selectedMonths} meses en modalidad de ${mode === 'prevision' ? 'Previsión' : 'Uso Inmediato'}.`
+                                                    handleWhatsAppClick(msg)
+                                                }}
+                                                className="w-full h-20 bg-accent text-primary rounded-3xl font-black text-sm flex items-center justify-center gap-4 transition-all hover:bg-white hover:scale-[1.02] active:scale-95 shadow-2xl relative group overflow-hidden"
+                                            >
+                                                <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                                                <span className="relative z-10 flex items-center gap-3">
+                                                    Solicitar Cotización PDF
+                                                    <ArrowRight className="w-6 h-6" />
+                                                </span>
+                                            </button>
+                                        )}
+                                    </WhatsAppCapture>
                                 </div>
                             </div>
                         </motion.div>

@@ -4,6 +4,7 @@ import { Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardContent, CardFooter, CardTitle, CardDescription } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
+import { WhatsAppCapture } from "./WhatsAppCapture"
 
 const products = [
     {
@@ -101,13 +102,17 @@ export function PricingGrid() {
                             </CardContent>
 
                             <CardFooter>
-                                <Button
-                                    className={cn("w-full font-sans", product.popular ? "bg-accent text-accent-foreground hover:bg-accent/90" : "bg-primary text-primary-foreground hover:bg-primary/90")}
-                                    size="lg"
-                                    onClick={() => window.open(`https://wa.me/525623355155?text=Hola, me interesa información sobre ${product.title}`, '_blank')}
-                                >
-                                    Solicitar Cotización
-                                </Button>
+                                <WhatsAppCapture>
+                                    {(handleWhatsAppClick) => (
+                                        <Button
+                                            className={cn("w-full font-sans", product.popular ? "bg-accent text-accent-foreground hover:bg-accent/90" : "bg-primary text-primary-foreground hover:bg-primary/90")}
+                                            size="lg"
+                                            onClick={() => handleWhatsAppClick(`Hola, me interesa información sobre ${product.title}`)}
+                                        >
+                                            Solicitar Cotización
+                                        </Button>
+                                    )}
+                                </WhatsAppCapture>
                             </CardFooter>
                         </Card>
                     ))}

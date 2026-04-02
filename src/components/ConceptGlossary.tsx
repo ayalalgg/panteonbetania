@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ShieldCheck, Flower2, Box, Clock, Smartphone, CheckCircle2, AlertCircle, HelpCircle } from "lucide-react"
+import { WhatsAppCapture } from "./WhatsAppCapture"
 import { cn } from "@/lib/utils"
 
 const concepts = [
@@ -208,15 +209,17 @@ export function ConceptGlossary() {
                                         </div>
 
                                         <div className="pt-8">
-                                            <button 
-                                                onClick={() => {
-                                                    window.open(`https://wa.me/525623355155?text=Quisiera más información didáctica sobre el concepto de ${activeConcept.title}.`, '_blank')
-                                                }}
-                                                className="bg-primary text-white px-10 py-4 rounded-2xl font-bold flex items-center gap-3 shadow-xl hover:bg-black transition-all hover:scale-[1.02] active:scale-95"
-                                            >
-                                                Consultar con un Asesor
-                                                <Smartphone className="w-5 h-5" />
-                                            </button>
+                                            <WhatsAppCapture>
+                                                {(handleWhatsAppClick) => (
+                                                    <button 
+                                                        onClick={() => handleWhatsAppClick(`Quisiera más información didáctica sobre el concepto de ${activeConcept.title}.`)}
+                                                        className="bg-primary text-white px-10 py-4 rounded-2xl font-bold flex items-center gap-3 shadow-xl hover:bg-black transition-all hover:scale-[1.02] active:scale-95"
+                                                    >
+                                                        Consultar con un Asesor
+                                                        <Smartphone className="w-5 h-5" />
+                                                    </button>
+                                                )}
+                                            </WhatsAppCapture>
                                         </div>
                                     </motion.div>
                                 </AnimatePresence>
@@ -316,14 +319,16 @@ export function ConceptGlossary() {
                                 <div className="relative z-10 max-w-2xl mx-auto space-y-6">
                                     <h4 className="text-2xl font-serif font-bold">¿Aún tienes dudas sobre cuál elegir?</h4>
                                     <p className="text-white/60 font-light">Nuestros expertos pueden ayudarte a realizar un cálculo de inversión basado en tus necesidades familiares.</p>
-                                    <button 
-                                        onClick={() => {
-                                            window.open(`https://wa.me/525623355155?text=Deseo ayuda para comparar los servicios de Perpetuidad vs Temporalidad.`, '_blank')
-                                        }}
-                                        className="bg-accent text-primary px-12 py-4 rounded-2xl font-bold hover:bg-white transition-all shadow-2xl"
-                                    >
-                                        Solicitar Asesoría de Inversión
-                                    </button>
+                                    <WhatsAppCapture>
+                                        {(handleWhatsAppClick) => (
+                                            <button 
+                                                onClick={() => handleWhatsAppClick('Deseo ayuda para comparar los servicios de Perpetuidad vs Temporalidad.')}
+                                                className="bg-accent text-primary px-12 py-4 rounded-2xl font-bold hover:bg-white transition-all shadow-2xl"
+                                            >
+                                                Solicitar Asesoría de Inversión
+                                            </button>
+                                        )}
+                                    </WhatsAppCapture>
                                 </div>
                             </div>
                         </motion.div>

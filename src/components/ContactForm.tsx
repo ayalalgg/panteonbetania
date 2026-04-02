@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { Phone, MapPin } from "lucide-react"
 import { motion } from "framer-motion"
+import { useClient } from "@/context/ClientContext"
 
 const formSchema = z.object({
     name: z.string().min(2, { message: "El nombre es muy corto" }),
@@ -18,6 +19,7 @@ const formSchema = z.object({
 })
 
 export function ContactForm() {
+    const { setClientName } = useClient()
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -28,6 +30,9 @@ export function ContactForm() {
     })
 
     function onSubmit(values: z.infer<typeof formSchema>) {
+        // Sync name with global context
+        setClientName(values.name)
+
         // Construct WhatsApp message
         const text = `Hola, soy ${values.name}. Me interesa información general sobre Panteón Bethania. Mi número es ${values.phone}. Mensaje: ${values.message || "Quisiera que me contactara un asesor."}`
         const url = `https://wa.me/525623355155?text=${encodeURIComponent(text)}`

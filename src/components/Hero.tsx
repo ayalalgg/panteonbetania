@@ -35,10 +35,10 @@ export function Hero() {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
                         </span>
-                        <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase">Portal Autorizado Grupo Ayala</span>
+                        <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase italic">Desarrollo Exclusivo Grupo Ayala</span>
                     </div>
                     <h2 className="text-white/80 font-sans text-sm md:text-base tracking-[0.3em] uppercase mb-4 drop-shadow-sm">
-                        Bienvenido al Panteón Privado de Ixtapaluca
+                        Respaldo y Solidez • Grupo Funerario Ayala
                     </h2>
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold tracking-tight text-white drop-shadow-2xl mb-6">
                         La Exclusividad <br /> es <span className="text-accent italic">Eterna</span>

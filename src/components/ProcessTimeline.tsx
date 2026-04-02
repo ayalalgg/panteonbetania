@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Search, FileText, ShieldCheck, HeartHandshake, ArrowRight } from "lucide-react"
+import { WhatsAppCapture } from "./WhatsAppCapture"
 
 const steps = [
     {
@@ -141,13 +142,17 @@ export function ProcessTimeline() {
                     </div>
 
                     <div className="relative z-10 shrink-0">
-                        <button 
-                            onClick={() => window.open('https://wa.me/525623355155?text=Hola, quiero iniciar el proceso de contratación para un servicio funerario.', '_blank')}
-                            className="bg-accent text-primary hover:bg-white text-lg font-bold px-12 py-5 rounded-2xl transition-all shadow-2xl hover:scale-[1.02] active:scale-95 flex items-center gap-4"
-                        >
-                            Comenzar Proceso
-                            <ArrowRight className="w-6 h-6" />
-                        </button>
+                        <WhatsAppCapture>
+                            {(handleWhatsAppClick) => (
+                                <button 
+                                    onClick={() => handleWhatsAppClick('Hola, quiero iniciar el proceso de contratación para un servicio funerario.')}
+                                    className="bg-accent text-primary hover:bg-white text-lg font-bold px-12 py-5 rounded-2xl transition-all shadow-2xl hover:scale-[1.02] active:scale-95 flex items-center gap-4"
+                                >
+                                    Comenzar Proceso
+                                    <ArrowRight className="w-6 h-6" />
+                                </button>
+                            )}
+                        </WhatsAppCapture>
                     </div>
                 </motion.div>
             </div>

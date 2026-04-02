@@ -6,6 +6,7 @@ import { Menu, X, Phone } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { WhatsAppCapture } from "./WhatsAppCapture"
 
 export function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
@@ -37,12 +38,18 @@ export function Navbar() {
         >
             <div className="container mx-auto px-6 flex items-center justify-between">
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-2 group">
+                <Link href="/" className="flex flex-col group">
                     <span className={cn(
-                        "text-2xl font-serif font-bold tracking-tight transition-colors duration-300",
+                        "text-xl md:text-2xl font-serif font-bold tracking-tight transition-colors duration-300 leading-none",
                         scrolled ? "text-primary-foreground" : "text-white"
                     )}>
                         Panteón Bethania
+                    </span>
+                    <span className={cn(
+                        "text-[9px] md:text-[10px] font-sans font-bold tracking-[0.2em] uppercase mt-1 transition-opacity duration-300",
+                        scrolled ? "text-accent" : "text-accent/90"
+                    )}>
+                        by Grupo Funerario Ayala
                     </span>
                 </Link>
 
@@ -60,18 +67,22 @@ export function Navbar() {
                             {link.name}
                         </Link>
                     ))}
-                    <Button
-                        variant="default"
-                        size="sm"
-                        className={cn(
-                            "bg-accent text-accent-foreground hover:bg-accent/90 font-serif tracking-wide",
-                            "border border-accent/50 shadow-lg hover:shadow-accent/20 transition-all duration-300"
+                    <WhatsAppCapture>
+                        {(handleWhatsAppClick) => (
+                            <Button
+                                variant="default"
+                                size="sm"
+                                className={cn(
+                                    "bg-accent text-accent-foreground hover:bg-accent/90 font-serif tracking-wide",
+                                    "border border-accent/50 shadow-lg hover:shadow-accent/20 transition-all duration-300"
+                                )}
+                                onClick={() => handleWhatsAppClick('Hola, me gustaría agendar una visita guiada a Panteón Bethania.')}
+                            >
+                                <Phone className="w-4 h-4 mr-2" />
+                                Agendar Visita
+                            </Button>
                         )}
-                        onClick={() => window.open('https://wa.me/525623355155', '_blank')}
-                    >
-                        <Phone className="w-4 h-4 mr-2" />
-                        Agendar Visita
-                    </Button>
+                    </WhatsAppCapture>
                 </div>
 
                 {/* Mobile Toggle */}
@@ -106,13 +117,17 @@ export function Navbar() {
                                     {link.name}
                                 </Link>
                             ))}
-                            <Button
-                                className="w-full mt-4 bg-accent text-accent-foreground hover:bg-accent/90"
-                                onClick={() => window.open('https://wa.me/525623355155', '_blank')}
-                            >
-                                <Phone className="w-4 h-4 mr-2" />
-                                Contactar Asesor
-                            </Button>
+                            <WhatsAppCapture>
+                                {(handleWhatsAppClick) => (
+                                    <Button
+                                        className="w-full mt-4 bg-accent text-accent-foreground hover:bg-accent/90"
+                                        onClick={() => handleWhatsAppClick('Hola, necesito contactar a un asesor para información inmediata.')}
+                                    >
+                                        <Phone className="w-4 h-4 mr-2" />
+                                        Contactar Asesor
+                                    </Button>
+                                )}
+                            </WhatsAppCapture>
                         </div>
                     </motion.div>
                 )}

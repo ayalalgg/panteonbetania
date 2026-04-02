@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
+import { WhatsAppCapture } from "./WhatsAppCapture"
 
 interface PricingCardProps {
     plan: any
@@ -236,26 +237,30 @@ export function MembershipPricingCard({ plan, section, comboService }: PricingCa
                             </div>
                         )}
 
-                        <Button
-                            className={cn(
-                                "w-full h-14 rounded-2xl font-bold text-sm transition-all duration-300 shadow-lg active:scale-[0.98]",
-                                isComboActive
-                                    ? "bg-emerald-500 text-white hover:bg-emerald-600 shadow-emerald-500/20"
-                                    : "bg-accent text-primary hover:bg-white shadow-accent/20"
+                        <WhatsAppCapture>
+                            {(handleWhatsAppClick) => (
+                                <Button
+                                    className={cn(
+                                        "w-full h-14 rounded-2xl font-bold text-sm transition-all duration-300 shadow-lg active:scale-[0.98]",
+                                        isComboActive
+                                            ? "bg-emerald-500 text-white hover:bg-emerald-600 shadow-emerald-500/20"
+                                            : "bg-accent text-primary hover:bg-white shadow-accent/20"
+                                    )}
+                                    onClick={() => {
+                                        const comboText = isComboActive
+                                            ? ` con Servicio Funerario "${comboService.name}" (Paquete Integral)`
+                                            : ''
+                                        const msg = isTemporalidad 
+                                            ? `Me interesa información sobre la Gaveta Temporal (7 años)${comboText} en Panteón Bethania.`
+                                            : `Me interesa información sobre el plan "${plan.title}"${comboText} en la sección de ${section} de Panteón Bethania.`
+                                        
+                                        handleWhatsAppClick(msg)
+                                    }}
+                                >
+                                    {isComboActive ? 'Cotizar Paquete Integral ✨' : 'Contactar Asesor'}
+                                </Button>
                             )}
-                            onClick={() => {
-                                const comboText = isComboActive
-                                    ? ` con Servicio Funerario "${comboService.name}" (Paquete Integral)`
-                                    : ''
-                                const msg = isTemporalidad 
-                                    ? `Me interesa información sobre la Gaveta Temporal (7 años)${comboText} en Panteón Bethania.`
-                                    : `Me interesa información sobre el plan "${plan.title}"${comboText} en la sección de ${section} de Panteón Bethania.`
-                                
-                                window.open(`https://wa.me/525623355155?text=${encodeURIComponent(msg)}`, '_blank')
-                            }}
-                        >
-                            {isComboActive ? 'Cotizar Paquete Integral ✨' : 'Contactar Asesor'}
-                        </Button>
+                        </WhatsAppCapture>
                     </div>
                 </CardContent>
             </Card>
