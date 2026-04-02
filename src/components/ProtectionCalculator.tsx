@@ -422,9 +422,19 @@ export function ProtectionCalculator() {
                                         <span className="text-sm font-bold text-white/80">${currentFinancing.total.toLocaleString()} MXN</span>
                                     </div>
                                     
+                                    <div className="bg-accent/10 border border-accent/20 rounded-2xl p-4 mb-6">
+                                        <div className="flex gap-3">
+                                            <ShieldCheck className="w-5 h-5 text-accent shrink-0" />
+                                            <p className="text-[11px] leading-tight text-white/90">
+                                                <span className="font-black text-accent uppercase block mb-1">Folio de Atención Requerido</span>
+                                                Para validar este precio y asegurar tu promoción, solicita tu **Folio de Seguridad Ayala** ahora mismo. Presentarlo es obligatorio al llegar al panteón para evitar cargos de terceros.
+                                            </p>
+                                        </div>
+                                    </div>
+
                                     <button 
                                         onClick={() => {
-                                            const msg = `Hola! Me interesa el plan: ${currentPlan.title} (${currentPlan.location || ''}) a ${selectedMonths} meses en modalidad de ${mode === 'prevision' ? 'Previsión' : 'Uso Inmediato'}.`
+                                            const msg = `Hola! Me interesa generar mi Folio de Seguridad Ayala para el plan: ${currentPlan.title} (${currentPlan.location || ''}) a ${selectedMonths} meses en modalidad de ${mode === 'prevision' ? 'Previsión' : 'Uso Inmediato'}.`
                                             window.open(`https://wa.me/525623355155?text=${encodeURIComponent(msg)}`, '_blank')
                                         }}
                                         className="w-full h-20 bg-accent text-primary rounded-3xl font-black text-sm flex items-center justify-center gap-4 transition-all hover:bg-white hover:scale-[1.02] active:scale-95 shadow-2xl relative group overflow-hidden"

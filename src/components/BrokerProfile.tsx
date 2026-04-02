@@ -21,6 +21,9 @@ export function BrokerProfile() {
                 </div>
 
                 <div className="text-center md:text-left">
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-accent/20 border border-accent/30 text-accent text-[10px] uppercase font-bold tracking-wider mb-2">
+                        Distribuidor Autorizado Premium
+                    </div>
                     <h3 className="font-serif text-xl md:text-3xl font-bold text-white tracking-tight mb-2">
                         Grupo Funerario Ayala
                     </h3>
@@ -31,25 +34,27 @@ export function BrokerProfile() {
                             ))}
                         </div>
                         <span className="text-[10px] md:text-xs font-bold text-white/90 bg-white/10 px-2 py-0.5 md:px-2.5 md:py-1 rounded-full backdrop-blur-md border border-white/10">
-                            4.9 Excelencia
+                            4.9 Excelencia en Servicio
                         </span>
                     </div>
                 </div>
             </div>
 
             <div className="space-y-6">
-                <p className="text-sm md:text-base text-white/80 font-light leading-relaxed text-center md:text-left max-w-xl">
-                    Asesores especializados listos para brindarte la mejor atención y resolver todas tus dudas sobre nuestros planes.
-                </p>
+                <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
+                    <p className="text-sm md:text-base text-white/90 font-medium leading-relaxed text-center md:text-left">
+                        <span className="text-accent font-bold">¡IMPORTANTE!</span> Solicita tu <span className="underline decoration-accent underline-offset-4">Folio de Seguridad Ayala</span> antes de visitar el panteón para garantizar tus beneficios y atención exclusiva por nuestro personal.
+                    </p>
+                </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 pt-2 md:pt-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                     <Button
                         variant="default"
-                        className="h-12 md:h-14 bg-white text-[#0F2F28] hover:bg-white/90 font-bold text-base md:text-lg rounded-xl md:rounded-2xl shadow-xl transition-all duration-300 active:scale-95 group"
-                        onClick={() => window.open('https://wa.me/525623355155', '_blank')}
+                        className="h-12 md:h-14 bg-accent text-accent-foreground hover:bg-white hover:text-[#0F2F28] font-bold text-base md:text-lg rounded-xl md:rounded-2xl shadow-xl transition-all duration-300 active:scale-95 group"
+                        onClick={() => window.open('https://wa.me/525623355155?text=Hola,%20quiero%20generar%20mi%20Folio%20de%20Seguridad%20Ayala%20para%20asegurar%20mis%20beneficios%20en%20Panteón%20Bethania.', '_blank')}
                     >
-                        <MessageCircle className="w-4 h-4 md:w-5 md:h-5 mr-2 md:mr-3 fill-current" />
-                        WhatsApp
+                        <ShieldCheck className="w-4 h-4 md:w-5 md:h-5 mr-2 md:mr-3 fill-current" />
+                        Generar Folio
                     </Button>
                     <Button
                         variant="outline"
@@ -57,7 +62,7 @@ export function BrokerProfile() {
                         onClick={() => window.location.href = 'tel:+525623355155'}
                     >
                         <Phone className="w-4 h-4 md:w-5 md:h-5 mr-2 md:mr-3 fill-current" />
-                        Llamar
+                        Llamar Asesor
                     </Button>
                 </div>
             </div>

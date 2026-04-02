@@ -37,26 +37,32 @@ export function StickyAction() {
 
     return (
         <div className={cn(
-            "fixed bottom-0 left-0 w-full z-50 bg-white/80 backdrop-blur-md border-t border-border/50 px-4 py-3 pb-8 md:pb-6 shadow-[0_-5px_25px_rgba(0,0,0,0.08)] md:hidden transition-transform duration-300",
-            isVisible ? "translate-y-0" : "translate-y-full"
+            "fixed bottom-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md border-t border-primary/10 px-4 py-3 pb-8 md:pb-6 shadow-[0_-5px_30px_rgba(0,0,0,0.12)] md:hidden transition-all duration-500",
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
         )}>
-            <div className="flex gap-3 items-center max-w-md mx-auto">
-                <Button
-                    variant="outline"
-                    className="w-12 h-11 rounded-xl border-primary/20 text-primary hover:bg-primary/5 hover:border-primary/40 shrink-0 p-0"
-                    asChild
-                >
-                    <a href="tel:+525623355155" id="tracking-btn-call" title="Llamar ahora">
-                        <Phone className="w-5 h-5" />
-                    </a>
-                </Button>
-                <Button
-                    id="tracking-btn-plans"
-                    className="flex-1 rounded-xl h-11 text-sm font-bold bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/10 active:scale-[0.98] transition-all"
-                    onClick={scrollToPlans}
-                >
-                    Ver Costos y Planes
-                </Button>
+            <div className="max-w-md mx-auto space-y-3">
+                <div className="flex items-center justify-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/60">Portal Autorizado Grupo Ayala</span>
+                </div>
+                <div className="flex gap-3 items-center">
+                    <Button
+                        variant="outline"
+                        className="w-14 h-12 rounded-2xl border-primary/20 text-primary hover:bg-primary/5 hover:border-primary/40 shrink-0 p-0 shadow-sm"
+                        asChild
+                    >
+                        <a href="tel:+525623355155" id="tracking-btn-call" title="Llamar ahora">
+                            <Phone className="w-6 h-6" />
+                        </a>
+                    </Button>
+                    <Button
+                        id="tracking-btn-plans"
+                        className="flex-1 rounded-2xl h-12 text-sm font-black bg-accent text-primary hover:bg-accent/90 shadow-xl shadow-accent/20 active:scale-[0.98] transition-all uppercase tracking-wider"
+                        onClick={scrollToPlans}
+                    >
+                        Asegurar Beneficios Ayala
+                    </Button>
+                </div>
             </div>
         </div>
     )

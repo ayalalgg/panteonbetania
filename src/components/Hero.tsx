@@ -30,7 +30,14 @@ export function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, ease: "easeOut" }}
                 >
-                    <h2 className="text-accent font-sans text-sm md:text-base tracking-[0.3em] uppercase mb-4">
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/20 border border-accent/30 text-accent mb-6 backdrop-blur-md animate-pulse">
+                        <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
+                        </span>
+                        <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase">Portal Autorizado Grupo Ayala</span>
+                    </div>
+                    <h2 className="text-white/80 font-sans text-sm md:text-base tracking-[0.3em] uppercase mb-4 drop-shadow-sm">
                         Bienvenido al Panteón Privado de Ixtapaluca
                     </h2>
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold tracking-tight text-white drop-shadow-2xl mb-6">
