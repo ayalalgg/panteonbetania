@@ -24,7 +24,6 @@ export function Navbar() {
         { name: "Membresías", href: "#membresias" },
         { name: "Amenidades", href: "#amenidades" },
         { name: "Master Plan", href: "#mapa" },
-        { name: "Concierge", href: "#contacto" },
     ]
 
     return (

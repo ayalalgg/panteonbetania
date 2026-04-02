@@ -3,7 +3,6 @@ import { BrokerProfile } from "@/components/BrokerProfile";
 import { PropertyInfo } from "@/components/PropertyInfo";
 import { MembershipsSection } from "@/components/MembershipsSection";
 import { AmenitiesSection } from "@/components/AmenitiesSection";
-import { ContactForm } from "@/components/ContactForm";
 import { StickyAction } from "@/components/StickyAction";
 import { DesktopBookingButton } from "@/components/DesktopBookingButton";
 import { MapSection } from "@/components/MapSection";
@@ -138,10 +137,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* CONTACT (Clean & Direct) */}
-      <section id="contacto" className="scroll-mt-20">
-        <ContactForm />
-      </section>
 
       {/* Sticky Bottom Action (Mobile Only) */}
       <StickyAction />
