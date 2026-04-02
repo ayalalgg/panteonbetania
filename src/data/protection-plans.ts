@@ -129,16 +129,16 @@ export const PROTECTION_PLANS: ProtectionPlan[] = [
 
 export const NICHO_PLANS: ProtectionPlan[] = [
     {
-        id: 'nicho-1-central',
-        title: 'Nicho 1 Urna (Fila Central)',
-        urnas: 1,
+        id: 'nicho-2-central',
+        title: 'Nicho 2 Urnas (Fila Central)',
+        urnas: 2,
         location: 'Central (Filas 3 y 4)',
         priceContado: 13600,
         engancheInmediato: 4000, // Estimado basado en el 30% del grid anterior
         enganchePrevision: 1500,
         openingCost: 0,
         maintenanceCost: 0,
-        features: ["Capacidad: 1 Urna", "Ubicación Premium (Altura Ojos)", "Nicho de Galería"],
+        features: ["Capacidad: 2 Urnas", "Ubicación Premium (Altura Ojos)", "Nicho de Galería"],
         previsionFinancing: [
             { months: 3, monthly: 4533.33, total: 13600 },
             { months: 6, monthly: 2266.67, total: 13600 },
@@ -151,16 +151,16 @@ export const NICHO_PLANS: ProtectionPlan[] = [
         ]
     },
     {
-        id: 'nicho-1-lateral',
-        title: 'Nicho 1 Urna (Fila Lateral)',
-        urnas: 1,
+        id: 'nicho-2-lateral',
+        title: 'Nicho 2 Urnas (Fila Lateral)',
+        urnas: 2,
         location: 'Lateral (Filas 1, 2, 5, 6)',
         priceContado: 12600,
         engancheInmediato: 3780,
         enganchePrevision: 1500,
         openingCost: 0,
         maintenanceCost: 0,
-        features: ["Capacidad: 1 Urna", "Ubicación Accesible", "Nicho de Galería"],
+        features: ["Capacidad: 2 Urnas", "Ubicación Accesible", "Nicho de Galería"],
         previsionFinancing: [
             { months: 3, monthly: 4200, total: 12600 },
             { months: 6, monthly: 2100, total: 12600 },

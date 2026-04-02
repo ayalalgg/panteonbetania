@@ -26,7 +26,7 @@ export function ProtectionCalculator() {
     const [selectedGavetas, setSelectedGavetas] = useState<number>(2)
     
     // Nichos state
-    const [selectedUrnas, setSelectedUrnas] = useState<number>(1)
+    const [selectedUrnas, setSelectedUrnas] = useState<number>(2)
     const [selectedLocation, setSelectedLocation] = useState<'Central (Filas 3 y 4)' | 'Lateral (Filas 1, 2, 5, 6)'>('Central (Filas 3 y 4)')
 
     const [selectedMonths, setSelectedMonths] = useState<number>(36)
@@ -219,7 +219,7 @@ export function ProtectionCalculator() {
                                     <div className="space-y-4">
                                         <p className="text-xs font-bold text-primary/40 uppercase tracking-widest italic">Capacidad de Urnas:</p>
                                         <div className="flex gap-4">
-                                            {[1, 4].map((num) => (
+                                            {[2, 4].map((num) => (
                                                 <button 
                                                     key={num}
                                                     onClick={() => setSelectedUrnas(num)}
