@@ -14,7 +14,7 @@ const steps = [
     {
         number: "02",
         title: "Personalización del Plan",
-        description: "Elige entre pago de contado o financiamiento de hasta 35 meses. Adaptamos el plan a tus posibilidades financieras actuales.",
+        description: "Elige entre pago de contado o financiamiento de hasta 36 meses. Adaptamos el plan a tus posibilidades financieras actuales.",
         icon: FileText,
         color: "bg-emerald-500"
     },
@@ -90,7 +90,7 @@ export function ProcessTimeline() {
                                             <div className="w-20 h-20 rounded-[2rem] bg-white border border-primary/5 shadow-xl flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-500">
                                                 <step.icon className="w-9 h-9" />
                                             </div>
-                                            <div className="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-accent text-primary font-bold text-xs flex items-center justify-center shadow-lg border-4 border-white">
+                                            <div className="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-accent text-primary font-bold text-sm flex items-center justify-center shadow-lg border-4 border-white">
                                                 {step.number}
                                             </div>
                                         </div>
@@ -106,7 +106,7 @@ export function ProcessTimeline() {
                                         <h3 className="text-2xl font-serif font-bold text-primary group-hover:text-accent transition-colors">
                                             {step.title}
                                         </h3>
-                                        <p className="text-muted-foreground font-light leading-relaxed text-base">
+                                        <p className="text-muted-foreground font-medium leading-relaxed text-base">
                                             {step.description}
                                         </p>
                                     </div>
@@ -135,7 +135,7 @@ export function ProcessTimeline() {
                         <h4 className="text-3xl md:text-5xl font-serif font-bold tracking-tight">
                             ¿Listo para comenzar?
                         </h4>
-                        <p className="text-white/60 text-lg md:text-xl font-light max-w-xl">
+                        <p className="text-white/80 text-lg md:text-xl font-light max-w-xl">
                             Te acompañamos en este proceso con respeto y profesionalismo. Inicia tu trámite hoy mismo con asesoría especializada.
                         </p>
                     </div>

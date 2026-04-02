@@ -141,8 +141,8 @@ export function ConceptGlossary() {
                                             <div>
                                                 <h3 className="font-serif font-bold text-lg">{concept.title}</h3>
                                                 <span className={cn(
-                                                    "text-[10px] font-bold uppercase tracking-widest",
-                                                    activeConcept.id === concept.id ? "text-accent" : "text-muted-foreground/60"
+                                                    "text-xs font-bold uppercase tracking-widest",
+                                                    activeConcept.id === concept.id ? "text-accent" : "text-muted-foreground/80"
                                                 )}>
                                                     {concept.badge}
                                                 </span>
@@ -180,7 +180,7 @@ export function ConceptGlossary() {
                                             <h2 className="text-4xl md:text-6xl font-serif font-bold text-primary tracking-tight">
                                                 {activeConcept.title}
                                             </h2>
-                                            <p className="text-muted-foreground text-xl leading-relaxed italic font-light max-w-2xl">
+                                            <p className="text-muted-foreground text-xl md:text-2xl leading-relaxed italic font-light max-w-2xl">
                                                 "{activeConcept.desc}"
                                             </p>
                                         </div>
@@ -201,7 +201,7 @@ export function ConceptGlossary() {
                                             </div>
                                             <div className="p-6 bg-white rounded-3xl border border-primary/5 shadow-sm">
                                                 <h4 className="text-sm font-bold text-primary uppercase tracking-[0.2em] mb-3">Nota Informativa</h4>
-                                                <p className="text-muted-foreground text-sm leading-relaxed font-light">
+                                                <p className="text-muted-foreground text-base leading-relaxed font-light">
                                                     {activeConcept.extra}
                                                 </p>
                                             </div>
@@ -245,8 +245,8 @@ export function ConceptGlossary() {
                                                 <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                                             </div>
                                             <div>
-                                                <p className="font-bold text-primary text-sm">Propiedad Definitiva</p>
-                                                <p className="text-muted-foreground text-xs font-light">Nunca caduca ni vence tras 7 años.</p>
+                                                <p className="font-bold text-primary text-base">Propiedad Definitiva</p>
+                                                <p className="text-muted-foreground text-sm font-light">Nunca caduca ni vence tras 7 años.</p>
                                             </div>
                                         </div>
                                         <div className="flex items-start gap-4">
@@ -254,8 +254,8 @@ export function ConceptGlossary() {
                                                 <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                                             </div>
                                             <div>
-                                                <p className="font-bold text-primary text-sm">Plusvalía Creciente</p>
-                                                <p className="text-muted-foreground text-xs font-light">El valor de tu espacio aumenta con el tiempo.</p>
+                                                <p className="font-bold text-primary text-base">Plusvalía Creciente</p>
+                                                <p className="text-muted-foreground text-sm font-light">El valor de tu espacio aumenta con el tiempo.</p>
                                             </div>
                                         </div>
                                         <div className="flex items-start gap-4">
@@ -263,8 +263,8 @@ export function ConceptGlossary() {
                                                 <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                                             </div>
                                             <div>
-                                                <p className="font-bold text-primary text-sm">Financiamiento</p>
-                                                <p className="text-muted-foreground text-xs font-light">Planes de hasta 35 meses de crédito.</p>
+                                                <p className="font-bold text-primary text-base">Financiamiento</p>
+                                                <p className="text-muted-foreground text-sm font-light">Planes de hasta 36 meses de crédito.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -284,8 +284,8 @@ export function ConceptGlossary() {
                                                 <CheckCircle2 className="w-4 h-4 text-primary" />
                                             </div>
                                             <div>
-                                                <p className="font-bold text-primary text-sm">Costo de Oportunidad</p>
-                                                <p className="text-muted-foreground text-xs font-light">Inversión inicial significativamente menor.</p>
+                                                <p className="font-bold text-primary text-base">Costo de Oportunidad</p>
+                                                <p className="text-muted-foreground text-sm font-light">Inversión inicial significativamente menor.</p>
                                             </div>
                                         </div>
                                         <div className="flex items-start gap-4">
@@ -293,8 +293,8 @@ export function ConceptGlossary() {
                                                 <CheckCircle2 className="w-4 h-4 text-primary" />
                                             </div>
                                             <div>
-                                                <p className="font-bold text-primary text-sm">Uso Inmediato</p>
-                                                <p className="text-muted-foreground text-xs font-light">Ideal para cubrir la emergencia hoy mismo.</p>
+                                                <p className="font-bold text-primary text-base">Uso Inmediato</p>
+                                                <p className="text-muted-foreground text-sm font-light">Ideal para cubrir la emergencia hoy mismo.</p>
                                             </div>
                                         </div>
                                         <div className="flex items-start gap-4">
@@ -302,8 +302,8 @@ export function ConceptGlossary() {
                                                 <CheckCircle2 className="w-4 h-4 text-primary" />
                                             </div>
                                             <div>
-                                                <p className="font-bold text-primary text-sm">Transicionable</p>
-                                                <p className="text-muted-foreground text-xs font-light">Se puede acreditar a una perpetuidad a futuro.</p>
+                                                <p className="font-bold text-primary text-base">Transicionable</p>
+                                                <p className="text-muted-foreground text-sm font-light">Se puede acreditar a una perpetuidad a futuro.</p>
                                             </div>
                                         </div>
                                     </div>

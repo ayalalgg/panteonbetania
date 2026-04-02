@@ -87,7 +87,7 @@ export function AmenitiesSection({ videoUrl }: AmenitiesSectionProps) {
                                         <h3 className="font-serif text-xl font-bold text-primary tracking-tight">
                                             {item.title}
                                         </h3>
-                                        <p className="text-muted-foreground text-sm leading-relaxed font-light">
+                                        <p className="text-muted-foreground text-base leading-relaxed font-medium">
                                             {item.desc}
                                         </p>
                                     </div>
@@ -108,7 +108,7 @@ export function AmenitiesSection({ videoUrl }: AmenitiesSectionProps) {
                             <div className="absolute -top-10 -right-10 w-40 h-40 bg-accent/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                             
                             <div className="text-center mb-8 lg:hidden">
-                                <span className="text-accent text-[10px] font-bold tracking-widest uppercase mb-2 block">Experiencia Virtual</span>
+                                <span className="text-accent text-xs font-bold tracking-widest uppercase mb-2 block">Experiencia Virtual</span>
                                 <h3 className="text-3xl font-serif font-bold text-primary">Recorrido por el Santuario</h3>
                             </div>
 
@@ -123,7 +123,7 @@ export function AmenitiesSection({ videoUrl }: AmenitiesSectionProps) {
                                         <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-muted bg-cover" style={{ backgroundImage: `url('https://i.pravatar.cc/150?u=${i}')` }} />
                                     ))}
                                 </div>
-                                <p className="text-xs text-muted-foreground font-medium italic">+1,200 familias confían en nosotros</p>
+                                <p className="text-sm text-muted-foreground font-semibold italic">+1,200 familias confían en nosotros</p>
                             </div>
                         </motion.div>
                     </div>

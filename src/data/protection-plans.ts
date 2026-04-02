@@ -7,7 +7,9 @@ export interface FinancingOption {
 export interface ProtectionPlan {
     id: string;
     title: string;
-    gavetas: number;
+    gavetas?: number;
+    urnas?: number;
+    location?: string;
     priceContado: number;
     engancheInmediato: number;
     enganchePrevision: number;
@@ -26,7 +28,7 @@ export const PROTECTION_PLANS: ProtectionPlan[] = [
         priceContado: 27920,
         engancheInmediato: 7000,
         enganchePrevision: 1500,
-        openingCost: 0, // En uso inmediato se cobra aparte o se suma
+        openingCost: 0,
         maintenanceCost: 1408,
         features: ["Capacidad para 2 personas", "Ubicación General", "Transferible"],
         previsionFinancing: [
@@ -121,6 +123,97 @@ export const PROTECTION_PLANS: ProtectionPlan[] = [
             { months: 11, monthly: 4315, total: 57960 },
             { months: 23, monthly: 2162, total: 60216 },
             { months: 35, monthly: 1488, total: 62568 }
+        ]
+    }
+];
+
+export const NICHO_PLANS: ProtectionPlan[] = [
+    {
+        id: 'nicho-1-central',
+        title: 'Nicho 1 Urna (Fila Central)',
+        urnas: 1,
+        location: 'Central (Filas 3 y 4)',
+        priceContado: 13600,
+        engancheInmediato: 4000, // Estimado basado en el 30% del grid anterior
+        enganchePrevision: 1500,
+        openingCost: 0,
+        maintenanceCost: 0,
+        features: ["Capacidad: 1 Urna", "Ubicación Premium (Altura Ojos)", "Nicho de Galería"],
+        previsionFinancing: [
+            { months: 3, monthly: 4533.33, total: 13600 },
+            { months: 6, monthly: 2266.67, total: 13600 },
+            { months: 12, monthly: 1077, total: 14424 },
+            { months: 24, monthly: 575, total: 15300 },
+            { months: 36, monthly: 409, total: 16224 }
+        ],
+        inmediatoFinancing: [
+            { months: 11, monthly: 900, total: 13900 }
+        ]
+    },
+    {
+        id: 'nicho-1-lateral',
+        title: 'Nicho 1 Urna (Fila Lateral)',
+        urnas: 1,
+        location: 'Lateral (Filas 1, 2, 5, 6)',
+        priceContado: 12600,
+        engancheInmediato: 3780,
+        enganchePrevision: 1500,
+        openingCost: 0,
+        maintenanceCost: 0,
+        features: ["Capacidad: 1 Urna", "Ubicación Accesible", "Nicho de Galería"],
+        previsionFinancing: [
+            { months: 3, monthly: 4200, total: 12600 },
+            { months: 6, monthly: 2100, total: 12600 },
+            { months: 12, monthly: 988, total: 13356 },
+            { months: 24, monthly: 528, total: 14172 },
+            { months: 36, monthly: 376, total: 15036 }
+        ],
+        inmediatoFinancing: [
+            { months: 11, monthly: 867, total: 13317 }
+        ]
+    },
+    {
+        id: 'nicho-4-central',
+        title: 'Nicho 4 Urnas (Fila Central)',
+        urnas: 4,
+        location: 'Central (Filas 3 y 4)',
+        priceContado: 21900,
+        engancheInmediato: 6570,
+        enganchePrevision: 1500,
+        openingCost: 0,
+        maintenanceCost: 0,
+        features: ["Capacidad: 4 Urnas", "Ubicación Premium (Altura Ojos)", "Nicho de Galería"],
+        previsionFinancing: [
+            { months: 3, monthly: 7300, total: 21900 },
+            { months: 6, monthly: 3650, total: 21900 },
+            { months: 12, monthly: 1810, total: 23220 },
+            { months: 24, monthly: 963, total: 24612 },
+            { months: 36, monthly: 683, total: 26088 }
+        ],
+        inmediatoFinancing: [
+            { months: 11, monthly: 1500, total: 23070 }
+        ]
+    },
+    {
+        id: 'nicho-4-lateral',
+        title: 'Nicho 4 Urnas (Fila Lateral)',
+        urnas: 4,
+        location: 'Lateral (Filas 1, 2, 5, 6)',
+        priceContado: 21000,
+        engancheInmediato: 6300,
+        enganchePrevision: 1500,
+        openingCost: 0,
+        maintenanceCost: 0,
+        features: ["Capacidad: 4 Urnas", "Ubicación Accesible", "Nicho de Galería"],
+        previsionFinancing: [
+            { months: 3, monthly: 7000, total: 21000 },
+            { months: 6, monthly: 3500, total: 21000 },
+            { months: 12, monthly: 1730, total: 22260 },
+            { months: 24, monthly: 921, total: 23604 },
+            { months: 36, monthly: 654, total: 25044 }
+        ],
+        inmediatoFinancing: [
+            { months: 11, monthly: 1444, total: 22184 }
         ]
     }
 ];
