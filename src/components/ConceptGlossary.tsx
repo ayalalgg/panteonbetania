@@ -119,13 +119,13 @@ export function ConceptGlossary() {
                             className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start"
                         >
                             {/* Navigation List */}
-                            <div className="lg:col-span-4 space-y-4">
+                            <div className="lg:col-span-4 full-bleed-carousel gap-4 py-4 lg:flex-col lg:space-y-4 lg:overflow-visible lg:mx-0 lg:px-0 lg:snap-none">
                                 {concepts.map((concept) => (
                                     <button
                                         key={concept.id}
                                         onClick={() => setActiveConcept(concept)}
                                         className={cn(
-                                            "w-full p-6 text-left rounded-[2rem] border transition-all duration-500 group relative overflow-hidden",
+                                            "min-w-[280px] lg:min-w-0 p-6 text-left rounded-[2rem] border transition-all duration-500 group relative overflow-hidden snap-center",
                                             activeConcept.id === concept.id 
                                                 ? "bg-primary text-white border-primary shadow-xl scale-[1.02]" 
                                                 : "bg-muted/5 border-primary/5 hover:border-primary/20 hover:bg-muted/10"

@@ -43,9 +43,13 @@ export function ProtectionCalculator() {
     }, [category, selectedGavetas, selectedUrnas, selectedLocation])
 
     // Get available financing for current mode
-    const availableFinancing = useMemo<FinancingOption[]>(() => 
-        mode === 'prevision' ? currentPlan.previsionFinancing : currentPlan.inmediatoFinancing
-    , [mode, currentPlan])
+    const availableFinancing = useMemo<FinancingOption[]>(() => {
+        const base = mode === 'prevision' ? currentPlan.previsionFinancing : currentPlan.inmediatoFinancing
+        return [
+            { months: 0, monthly: 0, total: currentPlan.priceContado },
+            ...base
+        ]
+    }, [mode, currentPlan])
 
     // Find current financing option
     const currentFinancing = useMemo<FinancingOption>(() => {
@@ -55,14 +59,18 @@ export function ProtectionCalculator() {
 
     // Auto-adjust months if not available in new mode or category
     useEffect(() => {
-        const isAvailable = availableFinancing.some(f => f.months === selectedMonths)
+        const isAvailable = availableFinancing.some((f: FinancingOption) => f.months === selectedMonths)
         if (!isAvailable) {
-            setSelectedMonths(availableFinancing[0].months)
+            // Default to 36 months if possible, otherwise first available
+            const has36 = availableFinancing.find((f: FinancingOption) => f.months === 36)
+            setSelectedMonths(has36 ? 36 : (availableFinancing[1]?.months || availableFinancing[0].months))
         }
     }, [availableFinancing, selectedMonths])
 
     // Calculations
-    const enganche = mode === 'prevision' ? currentPlan.enganchePrevision : currentPlan.engancheInmediato
+    const isContado = selectedMonths === 0
+    const baseEnganche = mode === 'prevision' ? currentPlan.enganchePrevision : currentPlan.engancheInmediato
+    const enganche = isContado ? currentPlan.priceContado : baseEnganche
     const maintenance = mode === 'inmediato' ? currentPlan.maintenanceCost : 0
     const totalInitial = enganche + maintenance
 
@@ -87,8 +95,8 @@ export function ProtectionCalculator() {
                     </h2>
                     
                     {/* CATEGORY SELECTOR */}
-                    <div className="flex justify-center mt-8">
-                        <div className="bg-white p-2 rounded-[2rem] shadow-xl border border-primary/5 flex gap-2">
+                    <div className="flex justify-center mt-8 overflow-x-auto no-scrollbar pb-4 -mx-6 px-6">
+                        <div className="bg-white p-2 rounded-[2rem] shadow-xl border border-primary/5 flex gap-2 shrink-0">
                             <button 
                                 onClick={() => setCategory('panteon')}
                                 className={cn(
@@ -196,49 +204,62 @@ export function ProtectionCalculator() {
                             {category === 'panteon' ? (
                                 <div className="space-y-6">
                                     <p className="text-xs font-bold text-primary/40 uppercase tracking-widest italic">Número de Gavetas:</p>
-                                    <div className="flex flex-wrap gap-4">
-                                        {[2, 3, 4, 5].map((num) => (
-                                            <button 
-                                                key={num}
-                                                onClick={() => setSelectedGavetas(num)}
-                                                className={cn(
-                                                    "flex-1 min-w-[120px] py-8 rounded-[2rem] border font-bold transition-all duration-500 flex flex-col items-center gap-2",
-                                                    selectedGavetas === num 
-                                                        ? "bg-primary text-white border-primary shadow-xl scale-[1.05]" 
-                                                        : "bg-white border-primary/10 text-primary/60 hover:border-primary/40"
-                                                )}
-                                            >
-                                                <span className="text-4xl font-serif leading-none">{num}</span>
-                                                <span className="text-xs uppercase tracking-widest font-bold">Gavetas</span>
-                                            </button>
-                                        ))}
+                                    <div className="full-bleed-carousel gap-4 py-4">
+                                            { [2, 3, 4, 5].map((num) => {
+                                                const plan = PROTECTION_PLANS.find(p => p.gavetas === num);
+                                                return (
+                                                    <button 
+                                                        key={num}
+                                                        onClick={() => setSelectedGavetas(num)}
+                                                        className={cn(
+                                                            "flex-1 min-w-[140px] md:min-w-[120px] py-8 rounded-[2rem] border font-bold transition-all duration-500 flex flex-col items-center gap-2 group relative overflow-hidden snap-center",
+                                                            selectedGavetas === num 
+                                                                ? "bg-primary text-white border-primary shadow-xl scale-[1.05]" 
+                                                                : "bg-white border-primary/10 text-primary/60 hover:border-primary/40"
+                                                        )}
+                                                    >
+                                                        <span className="text-4xl font-serif leading-none">{num}</span>
+                                                        <span className="text-xs uppercase tracking-widest font-bold">Gavetas</span>
+                                                        <div className={cn(
+                                                            "mt-4 px-3 py-1 rounded-full text-[10px] font-bold border transition-colors",
+                                                            selectedGavetas === num ? "bg-white/10 border-white/20 text-accent" : "bg-primary/5 border-primary/10 text-primary"
+                                                        )}>
+                                                            Contado: ${plan?.priceContado.toLocaleString()}
+                                                        </div>
+                                                    </button>
+                                                );
+                                            })}
                                     </div>
                                 </div>
                             ) : (
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                     <div className="space-y-4">
                                         <p className="text-xs font-bold text-primary/40 uppercase tracking-widest italic">Capacidad de Urnas:</p>
-                                        <div className="flex gap-4">
-                                            {[2, 4].map((num) => (
-                                                <button 
-                                                    key={num}
-                                                    onClick={() => setSelectedUrnas(num)}
-                                                    className={cn(
-                                                        "flex-1 py-6 rounded-3xl border font-bold transition-all flex flex-col items-center gap-1",
-                                                        selectedUrnas === num 
-                                                            ? "bg-primary text-white border-primary shadow-lg" 
-                                                            : "bg-white border-primary/10 text-primary/60"
-                                                    )}
-                                                >
-                                                    <span className="text-2xl font-serif">{num}</span>
-                                                    <span className="text-[10px] font-bold uppercase tracking-tighter">{num === 1 ? 'Urna' : 'Urnas'}</span>
-                                                </button>
-                                            ))}
+                                        <div className="full-bleed-carousel gap-4 py-2">
+                                            { [2, 4].map((num) => {
+                                                const plan = NICHO_PLANS.find(p => p.urnas === num && p.location === selectedLocation);
+                                                return (
+                                                    <button 
+                                                        key={num}
+                                                        onClick={() => setSelectedUrnas(num)}
+                                                        className={cn(
+                                                            "flex-1 min-w-[120px] py-6 rounded-3xl border font-bold transition-all flex flex-col items-center gap-1 snap-center",
+                                                            selectedUrnas === num 
+                                                                ? "bg-primary text-white border-primary shadow-lg" 
+                                                                : "bg-white border-primary/10 text-primary/60"
+                                                        )}
+                                                    >
+                                                        <span className="text-2xl font-serif">{num}</span>
+                                                        <span className="text-[10px] font-bold uppercase tracking-tighter">{num === 1 ? 'Urna' : 'Urnas'}</span>
+                                                        <span className="text-[9px] opacity-60 font-medium">${plan?.priceContado.toLocaleString()}</span>
+                                                    </button>
+                                                );
+                                            })}
                                         </div>
                                     </div>
                                     <div className="space-y-4">
                                         <p className="text-xs font-bold text-primary/40 uppercase tracking-widest italic">Ubicación (Fila):</p>
-                                        <div className="flex gap-4">
+                                        <div className="full-bleed-carousel gap-4 py-2">
                                             {[
                                                 { label: 'Central (Ojos)', value: 'Central (Filas 3 y 4)' },
                                                 { label: 'Lateral', value: 'Lateral (Filas 1, 2, 5, 6)' }
@@ -247,7 +268,7 @@ export function ProtectionCalculator() {
                                                     key={loc.value}
                                                     onClick={() => setSelectedLocation(loc.value as any)}
                                                     className={cn(
-                                                        "flex-1 py-6 rounded-3xl border font-bold transition-all text-xs leading-tight px-4",
+                                                        "flex-1 min-w-[140px] py-6 rounded-3xl border font-bold transition-all text-xs leading-tight px-4 snap-center",
                                                         selectedLocation === loc.value 
                                                             ? "bg-primary text-white border-primary shadow-lg" 
                                                             : "bg-white border-primary/10 text-primary/60"
@@ -276,19 +297,19 @@ export function ProtectionCalculator() {
                                     {mode === 'prevision' ? 'Hasta 72 meses disponible' : 'Diferido inmediato'}
                                 </span>
                             </div>
-                            <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-3">
+                            <div className="full-bleed-carousel gap-3 py-4">
                                 {availableFinancing.map((opt) => (
                                     <button 
                                         key={opt.months}
                                         onClick={() => setSelectedMonths(opt.months)}
                                         className={cn(
-                                            "py-6 rounded-2xl border text-sm font-black transition-all relative overflow-hidden",
+                                            "min-w-[80px] py-6 rounded-2xl border text-sm font-black transition-all relative overflow-hidden snap-center",
                                             selectedMonths === opt.months 
                                                 ? "bg-primary text-white border-primary shadow-xl scale-[1.05]" 
                                                 : "bg-white border-primary/5 text-primary/40 hover:bg-white hover:border-primary/20"
                                         )}
                                     >
-                                        {opt.months} M
+                                        {opt.months === 0 ? "Contado" : `${opt.months} M`}
                                         {(opt.months === 3 || opt.months === 6) && mode === 'prevision' && (
                                             <div className="absolute top-0 right-0">
                                                 <div className="bg-accent text-primary text-[8px] font-black px-2 py-1 rounded-bl-xl uppercase tracking-tighter shadow-sm">0%</div>
@@ -339,7 +360,7 @@ export function ProtectionCalculator() {
                                         <div className="space-y-2">
                                              <span className="text-xs font-black text-white/70 uppercase tracking-[0.2em]">Pago Inicial Hoy</span>
                                              <div className="flex flex-col text-xs text-white/60 italic font-medium">
-                                                <span>• Enganche: ${enganche.toLocaleString()}</span>
+                                                 <span>• {isContado ? 'Liquidación Total' : 'Enganche'}: ${enganche.toLocaleString()}</span>
                                                 {maintenance > 0 && <span>• Mantenimiento 2025: ${maintenance.toLocaleString()}</span>}
                                             </div>
                                         </div>
@@ -354,16 +375,21 @@ export function ProtectionCalculator() {
                                         <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                                         <div className="relative z-10 flex justify-between items-center">
                                             <div>
-                                                 <span className="text-xs font-black text-white/70 uppercase tracking-widest block mb-2">Mensualidad Fija</span>
-                                                <span className="text-2xl font-bold">{selectedMonths} pagos de</span>
+                                                 <span className="text-xs font-black text-white/70 uppercase tracking-widest block mb-2">{isContado ? 'Plan Seleccionado' : 'Mensualidad Fija'}</span>
+                                                <span className="text-2xl font-bold">{isContado ? 'Pago Único' : `${selectedMonths} pagos de`}</span>
                                             </div>
                                             <div className="text-right">
                                                 <div className="text-4xl font-serif font-black text-white group-hover:text-accent transition-all duration-500 scale-110">
-                                                    ${Math.ceil(monthlyPayment).toLocaleString()}
+                                                     ${isContado ? currentPlan.priceContado.toLocaleString() : Math.ceil(monthlyPayment).toLocaleString()}
                                                 </div>
-                                                {isInterestFree && (
+                                                {isInterestFree && !isContado && (
                                                     <div className="flex justify-end mt-2">
                                                          <span className="text-[10px] bg-accent text-primary font-black px-3 py-1 rounded-full uppercase tracking-tighter">Meses Sin Intereses</span>
+                                                    </div>
+                                                )}
+                                                {isContado && (
+                                                    <div className="flex justify-end mt-2">
+                                                         <span className="text-[10px] bg-emerald-500 text-white font-black px-3 py-1 rounded-full uppercase tracking-tighter">Máximo Ahorro</span>
                                                     </div>
                                                 )}
                                             </div>
@@ -420,7 +446,7 @@ export function ProtectionCalculator() {
                                 Beneficios Bethania
                             </h5>
                             <ul className="space-y-4">
-                                {currentPlan.features.map((f, i) => (
+                                {currentPlan.features.map((f: string, i: number) => (
                                     <li key={i} className="text-xs text-muted-foreground flex items-center gap-4">
                                         <div className="w-1.5 h-1.5 rounded-full bg-accent shadow-sm" />
                                         {f}

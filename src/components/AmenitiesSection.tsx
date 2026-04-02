@@ -70,7 +70,7 @@ export function AmenitiesSection({ videoUrl }: AmenitiesSectionProps) {
                             </motion.p>
                         </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-x-12 md:gap-y-10">
+                        <div className="full-bleed-carousel gap-8 py-4 sm:grid sm:grid-cols-2 sm:gap-x-12 sm:gap-y-10 sm:overflow-visible sm:mx-0 sm:px-0 sm:snap-none">
                             {amenities.map((item, index) => (
                                 <motion.div
                                     key={index}
@@ -78,7 +78,7 @@ export function AmenitiesSection({ videoUrl }: AmenitiesSectionProps) {
                                     whileInView={{ opacity: 1, scale: 1 }}
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    className="flex flex-col items-start gap-5 group"
+                                    className="flex flex-col items-start gap-5 group snap-center min-w-[280px] sm:min-w-0"
                                 >
                                     <div className="w-14 h-14 shrink-0 rounded-2xl bg-white border border-primary/5 shadow-md flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-accent transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
                                         <item.icon className="w-7 h-7" />

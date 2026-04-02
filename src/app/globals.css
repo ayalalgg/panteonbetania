@@ -85,3 +85,17 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .full-bleed-carousel {
+    @apply -mx-6 px-6 flex overflow-x-auto snap-x snap-mandatory no-scrollbar;
+  }
+}

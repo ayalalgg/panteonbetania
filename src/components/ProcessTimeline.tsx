@@ -73,7 +73,7 @@ export function ProcessTimeline() {
                     {/* Connecting Line (Desktop) */}
                     <div className="hidden lg:block absolute top-[120px] left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-transparent via-primary/10 to-transparent" />
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
+                    <div className="full-bleed-carousel gap-8 py-8 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-12 md:overflow-visible md:mx-0 md:px-0 md:snap-none relative z-10">
                         {steps.map((step, index) => (
                             <motion.div
                                 key={index}
@@ -81,7 +81,7 @@ export function ProcessTimeline() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: index * 0.15 }}
-                                className="group"
+                                className="group snap-center min-w-[280px] md:min-w-0"
                             >
                                 <div className="space-y-8">
                                     {/* Icon & Number Header */}
