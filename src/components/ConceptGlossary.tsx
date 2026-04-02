@@ -70,7 +70,7 @@ export function ConceptGlossary() {
                         className="text-4xl md:text-6xl font-serif font-bold text-primary"
                     >
                         Comprende tu <span className="text-accent italic">Inversión</span>
-                    </h2>
+                    </motion.h2>
                     <motion.p 
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
