@@ -10,8 +10,8 @@ export const metadata: Metadata = {
   title: "Panteón Bethania | Grupo Funerario Ayala",
   description: "Un espacio de paz y descanso eterno. Panteón Bethania ofrece perpetuidades y servicios funerarios de alta calidad.",
   icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
+    icon: "https://res.cloudinary.com/dbnocozci/image/upload/v1766397648/ayala/assets/dntmt8shzyt1aqm9ge3h.png",
+    apple: "https://res.cloudinary.com/dbnocozci/image/upload/v1766397648/ayala/assets/dntmt8shzyt1aqm9ge3h.png",
   },
 };
 
