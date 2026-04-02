@@ -372,7 +372,25 @@ export function ProtectionCalculator() {
                                 </div>
 
                                 {/* TOTAL INFO */}
-                                <div className="pt-8 border-t border-white/5 space-y-6">
+                                <div className="pt-8 border-t border-white/5 space-y-4">
+                                    <div className="flex justify-between items-center">
+                                         <span className="text-xs text-white/60 font-semibold italic">Precio de Contado:</span>
+                                        <span className="text-sm font-bold text-white/50">${currentPlan.priceContado.toLocaleString()} MXN</span>
+                                    </div>
+
+                                    <div className="flex justify-between items-center pb-4 border-b border-white/5">
+                                         <span className="text-xs text-white/60 font-semibold italic">Costo por Financiamiento:</span>
+                                        <span className={cn(
+                                            "text-sm font-bold",
+                                            (currentFinancing.total - currentPlan.priceContado) > 0 ? "text-rose-400" : "text-emerald-400"
+                                        )}>
+                                            {currentFinancing.total - currentPlan.priceContado > 0 
+                                                ? `+$${(currentFinancing.total - currentPlan.priceContado).toLocaleString()} (${(((currentFinancing.total - currentPlan.priceContado) / currentPlan.priceContado) * 100).toFixed(1)}%)`
+                                                : '$0 (0% Interés)'
+                                            }
+                                        </span>
+                                    </div>
+                                    
                                     <div className="flex justify-between items-center">
                                          <span className="text-xs text-white/60 font-semibold">Inversión Final Proyectada:</span>
                                         <span className="text-sm font-bold text-white/80">${currentFinancing.total.toLocaleString()} MXN</span>
