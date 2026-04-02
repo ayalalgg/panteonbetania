@@ -7,11 +7,11 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 const defaultImages = [
-    "https://images.pexels.com/photos/3205912/pexels-photo-3205912.jpeg", // 1. Jardín Principal
-    "https://images.pexels.com/photos/1166643/pexels-photo-1166643.jpeg", // 2. Detalle Estatua
-    "https://images.pexels.com/photos/14534800/pexels-photo-14534800.jpeg", // 3. Atardecer
-    "https://images.pexels.com/photos/2086676/pexels-photo-2086676.jpeg", // 4. Flores
-    "https://images.pexels.com/photos/1034662/pexels-photo-1034662.jpeg", // 5. Camino
+    "https://res.cloudinary.com/dbnocozci/image/upload/f_auto,q_auto/v1770976684/ayala/locations/gallery/bni9meljmkzahpi82yq7.jpg", // Fachada Principal
+    "https://res.cloudinary.com/dbnocozci/image/upload/f_auto,q_auto/v1766713664/ayala/locations/gallery/caonbqdd3fxydaoukdcs.jpg", // Áreas Verdes
+    "https://res.cloudinary.com/dbnocozci/image/upload/f_auto,q_auto/v1770976683/ayala/locations/gallery/sqfzxbsmnxwgpqh56c7p.jpg", // Detalle Arquitectónico 
+    "https://res.cloudinary.com/dbnocozci/image/upload/f_auto,q_auto/v1770976682/ayala/locations/gallery/pt6qlj7ik9tfuajat5hs.jpg", // Jardinería
+    "https://res.cloudinary.com/dbnocozci/image/upload/f_auto,q_auto/v1770976680/ayala/locations/gallery/db1xgcizty59kcgp76er.jpg", // Interiores/Capilla
 ]
 
 interface ListingGalleryProps {

@@ -14,7 +14,7 @@ export function Hero() {
                     muted
                     playsInline
                     className="w-full h-full object-cover opacity-60"
-                    poster="https://images.pexels.com/photos/3205912/pexels-photo-3205912.jpeg" // Fallback image if video fails
+                    poster="https://res.cloudinary.com/dbnocozci/image/upload/f_auto,q_auto/v1770976684/ayala/locations/gallery/bni9meljmkzahpi82yq7.jpg" // Fachada Real Panteón Bethania
                 >
                     {/* Placeholder video of peaceful nature/luxury garden */}
                     <source src="https://videos.pexels.com/video-files/3205912/3205912-hd_1920_1080_25fps.mp4" type="video/mp4" />
