@@ -28,9 +28,11 @@ export function ProtectionCalculator() {
     
     // Nichos state
     const [selectedUrnas, setSelectedUrnas] = useState<number>(2)
-    const [selectedLocation, setSelectedLocation] = useState<'Central (Filas 3 y 4)' | 'Lateral (Filas 1, 2, 5, 6)'>('Central (Filas 3 y 4)')
+    const [selectedSection, setSelectedSection] = useState<'Luz Natural' | 'Posterior Interior'>('Luz Natural')
+    const [selectedLocation, setSelectedLocation] = useState<'Premium (Filas 3 y 4)' | 'Luz Natural (Filas 1, 2, 5, 6)'>('Premium (Filas 3 y 4)')
 
     const [selectedMonths, setSelectedMonths] = useState<number>(36)
+
 
     // Find the current plan based on category
     const currentPlan = useMemo<ProtectionPlan>(() => {
@@ -38,10 +40,13 @@ export function ProtectionCalculator() {
             return PROTECTION_PLANS.find((p: ProtectionPlan) => p.gavetas === selectedGavetas) || PROTECTION_PLANS[0]
         } else {
             return NICHO_PLANS.find((p: ProtectionPlan) => 
-                p.urnas === selectedUrnas && p.location === selectedLocation
+                p.urnas === selectedUrnas && 
+                p.section === selectedSection &&
+                p.location === selectedLocation
             ) || NICHO_PLANS[0]
         }
-    }, [category, selectedGavetas, selectedUrnas, selectedLocation])
+    }, [category, selectedGavetas, selectedUrnas, selectedSection, selectedLocation])
+
 
     // Get available financing for current mode
     const availableFinancing = useMemo<FinancingOption[]>(() => {
@@ -233,55 +238,82 @@ export function ProtectionCalculator() {
                                     </div>
                                 </div>
                             ) : (
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div className="space-y-10">
                                     <div className="space-y-4">
-                                        <p className="text-xs font-bold text-primary/40 uppercase tracking-widest italic">Capacidad de Urnas:</p>
-                                        <div className="full-bleed-carousel gap-4 py-2">
-                                            { [2, 4].map((num) => {
-                                                const plan = NICHO_PLANS.find(p => p.urnas === num && p.location === selectedLocation);
-                                                return (
-                                                    <button 
-                                                        key={num}
-                                                        onClick={() => setSelectedUrnas(num)}
-                                                        className={cn(
-                                                            "flex-1 min-w-[120px] py-6 rounded-3xl border font-bold transition-all flex flex-col items-center gap-1 snap-center",
-                                                            selectedUrnas === num 
-                                                                ? "bg-primary text-white border-primary shadow-lg" 
-                                                                : "bg-white border-primary/10 text-primary/60"
-                                                        )}
-                                                    >
-                                                        <span className="text-2xl font-serif">{num}</span>
-                                                        <span className="text-[10px] font-bold uppercase tracking-tighter">{num === 1 ? 'Urna' : 'Urnas'}</span>
-                                                        <span className="text-[9px] opacity-60 font-medium">${plan?.priceContado.toLocaleString()}</span>
-                                                    </button>
-                                                );
-                                            })}
-                                        </div>
-                                    </div>
-                                    <div className="space-y-4">
-                                        <p className="text-xs font-bold text-primary/40 uppercase tracking-widest italic">Ubicación (Fila):</p>
-                                        <div className="full-bleed-carousel gap-4 py-2">
+                                        <p className="text-xs font-bold text-primary/40 uppercase tracking-widest italic">Área del Salón:</p>
+                                        <div className="flex flex-wrap gap-4">
                                             {[
-                                                { label: 'Central (Ojos)', value: 'Central (Filas 3 y 4)' },
-                                                { label: 'Lateral', value: 'Lateral (Filas 1, 2, 5, 6)' }
-                                            ].map((loc) => (
+                                                { label: 'Con Luz Natural', value: 'Luz Natural' },
+                                                { label: 'Sección Posterior (Sin Luz)', value: 'Posterior Interior' }
+                                            ].map((sec) => (
                                                 <button 
-                                                    key={loc.value}
-                                                    onClick={() => setSelectedLocation(loc.value as any)}
+                                                    key={sec.value}
+                                                    onClick={() => setSelectedSection(sec.value as any)}
                                                     className={cn(
-                                                        "flex-1 min-w-[140px] py-6 rounded-3xl border font-bold transition-all text-xs leading-tight px-4 snap-center",
-                                                        selectedLocation === loc.value 
+                                                        "px-8 py-4 rounded-2xl border font-bold transition-all text-sm",
+                                                        selectedSection === sec.value 
                                                             ? "bg-primary text-white border-primary shadow-lg" 
-                                                            : "bg-white border-primary/10 text-primary/60"
+                                                            : "bg-white border-primary/10 text-primary/60 hover:border-primary/30"
                                                     )}
                                                 >
-                                                    {loc.label}
+                                                    {sec.label}
                                                 </button>
                                             ))}
                                         </div>
                                     </div>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                        <div className="space-y-4">
+                                            <p className="text-xs font-bold text-primary/40 uppercase tracking-widest italic">Capacidad de Urnas:</p>
+                                            <div className="full-bleed-carousel gap-4 py-2">
+                                                { [2, 4].map((num) => {
+                                                    const plan = NICHO_PLANS.find(p => p.urnas === num && p.section === selectedSection && p.location === selectedLocation);
+                                                    return (
+                                                        <button 
+                                                            key={num}
+                                                            onClick={() => setSelectedUrnas(num)}
+                                                            className={cn(
+                                                                "flex-1 min-w-[120px] py-6 rounded-3xl border font-bold transition-all flex flex-col items-center gap-1 snap-center",
+                                                                selectedUrnas === num 
+                                                                    ? "bg-primary text-white border-primary shadow-lg" 
+                                                                    : "bg-white border-primary/10 text-primary/60"
+                                                            )}
+                                                        >
+                                                            <span className="text-2xl font-serif">{num}</span>
+                                                            <span className="text-[10px] font-bold uppercase tracking-tighter">{num === 1 ? 'Urna' : 'Urnas'}</span>
+                                                            <span className="text-[9px] opacity-60 font-medium">${plan?.priceContado.toLocaleString()}</span>
+                                                        </button>
+                                                    );
+                                                })}
+                                            </div>
+                                        </div>
+                                        <div className="space-y-4">
+                                            <p className="text-xs font-bold text-primary/40 uppercase tracking-widest italic">Ubicación (Fila):</p>
+                                            <div className="full-bleed-carousel gap-4 py-2">
+                                                {[
+                                                    { label: 'Premium (Ojos)', value: 'Premium (Filas 3 y 4)' },
+                                                    { label: 'Luz Natural', value: 'Luz Natural (Filas 1, 2, 5, 6)' }
+                                                ].map((loc) => (
+                                                    <button 
+                                                        key={loc.value}
+                                                        onClick={() => setSelectedLocation(loc.value as any)}
+                                                        className={cn(
+                                                            "flex-1 min-w-[140px] py-6 rounded-3xl border font-bold transition-all text-xs leading-tight px-4 snap-center",
+                                                            selectedLocation === loc.value 
+                                                                ? "bg-primary text-white border-primary shadow-lg" 
+                                                                : "bg-white border-primary/10 text-primary/60"
+                                                        )}
+                                                    >
+                                                        {loc.label}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
                             )}
+
                         </div>
 
                         {/* 3. SELECCIÓN DE PLAZO */}

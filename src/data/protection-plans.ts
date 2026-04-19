@@ -10,6 +10,7 @@ export interface ProtectionPlan {
     gavetas?: number;
     urnas?: number;
     location?: string;
+    section?: 'Luz Natural' | 'Posterior Interior';
     priceContado: number;
     engancheInmediato: number;
     enganchePrevision: number;
@@ -128,61 +129,19 @@ export const PROTECTION_PLANS: ProtectionPlan[] = [
 ];
 
 export const NICHO_PLANS: ProtectionPlan[] = [
+    // SECCIÓN LUZ NATURAL (MÁS PREMIUM)
     {
-        id: 'nicho-2-central',
+        id: 'nicho-2-central-luz',
         title: 'Nicho 2 Urnas (Fila Central)',
         urnas: 2,
-        location: 'Central (Filas 3 y 4)',
-        priceContado: 17200,
-        engancheInmediato: 5160,
-        enganchePrevision: 1500,
-        openingCost: 0,
-        maintenanceCost: 587,
-        features: ["Capacidad: 2 Urnas", "Ubicación Premium (Altura Ojos)", "Nicho de Galería", "Incluye 3 aperturas de nicho"],
-        previsionFinancing: [
-            { months: 3, monthly: 5733.33, total: 17200 },
-            { months: 6, monthly: 2866.67, total: 17200 },
-            { months: 12, monthly: 1395, total: 18240 },
-            { months: 24, monthly: 743, total: 19332 },
-            { months: 36, monthly: 528, total: 20508 }
-        ],
-        inmediatoFinancing: [
-            { months: 11, monthly: 1150, total: 17810 }
-        ]
-    },
-    {
-        id: 'nicho-2-lateral',
-        title: 'Nicho 2 Urnas (Fila Lateral)',
-        urnas: 2,
-        location: 'Lateral (Filas 1, 2, 5, 6)',
-        priceContado: 14700,
-        engancheInmediato: 4410,
-        enganchePrevision: 1500,
-        openingCost: 0,
-        maintenanceCost: 587,
-        features: ["Capacidad: 2 Urnas", "Ubicación Accesible", "Nicho de Galería", "Incluye 3 aperturas de nicho"],
-        previsionFinancing: [
-            { months: 3, monthly: 4900, total: 14700 },
-            { months: 6, monthly: 2450, total: 14700 },
-            { months: 12, monthly: 1174, total: 15588 },
-            { months: 24, monthly: 626, total: 16524 },
-            { months: 36, monthly: 445, total: 17520 }
-        ],
-        inmediatoFinancing: [
-            { months: 11, monthly: 980, total: 15190 }
-        ]
-    },
-    {
-        id: 'nicho-4-central',
-        title: 'Nicho 4 Urnas (Fila Central)',
-        urnas: 4,
-        location: 'Central (Filas 3 y 4)',
+        location: 'Premium (Filas 3 y 4)',
+        section: 'Luz Natural',
         priceContado: 25800,
         engancheInmediato: 7740,
         enganchePrevision: 1500,
         openingCost: 0,
         maintenanceCost: 587,
-        features: ["Capacidad: 4 Urnas", "Ubicación Premium (Altura Ojos)", "Nicho de Galería", "Incluye 3 aperturas de nicho"],
+        features: ["Capacidad: 2 Urnas", "Ubicación Premium (Ojos)", "Incluye 3 aperturas de nicho"],
         previsionFinancing: [
             { months: 3, monthly: 8600, total: 25800 },
             { months: 6, monthly: 4300, total: 25800 },
@@ -195,16 +154,63 @@ export const NICHO_PLANS: ProtectionPlan[] = [
         ]
     },
     {
-        id: 'nicho-4-lateral',
+        id: 'nicho-2-lateral-luz',
+        title: 'Nicho 2 Urnas (Fila Lateral)',
+        urnas: 2,
+        location: 'Luz Natural (Filas 1, 2, 5, 6)',
+        section: 'Luz Natural',
+        priceContado: 14700,
+        engancheInmediato: 4410,
+        enganchePrevision: 1500,
+        openingCost: 0,
+        maintenanceCost: 587,
+        features: ["Capacidad: 2 Urnas", "Ubicación Luz Natural", "Incluye 3 aperturas de nicho"],
+        previsionFinancing: [
+            { months: 3, monthly: 4900, total: 14700 },
+            { months: 6, monthly: 2450, total: 14700 },
+            { months: 12, monthly: 1174, total: 15588 },
+            { months: 24, monthly: 626, total: 16524 },
+            { months: 36, monthly: 445, total: 17520 }
+        ],
+        inmediatoFinancing: [
+            { months: 11, monthly: 980, total: 15190 }
+        ]
+    },
+    {
+        id: 'nicho-4-central-luz',
+        title: 'Nicho 4 Urnas (Fila Central)',
+        urnas: 4,
+        location: 'Premium (Filas 3 y 4)',
+        section: 'Luz Natural',
+        priceContado: 25800,
+        engancheInmediato: 7740,
+        enganchePrevision: 1500,
+        openingCost: 0,
+        maintenanceCost: 587,
+        features: ["Capacidad: 4 Urnas", "Ubicación Premium (Ojos)", "Incluye 3 aperturas de nicho"],
+        previsionFinancing: [
+            { months: 3, monthly: 8600, total: 25800 },
+            { months: 6, monthly: 4300, total: 25800 },
+            { months: 12, monthly: 2154, total: 27348 },
+            { months: 24, monthly: 1146, total: 29004 },
+            { months: 36, monthly: 812, total: 30732 }
+        ],
+        inmediatoFinancing: [
+            { months: 11, monthly: 1725, total: 26715 }
+        ]
+    },
+    {
+        id: 'nicho-4-lateral-luz',
         title: 'Nicho 4 Urnas (Fila Lateral)',
         urnas: 4,
-        location: 'Lateral (Filas 1, 2, 5, 6)',
+        location: 'Luz Natural (Filas 1, 2, 5, 6)',
+        section: 'Luz Natural',
         priceContado: 24000,
         engancheInmediato: 7200,
         enganchePrevision: 1500,
         openingCost: 0,
         maintenanceCost: 587,
-        features: ["Capacidad: 4 Urnas", "Ubicación Accesible", "Nicho de Galería", "Incluye 3 aperturas de nicho"],
+        features: ["Capacidad: 4 Urnas", "Ubicación Luz Natural", "Incluye 3 aperturas de nicho"],
         previsionFinancing: [
             { months: 3, monthly: 8000, total: 24000 },
             { months: 6, monthly: 4000, total: 24000 },
@@ -214,6 +220,99 @@ export const NICHO_PLANS: ProtectionPlan[] = [
         ],
         inmediatoFinancing: [
             { months: 11, monthly: 1600, total: 24800 }
+        ]
+    },
+    // SECCIÓN POSTERIOR INTERIOR (MÁS ECONÓMICA)
+    {
+        id: 'nicho-2-central-posterior',
+        title: 'Nicho 2 Urnas (Fila Central)',
+        urnas: 2,
+        location: 'Premium (Filas 3 y 4)',
+        section: 'Posterior Interior',
+        priceContado: 15000,
+        engancheInmediato: 4500,
+        enganchePrevision: 1500,
+        openingCost: 0,
+        maintenanceCost: 587,
+        features: ["Capacidad: 2 Urnas", "Ubicación Premium (Ojos)", "Incluye 3 aperturas de nicho"],
+        previsionFinancing: [
+            { months: 3, monthly: 5000, total: 15000 },
+            { months: 6, monthly: 2500, total: 15000 },
+            { months: 12, monthly: 988, total: 13356 },
+            { months: 24, monthly: 528, total: 14172 },
+            { months: 36, monthly: 376, total: 15036 }
+        ],
+        inmediatoFinancing: [
+            { months: 11, monthly: 1000, total: 15500 }
+        ]
+    },
+    {
+        id: 'nicho-2-lateral-posterior',
+        title: 'Nicho 2 Urnas (Fila Lateral)',
+        urnas: 2,
+        location: 'Luz Natural (Filas 1, 2, 5, 6)',
+        section: 'Posterior Interior',
+        priceContado: 12800,
+        engancheInmediato: 3840,
+        enganchePrevision: 1500,
+        openingCost: 0,
+        maintenanceCost: 587,
+        features: ["Capacidad: 2 Urnas", "Ubicación Estándar", "Incluye 3 aperturas de nicho"],
+        previsionFinancing: [
+            { months: 3, monthly: 4266.67, total: 12800 },
+            { months: 6, monthly: 2133.33, total: 12800 },
+            { months: 12, monthly: 1006, total: 13572 },
+            { months: 24, monthly: 537, total: 14388 },
+            { months: 36, monthly: 382, total: 15252 }
+        ],
+        inmediatoFinancing: [
+            { months: 11, monthly: 855, total: 13245 }
+        ]
+    },
+    {
+        id: 'nicho-4-central-posterior',
+        title: 'Nicho 4 Urnas (Fila Central)',
+        urnas: 4,
+        location: 'Premium (Filas 3 y 4)',
+        section: 'Posterior Interior',
+        priceContado: 22500,
+        engancheInmediato: 6750,
+        enganchePrevision: 1500,
+        openingCost: 0,
+        maintenanceCost: 587,
+        features: ["Capacidad: 4 Urnas", "Ubicación Premium (Ojos)", "Incluye 3 aperturas de nicho"],
+        previsionFinancing: [
+            { months: 3, monthly: 7500, total: 22500 },
+            { months: 6, monthly: 3750, total: 22500 },
+            { months: 12, monthly: 1863, total: 23856 },
+            { months: 24, monthly: 991, total: 25284 },
+            { months: 36, monthly: 703, total: 26808 }
+        ],
+        inmediatoFinancing: [
+            { months: 11, monthly: 1500, total: 23250 }
+        ]
+    },
+    {
+        id: 'nicho-4-lateral-posterior',
+        title: 'Nicho 4 Urnas (Fila Lateral)',
+        urnas: 4,
+        location: 'Luz Natural (Filas 1, 2, 5, 6)',
+        section: 'Posterior Interior',
+        priceContado: 21000,
+        engancheInmediato: 6300,
+        enganchePrevision: 1500,
+        openingCost: 0,
+        maintenanceCost: 587,
+        features: ["Capacidad: 4 Urnas", "Ubicación Estándar", "Incluye 3 aperturas de nicho"],
+        previsionFinancing: [
+            { months: 3, monthly: 7000, total: 21000 },
+            { months: 6, monthly: 3500, total: 21000 },
+            { months: 12, monthly: 1730, total: 22260 },
+            { months: 24, monthly: 921, total: 23604 },
+            { months: 36, monthly: 654, total: 25044 }
+        ],
+        inmediatoFinancing: [
+            { months: 11, monthly: 1400, total: 22100 }
         ]
     }
 ];
