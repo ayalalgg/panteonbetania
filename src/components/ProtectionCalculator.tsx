@@ -13,7 +13,9 @@ import {
     Building2,
     ArrowRight,
     LayoutGrid,
-    Inbox
+    Inbox,
+    Sun,
+    Crown
 } from "lucide-react"
 import { WhatsAppCapture } from "./WhatsAppCapture"
 import { cn } from "@/lib/utils"
@@ -288,27 +290,86 @@ export function ProtectionCalculator() {
                                             </div>
                                         </div>
                                         <div className="space-y-4">
-                                            <p className="text-xs font-bold text-primary/40 uppercase tracking-widest italic">Ubicación (Fila):</p>
-                                            <div className="full-bleed-carousel gap-4 py-2">
-                                                {[
-                                                    { label: 'Premium (Ojos)', value: 'Premium (Filas 3 y 4)' },
-                                                    { label: 'Luz Natural', value: 'Luz Natural (Filas 1, 2, 5, 6)' }
-                                                ].map((loc) => (
-                                                    <button 
-                                                        key={loc.value}
-                                                        onClick={() => setSelectedLocation(loc.value as any)}
-                                                        className={cn(
-                                                            "flex-1 min-w-[140px] py-6 rounded-3xl border font-bold transition-all text-xs leading-tight px-4 snap-center",
-                                                            selectedLocation === loc.value 
-                                                                ? "bg-primary text-white border-primary shadow-lg" 
-                                                                : "bg-white border-primary/10 text-primary/60"
-                                                        )}
-                                                    >
-                                                        {loc.label}
-                                                    </button>
-                                                ))}
+                                            <p className="text-xs font-bold text-primary/40 uppercase tracking-widest italic">Ubicación (Nivel):</p>
+                                            
+                                            {/* VISUAL SELECTOR */}
+                                            <div className="flex flex-col md:flex-row gap-8 items-center bg-white/50 p-8 rounded-[2.5rem] border border-primary/5">
+                                                <div className="flex flex-col gap-1 w-full max-w-[200px]">
+                                                    {[6, 5, 4, 3, 2, 1].map((fila) => {
+                                                        const isPremium = fila === 3 || fila === 4;
+                                                        const isSelected = isPremium 
+                                                            ? selectedLocation === 'Premium (Filas 3 y 4)'
+                                                            : selectedLocation === 'Luz Natural (Filas 1, 2, 5, 6)';
+                                                        
+                                                        return (
+                                                            <button
+                                                                key={fila}
+                                                                onClick={() => setSelectedLocation(
+                                                                    isPremium ? 'Premium (Filas 3 y 4)' : 'Luz Natural (Filas 1, 2, 5, 6)'
+                                                                )}
+                                                                className={cn(
+                                                                    "h-10 w-full rounded-md border-2 transition-all duration-300 flex items-center justify-center relative group",
+                                                                    isPremium 
+                                                                        ? (isSelected ? "bg-primary border-accent shadow-[0_0_15px_rgba(212,175,55,0.4)]" : "bg-primary/20 border-primary/20")
+                                                                        : (isSelected ? "bg-slate-200 border-primary/40 shadow-lg" : "bg-slate-50 border-slate-200")
+                                                                )}
+                                                            >
+                                                                <span className={cn(
+                                                                    "text-[10px] font-bold",
+                                                                    isSelected ? (isPremium ? "text-accent" : "text-primary") : "opacity-20"
+                                                                )}>FILA {fila}</span>
+                                                                
+                                                                {fila === 4 && isSelected && isPremium && (
+                                                                    <div className="absolute -left-12 flex items-center gap-2 text-accent whitespace-nowrap animate-in fade-in slide-in-from-right-4">
+                                                                        <Crown className="w-4 h-4" />
+                                                                        <span className="text-[10px] font-black uppercase">Premium</span>
+                                                                    </div>
+                                                                )}
+                                                                {fila === 6 && isSelected && !isPremium && (
+                                                                    <div className="absolute -left-12 flex items-center gap-2 text-primary/60 whitespace-nowrap animate-in fade-in slide-in-from-right-4">
+                                                                        <Sun className="w-4 h-4" />
+                                                                        <span className="text-[10px] font-black uppercase">Luz</span>
+                                                                    </div>
+                                                                )}
+                                                            </button>
+                                                        )
+                                                    })}
+                                                </div>
+
+                                                <div className="flex-1 space-y-4">
+                                                    <div className={cn(
+                                                        "p-6 rounded-3xl border transition-all duration-500",
+                                                        selectedLocation.includes('Premium') 
+                                                            ? "bg-primary text-white border-accent/30 shadow-2xl" 
+                                                            : "bg-white border-primary/10 text-primary"
+                                                    )}>
+                                                        <div className="flex items-center gap-3 mb-2">
+                                                            {selectedLocation.includes('Premium') ? <Crown className="w-5 h-5 text-accent" /> : <Sun className="w-5 h-5 text-primary/40" />}
+                                                            <h5 className="font-bold text-sm uppercase tracking-widest">
+                                                                {selectedLocation.includes('Premium') ? 'Ubicación Premium' : 'Luz Natural'}
+                                                            </h5>
+                                                        </div>
+                                                        <p className="text-xs opacity-70 leading-relaxed font-light">
+                                                            {selectedLocation.includes('Premium') 
+                                                                ? "Filas 3 y 4: Situación ideal a la altura de la vista central. Máxima distinción y comodidad para visitas."
+                                                                : "Filas 1, 2, 5 y 6: Espacios con excelente iluminación natural y ventilación, ubicados en las zonas superior e inferior."}
+                                                        </p>
+                                                    </div>
+                                                    
+                                                    <div className="grid grid-cols-2 gap-3">
+                                                        <div className="bg-primary/5 rounded-2xl p-4 border border-primary/5">
+                                                            <span className="block text-[8px] uppercase font-black text-primary/40 mb-1">Costo Contado</span>
+                                                            <span className="text-sm font-bold text-primary">${currentPlan.priceContado.toLocaleString()}</span>
+                                                        </div>
+                                                        <div className="bg-primary/5 rounded-2xl p-4 border border-primary/5">
+                                                            <span className="block text-[8px] uppercase font-black text-primary/40 mb-1">Pago Inicial</span>
+                                                            <span className="text-sm font-bold text-primary">${totalInitial.toLocaleString()}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+
 
                                     </div>
                                 </div>
