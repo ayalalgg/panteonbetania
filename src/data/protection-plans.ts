@@ -25,26 +25,26 @@ export const PROTECTION_PLANS: ProtectionPlan[] = [
         id: '2-gavetas',
         title: 'Fosa 2 Gavetas',
         gavetas: 2,
-        priceContado: 27920,
+        priceContado: 35000,
         engancheInmediato: 7000,
         enganchePrevision: 1500,
         openingCost: 0,
         maintenanceCost: 1408,
         features: ["Capacidad para 2 personas", "Ubicación General", "Transferible"],
         previsionFinancing: [
-            { months: 3, monthly: 9306.67, total: 27920 },
-            { months: 6, monthly: 4653.33, total: 27920 },
-            { months: 12, monthly: 2342, total: 29604 },
-            { months: 24, monthly: 1245, total: 31380 },
-            { months: 36, monthly: 883, total: 33288 },
-            { months: 48, monthly: 704, total: 35292 },
-            { months: 60, monthly: 598, total: 37380 },
-            { months: 72, monthly: 530, total: 39660 }
+            { months: 3, monthly: 11666.67, total: 35000 },
+            { months: 6, monthly: 5833.33, total: 35000 },
+            { months: 12, monthly: 2996, total: 37452 },
+            { months: 24, monthly: 1608, total: 40092 },
+            { months: 36, monthly: 1150, total: 42900 },
+            { months: 48, monthly: 925, total: 45900 },
+            { months: 60, monthly: 794, total: 49140 },
+            { months: 72, monthly: 709, total: 52548 }
         ],
         inmediatoFinancing: [
-            { months: 11, monthly: 2219, total: 31404 },
-            { months: 23, monthly: 1139, total: 33192 },
-            { months: 35, monthly: 802, total: 35064 }
+            { months: 11, monthly: 3074, total: 40814 },
+            { months: 23, monthly: 1572, total: 43156 },
+            { months: 35, monthly: 1105, total: 45675 }
         ]
     },
     {
@@ -68,9 +68,9 @@ export const PROTECTION_PLANS: ProtectionPlan[] = [
             { months: 72, monthly: 765, total: 56680 }
         ],
         inmediatoFinancing: [
-            { months: 11, monthly: 3204, total: 44124 },
-            { months: 23, monthly: 1643, total: 46656 },
-            { months: 35, monthly: 1157, total: 49356 }
+            { months: 11, monthly: 3377, total: 46032 },
+            { months: 23, monthly: 1731, total: 48698 },
+            { months: 35, monthly: 1219, total: 51550 }
         ]
     },
     {
@@ -94,9 +94,9 @@ export const PROTECTION_PLANS: ProtectionPlan[] = [
             { months: 72, monthly: 842, total: 62324 }
         ],
         inmediatoFinancing: [
-            { months: 11, monthly: 3694, total: 50628 },
-            { months: 23, monthly: 1874, total: 53088 },
-            { months: 35, monthly: 1305, total: 55656 }
+            { months: 11, monthly: 3866, total: 52526 },
+            { months: 23, monthly: 1959, total: 55057 },
+            { months: 35, monthly: 1365, total: 57775 }
         ]
     },
     {
@@ -120,9 +120,9 @@ export const PROTECTION_PLANS: ProtectionPlan[] = [
             { months: 72, monthly: 924, total: 68328 }
         ],
         inmediatoFinancing: [
-            { months: 11, monthly: 4315, total: 57960 },
-            { months: 23, monthly: 2162, total: 60216 },
-            { months: 35, monthly: 1488, total: 62568 }
+            { months: 11, monthly: 4485, total: 59835 },
+            { months: 23, monthly: 2247, total: 62181 },
+            { months: 35, monthly: 1546, total: 64610 }
         ]
     }
 ];
@@ -133,21 +133,21 @@ export const NICHO_PLANS: ProtectionPlan[] = [
         title: 'Nicho 2 Urnas (Fila Central)',
         urnas: 2,
         location: 'Central (Filas 3 y 4)',
-        priceContado: 13600,
-        engancheInmediato: 4000, // Estimado basado en el 30% del grid anterior
+        priceContado: 17200,
+        engancheInmediato: 5160,
         enganchePrevision: 1500,
         openingCost: 0,
         maintenanceCost: 0,
         features: ["Capacidad: 2 Urnas", "Ubicación Premium (Altura Ojos)", "Nicho de Galería"],
         previsionFinancing: [
-            { months: 3, monthly: 4533.33, total: 13600 },
-            { months: 6, monthly: 2266.67, total: 13600 },
-            { months: 12, monthly: 1077, total: 14424 },
-            { months: 24, monthly: 575, total: 15300 },
-            { months: 36, monthly: 409, total: 16224 }
+            { months: 3, monthly: 5733.33, total: 17200 },
+            { months: 6, monthly: 2866.67, total: 17200 },
+            { months: 12, monthly: 1395, total: 18240 },
+            { months: 24, monthly: 743, total: 19332 },
+            { months: 36, monthly: 528, total: 20508 }
         ],
         inmediatoFinancing: [
-            { months: 11, monthly: 900, total: 13900 }
+            { months: 11, monthly: 1150, total: 17810 }
         ]
     },
     {
@@ -155,21 +155,21 @@ export const NICHO_PLANS: ProtectionPlan[] = [
         title: 'Nicho 2 Urnas (Fila Lateral)',
         urnas: 2,
         location: 'Lateral (Filas 1, 2, 5, 6)',
-        priceContado: 12600,
-        engancheInmediato: 3780,
+        priceContado: 14700,
+        engancheInmediato: 4410,
         enganchePrevision: 1500,
         openingCost: 0,
         maintenanceCost: 0,
         features: ["Capacidad: 2 Urnas", "Ubicación Accesible", "Nicho de Galería"],
         previsionFinancing: [
-            { months: 3, monthly: 4200, total: 12600 },
-            { months: 6, monthly: 2100, total: 12600 },
-            { months: 12, monthly: 988, total: 13356 },
-            { months: 24, monthly: 528, total: 14172 },
-            { months: 36, monthly: 376, total: 15036 }
+            { months: 3, monthly: 4900, total: 14700 },
+            { months: 6, monthly: 2450, total: 14700 },
+            { months: 12, monthly: 1174, total: 15588 },
+            { months: 24, monthly: 626, total: 16524 },
+            { months: 36, monthly: 445, total: 17520 }
         ],
         inmediatoFinancing: [
-            { months: 11, monthly: 867, total: 13317 }
+            { months: 11, monthly: 980, total: 15190 }
         ]
     },
     {
@@ -177,21 +177,21 @@ export const NICHO_PLANS: ProtectionPlan[] = [
         title: 'Nicho 4 Urnas (Fila Central)',
         urnas: 4,
         location: 'Central (Filas 3 y 4)',
-        priceContado: 21900,
-        engancheInmediato: 6570,
+        priceContado: 25800,
+        engancheInmediato: 7740,
         enganchePrevision: 1500,
         openingCost: 0,
         maintenanceCost: 0,
         features: ["Capacidad: 4 Urnas", "Ubicación Premium (Altura Ojos)", "Nicho de Galería"],
         previsionFinancing: [
-            { months: 3, monthly: 7300, total: 21900 },
-            { months: 6, monthly: 3650, total: 21900 },
-            { months: 12, monthly: 1810, total: 23220 },
-            { months: 24, monthly: 963, total: 24612 },
-            { months: 36, monthly: 683, total: 26088 }
+            { months: 3, monthly: 8600, total: 25800 },
+            { months: 6, monthly: 4300, total: 25800 },
+            { months: 12, monthly: 2154, total: 27348 },
+            { months: 24, monthly: 1146, total: 29004 },
+            { months: 36, monthly: 812, total: 30732 }
         ],
         inmediatoFinancing: [
-            { months: 11, monthly: 1500, total: 23070 }
+            { months: 11, monthly: 1725, total: 26715 }
         ]
     },
     {
@@ -199,21 +199,21 @@ export const NICHO_PLANS: ProtectionPlan[] = [
         title: 'Nicho 4 Urnas (Fila Lateral)',
         urnas: 4,
         location: 'Lateral (Filas 1, 2, 5, 6)',
-        priceContado: 21000,
-        engancheInmediato: 6300,
+        priceContado: 24000,
+        engancheInmediato: 7200,
         enganchePrevision: 1500,
         openingCost: 0,
         maintenanceCost: 0,
         features: ["Capacidad: 4 Urnas", "Ubicación Accesible", "Nicho de Galería"],
         previsionFinancing: [
-            { months: 3, monthly: 7000, total: 21000 },
-            { months: 6, monthly: 3500, total: 21000 },
-            { months: 12, monthly: 1730, total: 22260 },
-            { months: 24, monthly: 921, total: 23604 },
-            { months: 36, monthly: 654, total: 25044 }
+            { months: 3, monthly: 8000, total: 24000 },
+            { months: 6, monthly: 4000, total: 24000 },
+            { months: 12, monthly: 1995, total: 25440 },
+            { months: 24, monthly: 1062, total: 26988 },
+            { months: 36, monthly: 753, total: 28608 }
         ],
         inmediatoFinancing: [
-            { months: 11, monthly: 1444, total: 22184 }
+            { months: 11, monthly: 1600, total: 24800 }
         ]
     }
 ];

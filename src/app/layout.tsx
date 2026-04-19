@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import Script from 'next/script';
 import { ClientProvider } from "@/context/ClientContext";
 import Link from "next/link";
-import { AccessBlocker } from "@/components/AccessBlocker";
+
 
 export const metadata: Metadata = {
   title: "Panteón Bethania | Grupo Funerario Ayala - El Panteón Privado más Exclusivo",
@@ -89,7 +89,7 @@ export default function RootLayout({
           </div>
 
           {children}
-          <AccessBlocker />
+
         </ClientProvider>
       </body>
     </html>
