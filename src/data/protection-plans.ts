@@ -137,8 +137,8 @@ export const NICHO_PLANS: ProtectionPlan[] = [
         engancheInmediato: 5160,
         enganchePrevision: 1500,
         openingCost: 0,
-        maintenanceCost: 0,
-        features: ["Capacidad: 2 Urnas", "Ubicación Premium (Altura Ojos)", "Nicho de Galería"],
+        maintenanceCost: 587,
+        features: ["Capacidad: 2 Urnas", "Ubicación Premium (Altura Ojos)", "Nicho de Galería", "Incluye 3 aperturas de nicho"],
         previsionFinancing: [
             { months: 3, monthly: 5733.33, total: 17200 },
             { months: 6, monthly: 2866.67, total: 17200 },
@@ -159,8 +159,8 @@ export const NICHO_PLANS: ProtectionPlan[] = [
         engancheInmediato: 4410,
         enganchePrevision: 1500,
         openingCost: 0,
-        maintenanceCost: 0,
-        features: ["Capacidad: 2 Urnas", "Ubicación Accesible", "Nicho de Galería"],
+        maintenanceCost: 587,
+        features: ["Capacidad: 2 Urnas", "Ubicación Accesible", "Nicho de Galería", "Incluye 3 aperturas de nicho"],
         previsionFinancing: [
             { months: 3, monthly: 4900, total: 14700 },
             { months: 6, monthly: 2450, total: 14700 },
@@ -181,8 +181,8 @@ export const NICHO_PLANS: ProtectionPlan[] = [
         engancheInmediato: 7740,
         enganchePrevision: 1500,
         openingCost: 0,
-        maintenanceCost: 0,
-        features: ["Capacidad: 4 Urnas", "Ubicación Premium (Altura Ojos)", "Nicho de Galería"],
+        maintenanceCost: 587,
+        features: ["Capacidad: 4 Urnas", "Ubicación Premium (Altura Ojos)", "Nicho de Galería", "Incluye 3 aperturas de nicho"],
         previsionFinancing: [
             { months: 3, monthly: 8600, total: 25800 },
             { months: 6, monthly: 4300, total: 25800 },
@@ -203,8 +203,8 @@ export const NICHO_PLANS: ProtectionPlan[] = [
         engancheInmediato: 7200,
         enganchePrevision: 1500,
         openingCost: 0,
-        maintenanceCost: 0,
-        features: ["Capacidad: 4 Urnas", "Ubicación Accesible", "Nicho de Galería"],
+        maintenanceCost: 587,
+        features: ["Capacidad: 4 Urnas", "Ubicación Accesible", "Nicho de Galería", "Incluye 3 aperturas de nicho"],
         previsionFinancing: [
             { months: 3, monthly: 8000, total: 24000 },
             { months: 6, monthly: 4000, total: 24000 },
